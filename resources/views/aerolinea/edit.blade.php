@@ -1,12 +1,11 @@
-{{-- @extends('layout')
+@extends('layout')
 
 
 @section("content")
-<form method="POST" action="{{route("red.update",["redsocial"=>$redsocial->idRedSocial])}}">
+<form method="POST" action="{{route("aerolinea.update",$vars["aerolinea"]->codAeroLinea)}}">
     @method("PUT")
-
-    <h1>Crear red social</h1>
-        @include('redsocial.form',$redsocial)
-        <input type="submit" class="mt-2 btn btn-primary" value="Actualizar Red">
+    <h1>Editar Aerolinea</h1>
+        @include('aerolinea.form',$vars)
+    <input type="submit" class="mt-2 btn btn-primary" value="Actualizar Aerolinea">
 </form>
-@endsection --}}
+@endsection

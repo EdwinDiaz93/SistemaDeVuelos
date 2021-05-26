@@ -32,18 +32,37 @@
 
 
 <h3>Redes Sociales</h3>
-<div class="row my-3">    
-    @forelse ($vars["redes"] as $red)    
-        <div class="col-3">
-            <p>{{$red->NombreRedSocial}}</p>
-        </div>       
-        <div class="col-1">
-            <label for="">Url:</label>
-        </div>
-        <div class="col-8">
-            <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->url}}" >
-        </div>               
-    @empty
-        <h2>No hay redes listadas</h2>
-    @endforelse        
-</div>
+@if (is_null($vars["aerolinea"]->codAeroLinea))    
+    <div class="row my-3">    
+        @forelse ($vars["redes"] as $red)    
+            <div class="col-3">
+                <p>{{$red->NombreRedSocial}}</p>
+            </div>       
+            <div class="col-1">
+                <label for="">Url:</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->url}}" >
+            </div>               
+        @empty
+            <h2>No hay redes listadas</h2>
+        @endforelse        
+    </div>
+    @else
+        <div class="row my-3">    
+        @forelse ($vars["aerolinea"]->redes as $red)    
+            <div class="col-3">
+                <p>{{$red->NombreRedSocial}}</p>
+            </div>       
+            <div class="col-1">
+                <label for="">Url:</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->pivot->url}}" >
+            </div>               
+        @empty
+            <h2>No hay redes listadas</h2>
+        @endforelse        
+    </div>
+    
+@endif
