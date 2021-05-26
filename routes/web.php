@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/redsocial',"RedSocialController")->names("red");
+Route::resource('/aerolineas', "AeroLineaController")->names("aerolinea");
