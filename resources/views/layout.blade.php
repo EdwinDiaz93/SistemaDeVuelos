@@ -14,6 +14,9 @@
             <a class="navbar-brand" >Sistema de vuelos</a>           
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
+                <a class="nav-link active" href="{{route("tipoavion.index")}}">Tipo de Avion<span class="sr-only">(current)</span></a>
+              </div>
+              <div class="navbar-nav">
                 <a class="nav-link active" href="{{route("aerolinea.index")}}">Aero Linea<span class="sr-only">(current)</span></a>
               </div>
               <div class="navbar-nav">
