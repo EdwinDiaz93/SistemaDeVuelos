@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::resource('/redsocial',"RedSocialController")->names("red");
 Route::resource('/aerolineas', "AeroLineaController")->names("aerolinea");
 Route::resource('tipoavion', "TipoAvionController")->names("tipoavion");
+Route::resource('aviones', "AvionController")->names("avion");
