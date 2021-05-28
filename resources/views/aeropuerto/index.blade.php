@@ -10,6 +10,8 @@
                 <th>Codigo Aeropuerto</th>
                 <th>Nombre de Aeropuerto</th>
                 <th>Nombre Resaponsable</th>
+                <th>Pais</th>
+                <th>Cuidad</th>
                 <th>Telefono</th>
                 <th>Numero de Bahias</th>
                 <th>Acciones</th>
@@ -21,6 +23,8 @@
               <td>{{$aeropuerto->codAeropuerto}}</td>   
               <td>{{$aeropuerto->nomAeropuerto}}</td>   
               <td>{{$aeropuerto->nomResponsable}}</td> 
+              <td>{{$aeropuerto->pais_id}}</td>
+              <td>{{$aeropuerto->cuidad_id}}</td>
               <td>{{$aeropuerto->telefono}}</td> 
               <td>{{$aeropuerto->numBahias}}</td> 
                            

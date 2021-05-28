@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AeroLinea;
+
 use App\Models\Aeropuerto;
 use App\Models\Pais;
 use App\Models\Cuidad;
@@ -10,101 +10,80 @@ use Illuminate\Http\Request;
 
 class AeropuertoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+      
     public function index()
     {
         $aeropuertos=Aeropuerto::all();
-        return view('aeropuerto.index')->with('aeropuertos',$aeropuertos);
+        return view("aeropuerto.index",compact("aeropuertos"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
-      return view('aeropuerto.create');
+        $aeropuerto=new Aeropuerto();
+        $pais=Pais::all();
+        $cuidad=Cuidad::all();
+        $vars=["aeropuerto"=>$aeropuerto,"pais"=>$pais, "cuidad"=>$cuidad];
+        return view("aeropuerto.create",compact("vars"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+        //falta el ajax para habilitar los paises y sus respectivas cuidades
+        
+   
     public function store(Request $request)
     {
-        $aeropuertos = new Aeropuerto();
-        $aeropuertos->codAeropuerto =$request->get('codAeropuerto');
-        $aeropuertos->nomAeropuerto =$request->get('nomAeropuerto');
-        $aeropuertos->nomResponsable =$request->get('nomResponsable');
-        $aeropuertos->telefono =$request->get('telefono');
-        $aeropuertos->numBahias =$request->get('numBahias');
-        $aeropuertos ->save();
-
-        return redirect('/aeropuerto');
+        $data=$request->validate([
+            'codAeropuerto' => 'required|min:3',
+            'nomAeropuerto' => 'required|min:3',
+            'nomResponsable' => 'required|min:3',
+            'pais_id' => 'required', 
+            'cuidad_id' => 'required',   
+            'telefono' => 'required|min:3',
+            'numBahias' => 'required|numeric',                  
+        ],);   
+        Aeropuerto::create($data);
+        return redirect("aeropuerto");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function show(Aeropuerto $aeropuerto)
     {
-        //
+        $pais=Pais::all();
+        $cuidad=Cuidad::all();
+        $vars=["aeropuerto"=>$aeropuerto,"pais"=>$pais,"cuidad"=>$cuidad];
+        return view("aeropuerto.show",compact("vars"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($codAeropuerto)
+   
+    public function edit(Aeropuerto $aeropuerto)
     {
-
-        $aeropuerto=Aeropuerto::find($codAeropuerto);
-        return view('aeropuerto.edit')->with('aeropuerto',$aeropuerto);
+        $pais=Pais::all();
+        $cuidad=Cuidad::all();
+        $vars=["aeropuerto"=>$aeropuerto,"pais"=>$pais,"cuidad"=>$cuidad];
+        return view("aeropuerto.edit",compact("vars"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $codAeropuerto)
+   
+    public function update(Request $request, Aeropuerto $aeropuerto)
     {
-        $aeropuerto = Aeropuerto::find($codAeropuerto);
-        $aeropuerto->codAeropuerto =$request->get('codAeropuerto');
-        $aeropuerto->nomAeropuerto =$request->get('nomAeropuerto');
-        $aeropuerto->nomResponsable =$request->get('nomResponsable');
-        $aeropuerto->telefono =$request->get('telefono');
-        $aeropuerto->numBahias =$request->get('numBahias');
-        $aeropuerto ->save();
+        $data=$request->validate([
+            'codAeropuerto' => 'required|min:3',
+            'nomAeropuerto' => 'required|min:3',
+            'nomResponsable' => 'required|min:3',
+            'pais_id' => 'required', 
+            'cuidad_id' => 'required',   
+            'telefono' => 'required|min:3',
+            'numBahias' => 'required|numeric',                    
+        ],);   
 
-        return redirect('/aeropuerto');
-        
+        $aeropuerto->update($data);
+        return redirect("aeropuerto");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($codAeropuerto)
-    {
-        $aeropuerto = Aeropuerto::find($codAeropuerto);
-        $aeropuerto ->delete();
-        return redirect('/aeropuerto');
+   
+    public function destroy(Aeropuerto $aeropuerto)
+    {        
+        $aeropuerto->delete();
+        return redirect("aeropuerto");
     }
 }

@@ -27,7 +27,7 @@
                 <a class="nav-link active" href="{{route("tipoavion.index")}}">Gestion de Tipo de Aviones<span class="sr-only">(current)</span></a>
               </div>
               <div class="navbar-nav">
-                <a class="nav-link active" href="{{route("aeropuerto.index")}}">Aeropuerto<span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="{{route("aeropuerto.index")}}">Gestion de Aeropuerto<span class="sr-only">(current)</span></a>
               </div>
             </div>
           </nav>
