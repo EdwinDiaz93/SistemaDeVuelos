@@ -16,4 +16,8 @@ class AeroLinea extends Model
     public function redes(){
         return $this->belongsToMany(RedSocial::class,"aerolinea_redsocial","aerolinea_cod","redsocial_id")->withPivot("url");
     }
+
+    public function aviones(){
+        return $this->belongsToMany(Avion::class,"aerolinea_avion","aerolinea_cod","avion_id")->withPivot("cantidad");
+    }
 }

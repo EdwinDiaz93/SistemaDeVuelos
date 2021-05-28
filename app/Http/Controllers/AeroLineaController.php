@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AeroLinea;
 use App\Models\RedSocial;
+use App\Models\Avion;
 use Illuminate\Http\Request;
 
 class AeroLineaController extends Controller
@@ -20,7 +21,8 @@ class AeroLineaController extends Controller
     {
         $aerolinea= new AeroLinea();
         $redes=RedSocial::all();
-        $vars=["aerolinea"=>$aerolinea,"redes"=>$redes];
+        $aviones=Avion::all();
+        $vars=["aerolinea"=>$aerolinea,"redes"=>$redes,"aviones"=>$aviones];
         return view("aerolinea.create",compact("vars"));
     }
 
@@ -36,12 +38,17 @@ class AeroLineaController extends Controller
             'FechaFundacion' => 'required|date',            
         ],);     
 
-        $aeroLineaCreada=AeroLinea::create($data);        
-
+        $aeroLineaCreada=AeroLinea::create($data);
+        
         foreach ($request->get('urls') as $index=>$url ) {     
             $aeroLineaCreada->redes()->attach([$index=>["url"=>$url]]);
         }
-            return redirect("aerolineas");
+
+        foreach ($request->get('cantidades') as $index=>$cantidad ) {     
+            $aeroLineaCreada->aviones()->attach([$index=>["cantidad"=>$cantidad]]);
+        }
+
+        return redirect("aerolineas");
     }
 
    
@@ -76,7 +83,13 @@ class AeroLineaController extends Controller
             $aerolinea->redes()->detach([$index]);
             $aerolinea->redes()->attach([$index=>["url"=>$url]]);
         }
-            return redirect("aerolineas");
+
+        foreach ($request->get('cantidades') as $index=>$cantidad ) {     
+            $aerolinea->aviones()->detach([$index]);
+            $aerolinea->aviones()->attach([$index=>["cantidad"=>$cantidad]]);
+        }
+
+        return redirect("aerolineas");
     }
 
     

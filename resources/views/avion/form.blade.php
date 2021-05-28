@@ -9,12 +9,10 @@
 
 <label for="tipoavion_id" class="text-bold">Tipo De Avion:</label>
 <select class="form-control" name="tipoavion_id" id="tipoavion">
-    <option selected disabled value="">----Seleccionar Tipo De Avion----</option>    
-
     @forelse ($vars["tiposAvion"] as $tipoavion)
     <option value="{{$tipoavion->idTipoAvion}}" {{$tipoavion->idTipoAvion==$vars["avion"]->tipoavion_id ? "selected":""}}>{{$tipoavion->NombreTipoAvion}}</option>        
     @empty
-        <option value="">----No Hay Tipos De Avion----</option>
+        <option selected disabled value="">----No Hay Tipos De Avion Añada Uno----</option>
     @endforelse
 </select>
 <p>{{$errors->first("tipoavion_id")}}</p>

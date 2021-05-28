@@ -31,8 +31,9 @@
 </div>
 
 
-<h3>Redes Sociales</h3>
 @if (is_null($vars["aerolinea"]->codAeroLinea))    
+    <h3>Redes Sociales</h3>
+    <p>{{$errors->first("urls")}}</p>
     <div class="row my-3">    
         @forelse ($vars["redes"] as $red)    
             <div class="col-3">
@@ -45,7 +46,8 @@
                 <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->url}}" >
             </div>               
         @empty
-            <h2>No hay redes listadas</h2>
+        <strong>No hay Redes sociales listadas</strong>
+        <a class="btn ml-3 btn-success" href="{{route("red.create")}}">Añadir una</a>
         @endforelse        
     </div>
     @else
@@ -60,9 +62,43 @@
             <div class="col-8">
                 <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->pivot->url}}" >
             </div>               
-        @empty
-            <h2>No hay redes listadas</h2>
+        @empty            
         @endforelse        
     </div>
+    @endif
     
+    @if (is_null($vars["aerolinea"]->codAeroLinea))  
+    <h3>Aviones</h3>
+    <p>{{$errors->first("cantidades")}}</p>
+    <div class=" row my-3">    
+        @forelse ($vars["aviones"] as $avion)    
+            <div class="col-3">
+                <p>{{$avion->ModeloAvion}}</p>
+            </div>       
+            <div class="col-1">
+                <label for="">Cantidad:</label>
+            </div>
+            <div class="col-8">
+                <input type="number" name="cantidades[{{$avion->idAvion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idAvion]") ?? $avion->cantidad}}" >
+            </div>               
+        @empty
+        <strong>No hay Aviones listados</strong>
+        <a class="btn ml-3 btn-success" href="{{route("avion.create")}}">Añadir uno</a>
+        @endforelse        
+    </div>
+    @else
+        <div class="row my-3">    
+        @forelse ($vars["aerolinea"]->aviones as $avion)    
+            <div class="col-3">
+                <p>{{$avion->ModeloAvion}}</p>
+            </div>       
+            <div class="col-1">
+                <label for="">cantidad:</label>
+            </div>
+            <div class="col-8">
+                <input type="number" name="cantidades[{{$avion->idAvion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idAvion]") ?? $avion->pivot->cantidad}}" >
+            </div>               
+        @empty            
+        @endforelse        
+    </div>
 @endif

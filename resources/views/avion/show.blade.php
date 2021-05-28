@@ -18,6 +18,6 @@
         @empty
         @endforelse
     </select>
-    <a href="{{route("avion.index")}}" class="btn btn-primary mt-2">Regresar</a>
+    <a href="{{route("avion.index")}}" class="btn btn-primary   mt-2">Regresar</a>
 </div>
 @endsection

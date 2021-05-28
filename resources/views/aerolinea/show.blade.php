@@ -46,5 +46,22 @@
         <h3>No hay Redes en esta aerolinea</h3>
     @endforelse
 </div>    
+
+<h3>Aviones</h3>
+<div class="row my-3">       
+    @forelse ($aerolinea->aviones as $avion)        
+    <div class="col-3">
+        <p>{{$avion->ModeloAvion}}</p>
+    </div>       
+    <div class="col-1">
+        <label for="">Url:</label>
+    </div>
+    <div class="col-8">
+        <input type="text" disabled class="form-control" value="{{$avion->pivot->cantidad}}" >
+    </div>                    
+    @empty
+        <h3>No hay aviones en esta aerolinea</h3>
+    @endforelse
+</div>    
     <a class="btn btn-primary" href="{{route("aerolinea.index")}}">Regresar</a>
 @endsection
