@@ -3,26 +3,26 @@
 
 @section('content')
 <div class=" mt-2">
-    <h3>Datos para el Aeropuerto {{$vars["aeropuerto"]->nomAeropuerto}}</h3>
+    <h3>Datos para el Aeropuerto {{$vars["aeropuerto"]->nomaeropuerto}}</h3>
 
     <label for="codA" class="text-bold">Codigo del Aeropuerto:</label>
-    <input id="" type="text" value="{{$vars["aeropuerto"]->codAeropuerto }}" class="form-control" disabled>
+    <input id="" type="text" value="{{$vars["aeropuerto"]->codaeropuerto }}" class="form-control" disabled>
 
 
     <label for="nomA" class="text-bold">Nombre Del Aeropuerto:</label>
-    <input id="" type="text" value="{{$vars["aeropuerto"]->nomAeropuerto }}" class="form-control" disabled>
-    <p>{{$errors->first("nomAeropuerto")}}</p>
+    <input id="" type="text" value="{{$vars["aeropuerto"]->nomaeropuerto }}" class="form-control" disabled>
+    
 
     <label for="nomR" class="text-bold">Nombre del Responsable:</label>
-    <input id="" type="text" value="{{$vars["aeropuerto"]->nomResponsable }}" class="form-control" disabled>
-    <p>{{$errors->first("nomResponsable")}}</p>
+    <input id="" type="text" value="{{$vars["aeropuerto"]->nomresponsable }}" class="form-control" disabled>
+ 
 
 
     <label for="pais_id" class="text-bold">Pais :</label>
     <select disabled class="form-control">
     <option selected disabled value="">----Seleccionar Pais----</option>    
     @forelse ($vars["pais"] as $pais)
-    <option value="{{$pais->id}}" {{$pais->id==$vars["aeropuerto"]->pais_id ? "selected":""}}>{{$pais->nomPais}}</option>        
+    <option value="{{$pais->id}}" {{$pais->id==$vars["aeropuerto"]->pais_id ? "selected":""}}>{{$pais->nompais}}</option>        
     @empty
     @endforelse
 </select>
@@ -31,7 +31,7 @@
     <select disabled class="form-control">
     <option selected disabled value="">----Seleccionar Cuidad----</option>    
     @forelse ($vars["cuidad"] as $cuidad)
-    <option value="{{$cuidad->id}}" {{$cuidad->id==$vars["aeropuerto"]->cuidad_id ? "selected":""}}>{{$cuidad->nomCuidad}}</option>        
+    <option value="{{$cuidad->id}}" {{$cuidad->id==$vars["aeropuerto"]->cuidad_id ? "selected":""}}>{{$cuidad->nomcuidad}}</option>        
     @empty
     @endforelse
 </select>
@@ -41,7 +41,7 @@
 
 
 <label for="numB" class="text-bold">Numero de Bahias:</label>
-<input id="" type="number" value="{{$vars["aeropuerto"]->numBahias }}" class="form-control" disabled>
+<input id="" type="number" value="{{$vars["aeropuerto"]->numbahias }}" class="form-control" disabled>
 
     <a href="{{route("aeropuerto.index")}}" class="btn btn-primary mt-2">Regresar</a>
 </div>

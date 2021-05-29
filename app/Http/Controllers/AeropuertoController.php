@@ -33,13 +33,13 @@ class AeropuertoController extends Controller
     public function store(Request $request)
     {
         $data=$request->validate([
-            'codAeropuerto' => 'required|min:3',
-            'nomAeropuerto' => 'required|min:3',
-            'nomResponsable' => 'required|min:3',
+            'codaeropuerto' => 'required|min:3',
+            'nomaeropuerto' => 'required|min:3',
+            'nomresponsable' => 'required|min:3',
             'pais_id' => 'required', 
             'cuidad_id' => 'required',   
             'telefono' => 'required|min:3',
-            'numBahias' => 'required|numeric',                  
+            'numbahias' => 'required|numeric',                  
         ],);   
         Aeropuerto::create($data);
         return redirect("aeropuerto");
@@ -67,13 +67,13 @@ class AeropuertoController extends Controller
     public function update(Request $request, Aeropuerto $aeropuerto)
     {
         $data=$request->validate([
-            'codAeropuerto' => 'required|min:3',
-            'nomAeropuerto' => 'required|min:3',
-            'nomResponsable' => 'required|min:3',
+            'codaeropuerto' => 'required|min:3',
+            'nomaeropuerto' => 'required|min:3',
+            'nomresponsable' => 'required|min:3',
             'pais_id' => 'required', 
             'cuidad_id' => 'required',   
             'telefono' => 'required|min:3',
-            'numBahias' => 'required|numeric',                    
+            'numbahias' => 'required|numeric',                    
         ],);   
 
         $aeropuerto->update($data);

@@ -10,7 +10,7 @@ class Pais extends Migration
     {
         Schema::create('pais', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nomPais');
+            $table->String('nompais');
             $table->timestamps();
         });
     }

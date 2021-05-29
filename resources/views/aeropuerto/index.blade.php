@@ -20,18 +20,18 @@
         @forelse ($aeropuertos as $aeropuerto)
           <tbody>
             <tr>                          
-              <td>{{$aeropuerto->codAeropuerto}}</td>   
-              <td>{{$aeropuerto->nomAeropuerto}}</td>   
-              <td>{{$aeropuerto->nomResponsable}}</td> 
+              <td>{{$aeropuerto->codaeropuerto}}</td>   
+              <td>{{$aeropuerto->nomaeropuerto}}</td>   
+              <td>{{$aeropuerto->nomresponsable}}</td> 
               <td>{{$aeropuerto->pais_id}}</td>
               <td>{{$aeropuerto->cuidad_id}}</td>
               <td>{{$aeropuerto->telefono}}</td> 
-              <td>{{$aeropuerto->numBahias}}</td> 
+              <td>{{$aeropuerto->numbahias}}</td> 
                            
               <td>                 
-                <a class=" btn btn btn-primary" href="{{route("aeropuerto.show",$aeropuerto->codAeropuerto)}}"><i class="fas fa-eye"></i></a>                
-                <a class=" btn btn btn-warning my-1" href="{{route("aeropuerto.edit",$aeropuerto->codAeropuerto)}}"><i class="far fa-edit"></i></a>
-                <form method="POST" action="{{route("aeropuerto.destroy",$aeropuerto->codAeropuerto)}}">
+                <a class=" btn btn btn-primary" href="{{route("aeropuerto.show",$aeropuerto->codaeropuerto)}}"><i class="fas fa-eye"></i></a>                
+                <a class=" btn btn btn-warning my-1" href="{{route("aeropuerto.edit",$aeropuerto->codaeropuerto)}}"><i class="far fa-edit"></i></a>
+                <form method="POST" action="{{route("aeropuerto.destroy",$aeropuerto->codaeropuerto)}}">
                   @method("DELETE")  
                 <button type="submit"  class=" btn btn btn-danger"><i class="fas fa-trash-alt"></i></button>
               

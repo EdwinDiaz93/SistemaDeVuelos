@@ -15,7 +15,7 @@ class Cuidad extends Migration
     {
         Schema::create('cuidad', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nomCuidad');
+            $table->String('nomcuidad');
 
             
             $table->unsignedBigInteger('pais_id')->nullable();

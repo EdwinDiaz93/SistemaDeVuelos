@@ -14,11 +14,11 @@ class Aeropuerto extends Migration
     public function up()
     {
         Schema::create('aeropuerto', function (Blueprint $table) {
-            $table->String('codAeropuerto')->unique();
-            $table->String('nomAeropuerto');
+            $table->String('codaeropuerto')->unique();
+            $table->String('nomaeropuerto');
             $table->char('telefono');
-            $table->String('nomResponsable');
-            $table->Integer('numBahias');
+            $table->String('nomresponsable');
+            $table->Integer('numbahias');
 
 
 
