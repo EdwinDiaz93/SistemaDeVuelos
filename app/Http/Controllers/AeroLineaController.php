@@ -30,12 +30,12 @@ class AeroLineaController extends Controller
     public function store(Request $request)
     {           
         $data=$request->validate([
-            'codAeroLinea' => 'required|min:3',
-            'NombreAeroLinea' => 'required|min:3',
-            'NombreOficial' => 'required|min:3',
-            'NombreCorto' => 'required|min:3',
-            'NombreRepresentante' => 'required|min:3',
-            'FechaFundacion' => 'required|date',            
+            'codaerolinea' => 'required|min:3',
+            'nombreaerolinea' => 'required|min:3',
+            'nombreoficial' => 'required|min:3',
+            'nombrecorto' => 'required|min:3',
+            'nombrerepresentante' => 'required|min:3',
+            'fechafundacion' => 'required|date',            
         ],);     
 
         $aeroLineaCreada=AeroLinea::create($data);
@@ -52,9 +52,7 @@ class AeroLineaController extends Controller
     }
 
    
-    public function show(AeroLinea $aerolinea)
-    {   
-        
+    public function show(AeroLinea $aerolinea){       
        return view("aerolinea.show",compact("aerolinea"));
     }
 
@@ -69,12 +67,12 @@ class AeroLineaController extends Controller
     public function update(Request $request, AeroLinea $aerolinea)
     {
         $data=$request->validate([
-            'codAeroLinea' => 'required|min:3',
-            'NombreAeroLinea' => 'required|min:3',
-            'NombreOficial' => 'required|min:3',
-            'NombreCorto' => 'required|min:3',
-            'NombreRepresentante' => 'required|min:3',
-            'FechaFundacion' => 'required|date',            
+            'codaerolinea' => 'required|min:3',
+            'nombreaerolinea' => 'required|min:3',
+            'nombreoficial' => 'required|min:3',
+            'nombrecorto' => 'required|min:3',
+            'nombrerepresentante' => 'required|min:3',
+            'fechafundacion' => 'required|date',            
         ],);    
 
         $aerolinea->update($data);        

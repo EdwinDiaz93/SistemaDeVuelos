@@ -2,7 +2,7 @@
 
 
 @section("content")
-<form method="POST" action="{{route("avion.update",["avione"=>$vars["avion"]->idAvion])}}">
+<form method="POST" action="{{route("avion.update",["avione"=>$vars["avion"]->idavion])}}">
     @method("PUT")
 
     <h1>Crear avion</h1>

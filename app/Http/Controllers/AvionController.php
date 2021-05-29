@@ -29,8 +29,8 @@ class AvionController extends Controller
     public function store(Request $request)
     {
         $data=$request->validate([
-            'ModeloAvion' => 'required|min:3',
-            'MarcaAvion' => 'required|min:3',
+            'modeloavion' => 'required|min:3',
+            'marcaavion' => 'required|min:3',
             'tipoavion_id' => 'required',                     
         ],);   
         Avion::create($data);
@@ -57,8 +57,8 @@ class AvionController extends Controller
     public function update(Request $request, Avion $avione)
     {
         $data=$request->validate([
-            'ModeloAvion' => 'required|min:3',
-            'MarcaAvion' => 'required|min:3',
+            'modeloavion' => 'required|min:3',
+            'marcaavion' => 'required|min:3',
             'tipoavion_id' => 'required',                     
         ],);   
 

@@ -14,8 +14,8 @@ class CreateRedSocialsTable extends Migration
     public function up()
     {
         Schema::create('red_socials', function (Blueprint $table) {
-            $table->bigIncrements('idRedSocial');
-            $table->String("NombreRedSocial")->unique();
+            $table->bigIncrements('idredsocial');
+            $table->String("nombreredsocial")->unique();
             $table->timestamps();
         });
     }

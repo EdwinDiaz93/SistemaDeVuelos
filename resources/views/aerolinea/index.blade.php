@@ -19,16 +19,16 @@
         @forelse ($aerolineas as $aerolinea)
           <tbody>
             <tr>                          
-              <td>{{$aerolinea->codAeroLinea}}</td>   
-              <td>{{$aerolinea->NombreAeroLinea}}</td>   
-              <td>{{$aerolinea->NombreOficial}}</td>   
-              <td>{{$aerolinea->NombreCorto}}</td>   
-              <td>{{$aerolinea->NombreRepresentante}}</td>   
-              <td>{{$aerolinea->FechaFundacion}}</td>                           
+              <td>{{$aerolinea->codaerolinea}}</td>   
+              <td>{{$aerolinea->nombreaerolinea}}</td>   
+              <td>{{$aerolinea->nombreoficial}}</td>   
+              <td>{{$aerolinea->nombrecorto}}</td>   
+              <td>{{$aerolinea->nombrerepresentante}}</td>   
+              <td>{{$aerolinea->fechafundacion}}</td>                           
               <td>                 
-                <a class=" btn btn-block btn-primary" href="{{route("aerolinea.show",$aerolinea->codAeroLinea)}}"><i class="fas fa-eye"></i></a>                
-                <a class=" btn btn-block btn-warning my-1" href="{{route("aerolinea.edit",$aerolinea->codAeroLinea)}}"><i class="far fa-edit"></i></a>
-                <form method="POST" action="{{route("aerolinea.destroy",$aerolinea->codAeroLinea)}}" >
+                <a class=" btn btn-block btn-primary" href="{{route("aerolinea.show",$aerolinea->codaerolinea)}}"><i class="fas fa-eye"></i></a>                
+                <a class=" btn btn-block btn-warning my-1" href="{{route("aerolinea.edit",$aerolinea->codaerolinea)}}"><i class="far fa-edit"></i></a>
+                <form method="POST" action="{{route("aerolinea.destroy",$aerolinea->codaerolinea)}}" >
                   @method("DELETE")                  
                   <button type="submit" class=" btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
                   @csrf

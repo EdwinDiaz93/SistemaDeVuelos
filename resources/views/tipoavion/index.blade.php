@@ -15,11 +15,11 @@
         @forelse ($tipoaviones as $tipoavion)
           <tbody>
             <tr>                          
-              <td>{{$tipoavion->NombreTipoAvion}}</td>   
-              <td>{{$tipoavion->CantidadAsientos}}</td>   
+              <td>{{$tipoavion->nombretipoavion}}</td>   
+              <td>{{$tipoavion->cantidadasientos}}</td>   
               <td>
-                <a class="btn btn-warning text-white " href="{{route("tipoavion.edit",["tipoavion"=>$tipoavion->idTipoAvion])}}"><i class="far fa-edit"></i></a>
-                <form class="d-inline-block" action="{{route("tipoavion.destroy",["tipoavion"=>$tipoavion->idTipoAvion])}}" method="POST">
+                <a class="btn btn-warning text-white " href="{{route("tipoavion.edit",["tipoavion"=>$tipoavion->idtipoavion])}}"><i class="far fa-edit"></i></a>
+                <form class="d-inline-block" action="{{route("tipoavion.destroy",["tipoavion"=>$tipoavion->idtipoavion])}}" method="POST">
                   @method("DELETE")
                   <button type="submit" class="btn btn-danger btn"><i class="fas fa-trash-alt"></i></button>
                   @csrf

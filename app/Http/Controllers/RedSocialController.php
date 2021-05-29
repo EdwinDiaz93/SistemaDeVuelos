@@ -25,7 +25,7 @@ class RedSocialController extends Controller
     public function store(Request $request)
     {
         $data=$request->validate([
-            'NombreRedSocial' => 'required|min:3',            
+            'nombreredsocial' => 'required|min:3',            
         ],);     
 
         RedSocial::create($data);
@@ -43,7 +43,7 @@ class RedSocialController extends Controller
     public function update(Request $request, RedSocial $redsocial)
     {
         $data=$request->validate([
-            'NombreRedSocial' => 'required|min:3',            
+            'nombreredsocial' => 'required|min:3',            
         ],);           
         $redsocial->update($data);
 

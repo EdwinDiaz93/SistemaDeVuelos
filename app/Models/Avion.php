@@ -9,7 +9,7 @@ class Avion extends Model
 {
     use HasFactory;
     protected $table = 'avions';
-    protected $primaryKey = 'idAvion';
+    protected $primaryKey = 'idavion';
     protected $guarded=[];
 
     public function tipoaviones(){

@@ -15,8 +15,8 @@ class CreateAerolineaRedsocialTable extends Migration
     {
         Schema::create('aerolinea_redsocial', function (Blueprint $table) {            
             $table->String("aerolinea_cod");
-            $table->foreignId('redsocial_id')->references('idRedSocial')->on('red_socials')->onDelete('cascade')->nullable();
-            $table->foreign('aerolinea_cod')->references('codAeroLinea')->on('aero_lineas')->onDelete('cascade')->nullable();
+            $table->foreignId('redsocial_id')->references('idredsocial')->on('red_socials')->onDelete('cascade')->nullable();
+            $table->foreign('aerolinea_cod')->references('codaerolinea')->on('aero_lineas')->onDelete('cascade')->nullable();
             $table->String("url")->nullable();           
         });
     }

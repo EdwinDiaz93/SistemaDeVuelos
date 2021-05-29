@@ -10,7 +10,7 @@ class AeroLinea extends Model
     use HasFactory;
     protected $table = 'aero_lineas';
     public $incrementing = false;
-    protected $primaryKey = 'codAeroLinea';
+    protected $primaryKey = 'codaerolinea';
     protected $guarded=[];
 
     public function redes(){
@@ -20,4 +20,5 @@ class AeroLinea extends Model
     public function aviones(){
         return $this->belongsToMany(Avion::class,"aerolinea_avion","aerolinea_cod","avion_id")->withPivot("cantidad");
     }
+    
 }

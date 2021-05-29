@@ -15,8 +15,8 @@ class CreateAerolineaAvionTable extends Migration
     {
         Schema::create('aerolinea_avion', function (Blueprint $table) {
             $table->String("aerolinea_cod");
-            $table->foreignId('avion_id')->references('idAvion')->on('avions')->onDelete('cascade')->nullable();
-            $table->foreign('aerolinea_cod')->references('codAeroLinea')->on('aero_lineas')->onDelete('cascade')->nullable();
+            $table->foreignId('avion_id')->references('idavion')->on('avions')->onDelete('cascade')->nullable();
+            $table->foreign('aerolinea_cod')->references('codaerolinea')->on('aero_lineas')->onDelete('cascade')->nullable();
             $table->integer("cantidad");
         });
     }

@@ -3,47 +3,48 @@
     <div class="col-6">
 
         <label for="cod" >Codigo Aerolinea:</label>
-        <input id="cod" type="text" value="{{ old('codAeroLinea') ?? $vars["aerolinea"]->codAeroLinea }}" class="form-control" name="codAeroLinea">
-        <p>{{$errors->first("codAeroLinea")}}</p>
+        <input id="cod" type="text" value="{{ old('codaerolinea') ?? $vars["aerolinea"]->codaerolinea }}" class="form-control" name="codaerolinea">
+        <p>{{$errors->first("codaerolinea")}}</p>
         
         <label for="noma" >Nombre Aerolinea:</label>
-        <input id="noma" type="text" value="{{ old('NombreAeroLinea') ?? $vars["aerolinea"]->NombreAeroLinea }}" class="form-control" name="NombreAeroLinea">
-        <p>{{$errors->first("NombreAeroLinea")}}</p>
+        <input id="noma" type="text" value="{{ old('nombreaerolinea') ?? $vars["aerolinea"]->nombreaerolinea }}" class="form-control" name="nombreaerolinea">
+        <p>{{$errors->first("nombreaerolinea")}}</p>
         
         <label for="nomo" >Nombre Oficial:</label>
-        <input id="nomo" type="text" value="{{ old('NombreOficial') ?? $vars["aerolinea"]->NombreOficial }}" class="form-control" name="NombreOficial">
-        <p>{{$errors->first("NombreOficial")}}</p>
+        <input id="nomo" type="text" value="{{ old('nombreoficial') ?? $vars["aerolinea"]->nombreoficial }}" class="form-control" name="nombreoficial">
+        <p>{{$errors->first("nombreoficial")}}</p>
     </div>
 
     <div class="col-6">
         <label for="nomc" >Nombre Corto:</label>
-        <input id="nomc" type="text" value="{{ old('NombreCorto') ?? $vars["aerolinea"]->NombreCorto }}" class="form-control" name="NombreCorto">
-        <p>{{$errors->first("NombreCorto")}}</p>
+        <input id="nomc" type="text" value="{{ old('nombrecorto') ?? $vars["aerolinea"]->nombrecorto }}" class="form-control" name="nombrecorto">
+        <p>{{$errors->first("nombrecorto")}}</p>
         
         <label for="nomr" >Nombre Representante:</label>
-        <input id="nomr" type="text" value="{{ old('NombreRepresentante') ?? $vars["aerolinea"]->NombreRepresentante }}" class="form-control" name="NombreRepresentante">
-        <p>{{$errors->first("NombreRepresentante")}}</p>
+        <input id="nomr" type="text" value="{{ old('nombrerepresentante') ?? $vars["aerolinea"]->nombrerepresentante }}" class="form-control" name="nombrerepresentante">
+        <p>{{$errors->first("nombrerepresentante")}}</p>
         
         <label for="fec" >Fecha De Fundacion:</label>
-        <input id="fec" type="date" value="{{ old('FechaFundacion') ?? $vars["aerolinea"]->FechaFundacion }}" class="form-control" name="FechaFundacion">
-    
+        <input id="fec" type="date" value="{{ old('fechafundacion') ?? $vars["aerolinea"]->fechafundacion }}" class="form-control" name="fechafundacion">
+        <p>{{$errors->first("fechafundacion")}}</p>
+
     </div>
 </div>
 
 
-@if (is_null($vars["aerolinea"]->codAeroLinea))    
+@if (is_null($vars["aerolinea"]->codaerolinea))    
     <h3>Redes Sociales</h3>
     <p>{{$errors->first("urls")}}</p>
     <div class="row my-3">    
         @forelse ($vars["redes"] as $red)    
             <div class="col-3">
-                <p>{{$red->NombreRedSocial}}</p>
+                <p>{{$red->nombreredsocial}}</p>
             </div>       
             <div class="col-1">
                 <label for="">Url:</label>
             </div>
             <div class="col-8">
-                <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->url}}" >
+                <input type="text" name="urls[{{$red->idredsocial}}]" class="form-control" value="{{ old("'urls'. [$red->idredsocial]") ?? $red->url}}" >
             </div>               
         @empty
         <strong>No hay Redes sociales listadas</strong>
@@ -54,32 +55,32 @@
         <div class="row my-3">    
         @forelse ($vars["aerolinea"]->redes as $red)    
             <div class="col-3">
-                <p>{{$red->NombreRedSocial}}</p>
+                <p>{{$red->nombreredsocial}}</p>
             </div>       
             <div class="col-1">
                 <label for="">Url:</label>
             </div>
             <div class="col-8">
-                <input type="text" name="urls[{{$red->idRedSocial}}]" class="form-control" value="{{ old("'urls'. [$red->idRedSocial]") ?? $red->pivot->url}}" >
+                <input type="text" name="urls[{{$red->idredsocial}}]" class="form-control" value="{{ old("'urls'. [$red->idredsocial]") ?? $red->pivot->url}}" >
             </div>               
         @empty            
         @endforelse        
     </div>
     @endif
     
-    @if (is_null($vars["aerolinea"]->codAeroLinea))  
+    @if (is_null($vars["aerolinea"]->codaerolinea))  
     <h3>Aviones</h3>
     <p>{{$errors->first("cantidades")}}</p>
     <div class=" row my-3">    
         @forelse ($vars["aviones"] as $avion)    
             <div class="col-3">
-                <p>{{$avion->ModeloAvion}}</p>
+                <p>{{$avion->modeloavion}}</p>
             </div>       
             <div class="col-1">
                 <label for="">Cantidad:</label>
             </div>
             <div class="col-8">
-                <input type="number" name="cantidades[{{$avion->idAvion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idAvion]") ?? $avion->cantidad}}" >
+                <input type="number" name="cantidades[{{$avion->idavion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idavion]") ?? $avion->cantidad}}" >
             </div>               
         @empty
         <strong>No hay Aviones listados</strong>
@@ -90,13 +91,13 @@
         <div class="row my-3">    
         @forelse ($vars["aerolinea"]->aviones as $avion)    
             <div class="col-3">
-                <p>{{$avion->ModeloAvion}}</p>
+                <p>{{$avion->modeloavion}}</p>
             </div>       
             <div class="col-1">
                 <label for="">cantidad:</label>
             </div>
             <div class="col-8">
-                <input type="number" name="cantidades[{{$avion->idAvion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idAvion]") ?? $avion->pivot->cantidad}}" >
+                <input type="number" name="cantidades[{{$avion->idavion}}]" class="form-control" value="{{ old("'cantidades'. [$avion->idavion]") ?? $avion->pivot->cantidad}}" >
             </div>               
         @empty            
         @endforelse        
