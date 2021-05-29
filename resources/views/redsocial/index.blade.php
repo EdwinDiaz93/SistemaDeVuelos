@@ -14,10 +14,10 @@
         @forelse ($redes as $redsocial)
           <tbody>
             <tr>                          
-              <td>{{$redsocial->NombreRedSocial}}</td>   
+              <td>{{$redsocial->nombreredsocial}}</td>   
               <td>
-                <a class="btn btn-warning text-white " href="{{route("red.edit",["redsocial"=>$redsocial->idRedSocial])}}"><i class="far fa-edit"></i></a>
-                <form class="d-inline-block" action="{{route("red.destroy",["redsocial"=>$redsocial->idRedSocial])}}" method="POST">
+                <a class="btn btn-warning text-white " href="{{route("red.edit",["redsocial"=>$redsocial->idredsocial])}}"><i class="far fa-edit"></i></a>
+                <form class="d-inline-block" action="{{route("red.destroy",["redsocial"=>$redsocial->idredsocial])}}" method="POST">
                   @method("DELETE")
                   <button type="submit" class="btn btn-danger btn"><i class="fas fa-trash-alt"></i></button>
                   @csrf

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAerolineaRedsocialTable extends Migration
+class CreateAerolineaAvionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAerolineaRedsocialTable extends Migration
      */
     public function up()
     {
-        Schema::create('aerolinea_redsocial', function (Blueprint $table) {            
+        Schema::create('aerolinea_avion', function (Blueprint $table) {
             $table->String("aerolinea_cod");
-            $table->foreignId('redsocial_id')->references('idredsocial')->on('red_socials')->onDelete('cascade')->nullable();
+            $table->foreignId('avion_id')->references('idavion')->on('avions')->onDelete('cascade')->nullable();
             $table->foreign('aerolinea_cod')->references('codaerolinea')->on('aero_lineas')->onDelete('cascade')->nullable();
-            $table->String("url")->nullable();           
+            $table->integer("cantidad");
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAerolineaRedsocialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aerolinea_redsocial');
+        Schema::dropIfExists('aerolinea_avion');
     }
 }

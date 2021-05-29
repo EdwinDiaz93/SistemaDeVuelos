@@ -14,9 +14,9 @@ class CreateTipoAvionsTable extends Migration
     public function up()
     {
         Schema::create('tipo_avions', function (Blueprint $table) {
-            $table->bigIncrements('idTipoAvion');
-            $table->String("NombreTipoAvion");
-            $table->integer("CantidadAsientos");
+            $table->bigIncrements('idtipoavion');
+            $table->String("nombretipoavion");
+            $table->integer("cantidadasientos");
             $table->timestamps();
         });
     }

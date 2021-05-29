@@ -9,6 +9,6 @@ class TipoAvion extends Model
 {
     use HasFactory;
     protected $table = 'tipo_avions';
-    protected $primaryKey = 'idTipoAvion';
+    protected $primaryKey = 'idtipoavion';
     protected $guarded=[];
 }

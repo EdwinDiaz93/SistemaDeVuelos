@@ -14,10 +14,10 @@ class CreateAvionsTable extends Migration
     public function up()
     {
         Schema::create('avions', function (Blueprint $table) {
-            $table->bigIncrements('idAvion');            
-            $table->String("ModeloAvion");
-            $table->String("MarcaAvion");
-            $table->foreignId('tipoavion_id')->references('idTipoAvion')->on('tipo_avions')->onDelete('cascade');
+            $table->bigIncrements('idavion');            
+            $table->String("modeloavion");
+            $table->String("marcaavion");
+            $table->foreignId('tipoavion_id')->references('idtipoavion')->on('tipo_avions')->onDelete('cascade');
             $table->timestamps();
         });
     }

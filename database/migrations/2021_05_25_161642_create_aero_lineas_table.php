@@ -14,12 +14,12 @@ class CreateAeroLineasTable extends Migration
     public function up()
     {
         Schema::create('aero_lineas', function (Blueprint $table) {            
-            $table->String('codAeroLinea')->unique();
-            $table->String('NombreAeroLinea');
-            $table->String('NombreOficial');
-            $table->String('NombreCorto');
-            $table->String('NombreRepresentante');
-            $table->date('FechaFundacion');
+            $table->String('codaerolinea')->unique();
+            $table->String('nombreaerolinea');
+            $table->String('nombreoficial');
+            $table->String('nombrecorto');
+            $table->String('nombrerepresentante');
+            $table->date('fechafundacion');
             $table->timestamps();
         });
     }

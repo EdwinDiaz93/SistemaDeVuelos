@@ -25,8 +25,8 @@ class TipoAvionController extends Controller
     public function store(Request $request)
     {
         $data=$request->validate([
-            'NombreTipoAvion' => 'required|min:3',
-            'CantidadAsientos' => 'required|numeric',                     
+            'nombretipoavion' => 'required|min:3',
+            'cantidadasientos' => 'required|numeric',                     
         ],);    
 
         TipoAvion::create($data);
@@ -46,8 +46,8 @@ class TipoAvionController extends Controller
     public function update(Request $request, TipoAvion $tipoavion)
     {
         $data=$request->validate([
-            'NombreTipoAvion' => 'required|min:3',
-            'CantidadAsientos' => 'required|numeric',                     
+            'nombretipoavion' => 'required|min:3',
+            'cantidadasientos' => 'required|numeric',                     
         ],);   
 
         $tipoavion->update($data);

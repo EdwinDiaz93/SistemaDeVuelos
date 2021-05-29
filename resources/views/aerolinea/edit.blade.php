@@ -2,7 +2,7 @@
 
 
 @section("content")
-<form method="POST" action="{{route("aerolinea.update",$vars["aerolinea"]->codAeroLinea)}}">
+<form method="POST" action="{{route("aerolinea.update",$vars["aerolinea"]->codaerolinea)}}">
     @method("PUT")
     <h1>Editar Aerolinea</h1>
         @include('aerolinea.form',$vars)
