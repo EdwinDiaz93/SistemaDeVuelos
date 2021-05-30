@@ -11,3 +11,9 @@
     <a href="{{route("aeropuerto.index")}}" class="btn btn-success mt-2">Regresar</a>
 </form>
 @endsection
+
+
+
+@section('scripts')
+<script src="/js/aeropuerto.js"></script>
+@endsection

@@ -34,8 +34,7 @@
                 <form method="POST" action="{{route("aeropuerto.destroy",$aeropuerto->codaeropuerto)}}">
                   @method("DELETE")  
                 <button type="submit"  class=" btn btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-              
-                  
+        
                   @csrf
                 </form>
               </td>                           

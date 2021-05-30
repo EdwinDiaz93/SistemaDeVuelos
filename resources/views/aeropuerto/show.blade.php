@@ -16,8 +16,7 @@
     <label for="nomR" class="text-bold">Nombre del Responsable:</label>
     <input id="" type="text" value="{{$vars["aeropuerto"]->nomresponsable }}" class="form-control" disabled>
  
-
-
+ 
     <label for="pais_id" class="text-bold">Pais :</label>
     <select disabled class="form-control">
     <option selected disabled value="">----Seleccionar Pais----</option>    

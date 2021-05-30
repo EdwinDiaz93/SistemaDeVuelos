@@ -10,7 +10,7 @@ class Aeropuerto extends Model
     use HasFactory;
     protected $table = 'aeropuerto';
     public $incrementing = false;
-    protected $primaryKey = 'codAeropuerto';
+    protected $primaryKey = 'codaeropuerto';
     protected $guarded=[];
 
 
