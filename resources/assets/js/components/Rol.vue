@@ -267,8 +267,8 @@
                 cancelButtonText: '#d33',
                 confirmButtonText: 'Aceptar!',
                 cancelButtonText: 'Cancelar',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
+                confirmButtonClass: 'btn btn-success ml-3',
+                cancelButtonClass: 'btn btn-danger mr-3',
                 buttonsStyling: false,
                 reverseButtons: true
                 }).then((result) => {
@@ -308,8 +308,8 @@
                 cancelButtonText: '#d33',
                 confirmButtonText: 'Aceptar!',
                 cancelButtonText: 'Cancelar',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
+                confirmButtonClass: 'btn btn-success ml-3',
+                cancelButtonClass: 'btn btn-danger mr-3',
                 buttonsStyling: false,
                 reverseButtons: true
                 }).then((result) => {
