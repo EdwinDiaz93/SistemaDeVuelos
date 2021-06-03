@@ -35,7 +35,6 @@ class TipoCostoController extends Controller
         ];
        
     }
-
     public function store(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
