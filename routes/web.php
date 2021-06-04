@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/main', function () {
     return view('/contenido/contenido');
+})->name('main');
+
+Route::group(['middleware'=>['guest']],function(){
+
 });
 
 Route::resource('/redsocial',"App\Http\Controllers\RedSocialController")->names("red");
@@ -41,5 +45,21 @@ Route::post('/rol/registrar', 'App\Http\Controllers\RolController@store');
 Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');
 Route::put('/rol/desactivar', 'App\Http\Controllers\RolController@desactivar');
 Route::put('/rol/activar', 'App\Http\Controllers\RolController@activar');
+
+Route::get('/tipodocumento', 'App\Http\Controllers\TipoDocumentoController@index');
+Route::post('/tipodocumento/registrar', 'App\Http\Controllers\TipoDocumentoController@store');
+Route::put('/tipodocumento/actualizar', 'App\Http\Controllers\TipoDocumentoController@update');
+Route::put('/tipodocumento/desactivar', 'App\Http\Controllers\TipoDocumentoController@desactivar');
+Route::put('/tipodocumento/activar', 'App\Http\Controllers\TipodocumentoController@activar');
+
+Route::get('/horario', 'App\Http\Controllers\HorarioController@index');
+Route::post('/horario/registrar', 'App\Http\Controllers\HorarioController@store');
+Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update');
+Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
+Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
+
+
+Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
