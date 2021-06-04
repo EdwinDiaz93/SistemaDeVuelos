@@ -2691,7 +2691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonColor: '#3085d6',
         cancelButtonText: '#d33',
         confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
+      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
         if (result.value) {
           var me = _this;
           axios.put('/rol/desactivar', {
@@ -2717,7 +2717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonColor: '#3085d6',
         cancelButtonText: '#d33',
         confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
+      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
         if (result.value) {
           var me = _this2;
           axios.put('/rol/activar', {

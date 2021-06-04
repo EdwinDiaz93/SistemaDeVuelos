@@ -39,7 +39,8 @@ class AeroLineaController extends Controller
         ],);     
 
         $aeroLineaCreada=AeroLinea::create($data);
-        
+       
+        // -------------------
         foreach ($request->get('urls') as $index=>$url ) {     
             $aeroLineaCreada->redes()->attach([$index=>["url"=>$url]]);
         }
