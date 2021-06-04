@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('/contenido/contenido');
 });
 
+Route::group(['middleware'=>['guest']],function(){
+
+});
+
 Route::resource('/redsocial',"App\Http\Controllers\RedSocialController")->names("red");
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
 Route::resource('tipoavion', "App\Http\Controllers\TipoAvionController")->names("tipoavion");
@@ -52,5 +56,7 @@ Route::post('/horario/registrar', 'App\Http\Controllers\HorarioController@store'
 Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update');
 Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
+
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

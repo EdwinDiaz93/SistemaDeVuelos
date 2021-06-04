@@ -219,7 +219,7 @@
            
            registrarHorario()
            {
-                if (this.validarHorario())   //evalua si el metodo validar categoria retorna 1
+                if (this.validarHorarios())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
                     return;
                 }

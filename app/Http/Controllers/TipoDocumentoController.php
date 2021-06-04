@@ -58,7 +58,7 @@ class TipoDocumentoController extends Controller
     public function selectTipoDocumento(Request $request){
         if(!$request->ajax()) return redirect('/');
         $tipoDocumentos = TipoDocumento::where('estado','=','1')    //selecciona solo los roles activos
-        ->select('idtipodocumento','nomDocumento')->orderBy('nomDocumento', 'asc')->get();
+        ->select('idtipodocumento','nomdocumento')->orderBy('nomdocumento', 'asc')->get();
         return ['tipoDocumentos' => $tipoDocumentos];
     }
 
@@ -68,8 +68,8 @@ class TipoDocumentoController extends Controller
         //
         if(!$request->ajax()) return redirect('/');
         $tipoDocumento = new TipoDocumento();
-        $tipoDocumento->nomDocumento = $request->nombre; // 'nombre' es lo que recibimos de la vista
-        $tipoDocumento->numeroDocumento = $request->numero; 
+        $tipoDocumento->nomdocumento = $request->nombre; // 'nombre' es lo que recibimos de la vista
+        $tipoDocumento->numerodocumento = $request->numero; 
         $tipoDocumento->estado = '1';
         $tipoDocumento->save();
     }
@@ -108,8 +108,8 @@ class TipoDocumentoController extends Controller
         //
         if(!$request->ajax()) return redirect('/');
         $tipoDocumento = TipoDocumento::findOrFail($request->tipoDocumento_id);
-        $tipoDocumento->nomDocumento = $request->nombre;
-        $tipoDocumento->numeroDocumento = $request->numero;
+        $tipoDocumento->nomdocumento = $request->nombre;
+        $tipoDocumento->numerodocumento = $request->numero;
         $tipoDocumento->estado = '1';
         $tipoDocumento->save();
     }
@@ -136,7 +136,7 @@ class TipoDocumentoController extends Controller
     public function activar(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
-        $tipoDocumento = tipoDocumento::findOrFail($request->id);  // 'id' dato que viene de la vista
+        $tipoDocumento = TipoDocumento::findOrFail($request->id);  // 'id' dato que viene de la vista
         $tipoDocumento->estado = '1';
         $tipoDocumento->save();
     }

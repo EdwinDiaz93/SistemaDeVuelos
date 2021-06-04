@@ -2641,7 +2641,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       me.listarHorarios(page, buscar, criterio);
     },
     registrarHorario: function registrarHorario() {
-      if (this.validarHorario()) //evalua si el metodo validar categoria retorna 1
+      if (this.validarHorarios()) //evalua si el metodo validar categoria retorna 1
         {
           // y no realiza nada
           return;
@@ -3731,7 +3731,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.listarTipoDocumentos(page, buscar, criterio);
     },
-    registrarTipoDocumento: function registrarTipoDocumento() {
+    registrarTipoDocumentos: function registrarTipoDocumentos() {
       if (this.validarTipoDocumentos()) //evalua si el metodo validar categoria retorna 1
         {
           // y no realiza nada
@@ -3750,7 +3750,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error);
       });
     },
-    actualizarTipoDocumento: function actualizarTipoDocumento() {
+    actualizarTipoDocumentos: function actualizarTipoDocumentos() {
       if (this.validarTipoDocumentos()) //evalua si el metodo validar categoria retorna 1
         {
           // y no realiza nada
@@ -3765,7 +3765,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'tipoDocumento_id': this.tipoDocumento_id
       }).then(function (response) {
         me.cerrarModal();
-        me.listarTipoCostos(1, '', 'nombre');
+        me.listarTipoDocumentos(1, '', 'nombre');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3859,8 +3859,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.tituloModal = 'Actualizar Tipo de Documento';
                   this.tipoAccion = 2;
                   this.tipoDocumento_id = data['idtipodocumento'];
-                  this.nombre = data['nomDocumento'];
-                  this.numero = data['numeroDocumento'];
+                  this.nombre = data['nomdocumento'];
+                  this.numero = data['numerodocumento'];
                   break;
                 }
             }
@@ -42788,11 +42788,11 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "nomDocumento" } }, [
+                    _c("option", { attrs: { value: "nomdocumento" } }, [
                       _vm._v("Nombre")
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "numeroDocumento" } }, [
+                    _c("option", { attrs: { value: "numerodocumento" } }, [
                       _vm._v("Numero")
                     ])
                   ]
@@ -42926,13 +42926,13 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
-                        textContent: _vm._s(tipoDocumento.nomDocumento)
+                        textContent: _vm._s(tipoDocumento.nomdocumento)
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
-                        textContent: _vm._s(tipoDocumento.numeroDocumento)
+                        textContent: _vm._s(tipoDocumento.numerodocumento)
                       }
                     }),
                     _vm._v(" "),
@@ -43223,7 +43223,7 @@ var render = function() {
                       {
                         staticClass: "btn btn-primary",
                         attrs: { type: "button" },
-                        on: { click: _vm.registrarTipoDocumento }
+                        on: { click: _vm.registrarTipoDocumentos }
                       },
                       [_vm._v("Guardar")]
                     )
@@ -43235,7 +43235,7 @@ var render = function() {
                       {
                         staticClass: "btn btn-primary",
                         attrs: { type: "button" },
-                        on: { click: _vm.actualizarTipoDocumento }
+                        on: { click: _vm.actualizarTipoDocumentos }
                       },
                       [_vm._v("Actualizar")]
                     )

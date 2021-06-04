@@ -71,7 +71,7 @@ class HorarioController extends Controller
         if(!$request->ajax()) return redirect('/');
         $horario = new Horario();
         $horario->fecha = $request->fecha;
-        $horario->horario = $request->horario;
+        $horario->hora = $request->hora;
         $horario->estado = '1';
         $horario->save();
     }

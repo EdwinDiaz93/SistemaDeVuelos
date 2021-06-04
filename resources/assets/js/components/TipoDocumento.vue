@@ -19,8 +19,8 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                  <option value="nomDocumento">Nombre</option>
-                                   <option value="numeroDocumento">Numero</option>
+                                  <option value="nomdocumento">Nombre</option>
+                                   <option value="numerodocumento">Numero</option>
                                 </select>
                                 <input type="text" v-model="buscar" @keyup.enter="listarTipoDocumentos(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
                                 <button type="submit" @click="listarTipoDocumentos(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -53,8 +53,8 @@
                                         </button>
                                     </template>
                                 </td>
-                                <td v-text="tipoDocumento.nomDocumento"></td>
-                                <td v-text="tipoDocumento.numeroDocumento"></td>
+                                <td v-text="tipoDocumento.nomdocumento"></td>
+                                <td v-text="tipoDocumento.numerodocumento"></td>
                                 <td>
                                     <div v-if="tipoDocumento.estado == '1'">
                                         <span class="badge badge-success">Activo</span>
@@ -121,8 +121,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal">Cerrar</button>
-                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTipoDocumento">Guardar</button>
-                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTipoDocumento">Actualizar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTipoDocumentos">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTipoDocumentos">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -219,7 +219,7 @@
                 me.listarTipoDocumentos(page,buscar,criterio); 
             },
            
-           registrarTipoDocumento()
+           registrarTipoDocumentos()
            {
                 if (this.validarTipoDocumentos())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
@@ -239,7 +239,7 @@
 
            },
 
-            actualizarTipoDocumento()
+            actualizarTipoDocumentos()
            {
                if (this.validarTipoDocumentos())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
@@ -253,7 +253,7 @@
                     'tipoDocumento_id': this.tipoDocumento_id    
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarTipoCostos(1,'','nombre');
+                    me.listarTipoDocumentos(1,'','nombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -387,8 +387,8 @@
                                this.tituloModal = 'Actualizar Tipo de Documento';
                                this.tipoAccion = 2;
                                this.tipoDocumento_id = data['idtipodocumento'];
-                               this.nombre = data['nomDocumento'];
-                               this.numero = data['numeroDocumento'];
+                               this.nombre = data['nomdocumento'];
+                               this.numero = data['numerodocumento'];
                                break;
                            }    
                         }
