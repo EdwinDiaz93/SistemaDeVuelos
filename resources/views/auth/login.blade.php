@@ -33,7 +33,7 @@
               <div>
                 <h2>Sistema de Vuelos</h2>
                 <p>Sistema de reserva de vuelos desarrollado por el Grupo 16.</p>
-                <a href="https://www.udemy.com/user/juan-carlos-arcila-diaz/" target="_blank" class="btn btn-primary active mt-3">Ver el curso!</a>
+                <a href="http://127.0.0.1:8000/main" target="_blank" class="btn btn-primary active mt-3">Ir sin Login</a>
               </div>
             </div>
           </div>

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/main', function () {
     return view('/contenido/contenido');
-});
+})->name('main');
 
 Route::group(['middleware'=>['guest']],function(){
 
@@ -57,6 +57,8 @@ Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update
 Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
 
-Auth::routes();
+
+Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

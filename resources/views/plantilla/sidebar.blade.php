@@ -38,6 +38,14 @@
                     <li @click="menu=5" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-basket-loaded"></i> Usuarios</a>
                     </li>
+                    <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i> Documentos</a>
+                <ul class="nav-dropdown-items">
+                <li @click="menu=11" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-info"></i> Tipos de Documentos</a>
+                    </li>
+                </ul>
+            </li>
                     <li @click="menu=6" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-notebook"></i> Roles</a>
                     </li>
@@ -62,14 +70,6 @@
                     </li>
                     <li @click="menu=10" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-chart"></i> Reporte Ventas</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i> Documentos</a>
-                <ul class="nav-dropdown-items">
-                <li @click="menu=11" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-info"></i> Tipos de Documentos</a>
                     </li>
                 </ul>
             </li>
