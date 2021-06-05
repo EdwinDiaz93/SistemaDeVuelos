@@ -50,7 +50,24 @@
     </template>
 
     <template v-if="menu==12">
-        <h1>Contenido del menu 12</h1>
+        <redsocial></redsocial>
     </template>
+
+    <template v-if="menu==13">
+        <h1>Contenido del menu 13</h1>
+    </template>
+
+    <template v-if="menu==14">
+        <h1>Contenido del menu 14</h1>
+    </template>
+
+    <template v-if="menu==15">
+        <h1>Contenido del menu 13</h1>
+    </template>
+
+    <template v-if="menu==16">
+        <h1>Contenido del menu 14</h1>
+    </template>
+
     
 @endsection
