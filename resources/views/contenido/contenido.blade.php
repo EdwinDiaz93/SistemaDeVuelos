@@ -58,7 +58,7 @@
     </template>
 
     <template v-if="menu==14">
-        <h1>Contenido del menu 14</h1>
+        <tipoavion></tipoavion>
     </template>
 
     <template v-if="menu==15">

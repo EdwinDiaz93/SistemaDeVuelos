@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('/contenido/contenido');
 });
 
+// Rutas tipo de avion
+Route::get('/tipoavion', 'App\Http\Controllers\TipoAvionController@index');
+Route::post('/tipoavion/registrar', 'App\Http\Controllers\TipoAvionController@store');
+Route::put('/tipoavion/actualizar', 'App\Http\Controllers\TipoAvionController@update');
+Route::put('/tipoavion/desactivar', 'App\Http\Controllers\TipoAvionController@desactivar');
+Route::put('/tipoavion/activar', 'App\Http\Controllers\TipoAvionController@activar');
+
 // Rutas de redsocial
 Route::get('/redsocial', 'App\Http\Controllers\RedSocialController@index');
 Route::post('/redsocial/registrar', 'App\Http\Controllers\RedSocialController@store');
@@ -26,7 +33,6 @@ Route::put('/redsocial/activar', 'App\Http\Controllers\RedSocialController@activ
 
 
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
-Route::resource('tipoavion', "App\Http\Controllers\TipoAvionController")->names("tipoavion");
 Route::resource('aviones', "App\Http\Controllers\AvionController")->names("avion");
 Auth::routes();
 

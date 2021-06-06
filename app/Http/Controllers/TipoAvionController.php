@@ -8,56 +8,70 @@ use Illuminate\Http\Request;
 class TipoAvionController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $tipoaviones=TipoAvion::all();
-        return view("tipoavion.index",compact("tipoaviones"));
-    }
+      //if(!$request->ajax()) return redirect('/');
+      $buscar = $request->buscar;
+      $criterio = $request->criterio;
 
-    
-    public function create()
-    {
-        $tipoavion=new TipoAvion();
-        return view("tipoavion.create",compact("tipoavion"));
+      if($buscar==''){
+          $tiposavion = TipoAvion::orderBy('idtipoavion', 'desc')->paginate(3);
+      }
+      else{
+          $tiposavion = TipoAvion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idtipoavion', 'desc')->paginate(3);        
+      }
+      
+      return [
+
+          'pagination' => [
+
+              'total'        =>  $tiposavion->total(),
+              'current_page' =>  $tiposavion->currentPage(),
+              'per_page'     =>  $tiposavion->perPage(),
+              'last_page'    =>  $tiposavion->lastPage(),
+              'from'         =>  $tiposavion->firstItem(),
+              'to'           =>  $tiposavion->lastItem(),
+          ],
+          'tiposavion' => $tiposavion 
+      ];
     }
 
     
     public function store(Request $request)
     {
-        $data=$request->validate([
-            'nombretipoavion' => 'required|min:3',
-            'cantidadasientos' => 'required|numeric',                     
-        ],);    
-
-        TipoAvion::create($data);
-        return redirect("tipoavion");
+        if(!$request->ajax()) return redirect('/');
+        $tipoavion = new TipoAvion();
+        $tipoavion->nombretipoavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
+        $tipoavion->cantidadasientos = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
+        $tipoavion->estado = '1';
+        $tipoavion->save();
     }
 
     
-  
-
-    
-    public function edit(TipoAvion $tipoavion)
+    public function update(Request $request)
     {
-        return view("tipoavion.edit",compact("tipoavion"));
+        if(!$request->ajax()) return redirect('/');
+        $tipoavion = TipoAvion::findOrFail($request->tipoavion_id);
+        $tipoavion->nombretipoavion = $request->nombre;
+        $tipoavion->cantidadasientos = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
+        $tipoavion->estado = '1';
+        $tipoavion->save();
     }
 
     
-    public function update(Request $request, TipoAvion $tipoavion)
-    {
-        $data=$request->validate([
-            'nombretipoavion' => 'required|min:3',
-            'cantidadasientos' => 'required|numeric',                     
-        ],);   
-
-        $tipoavion->update($data);
-        return redirect("tipoavion");
+    public function desactivar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/');
+        $tipoavion = TipoAvion::findOrFail($request->id); // 'id' dato que viene de la vista
+        $tipoavion->estado = '0';
+        $tipoavion->save();
     }
 
-    
-    public function destroy(TipoAvion $tipoavion)
-    {
-        $tipoavion->delete();
-        return redirect("tipoavion");
+    public function activar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/');
+        $tipoavion = TipoAvion::findOrFail($request->id); // 'id' dato que viene de la vista
+        $tipoavion->estado = '1';
+        $tipoavion->save();
     }
 }
