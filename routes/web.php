@@ -21,32 +21,49 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
-Route::resource('/redsocial',"App\Http\Controllers\RedSocialController")->names("red");
-//Route::resource('/aeropuerto', "App\Http\Controllers\AeropuertoController")->names("aeropuerto");
+
+
+
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
-Route::resource('tipoavion', "App\Http\Controllers\TipoAvionController")->names("tipoavion");
 Route::resource('aviones', "App\Http\Controllers\AvionController")->names("avion");
 Auth::routes();
 
-
+//Rutas aeropuerto
 Route::get('/aeropuerto', 'App\Http\Controllers\AeropuertoController@index');
 Route::post('/aeropuerto/registrar', 'App\Http\Controllers\AeropuertoController@store');
 Route::put('/aeropuerto/actualizar', 'App\Http\Controllers\AeropuertoController@update');
 Route::put('/aeropuerto/desactivar', 'App\Http\Controllers\AeropuertoController@desactivar');
 Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@activar');
 
+// Rutas tipo de avion
+Route::get('/tipoavion', 'App\Http\Controllers\TipoAvionController@index');
+Route::post('/tipoavion/registrar', 'App\Http\Controllers\TipoAvionController@store');
+Route::put('/tipoavion/actualizar', 'App\Http\Controllers\TipoAvionController@update');
+Route::put('/tipoavion/desactivar', 'App\Http\Controllers\TipoAvionController@desactivar');
+Route::put('/tipoavion/activar', 'App\Http\Controllers\TipoAvionController@activar');
+
+// Rutas de redsocial
+Route::get('/redsocial', 'App\Http\Controllers\RedSocialController@index');
+Route::post('/redsocial/registrar', 'App\Http\Controllers\RedSocialController@store');
+Route::put('/redsocial/actualizar', 'App\Http\Controllers\RedSocialController@update');
+Route::put('/redsocial/desactivar', 'App\Http\Controllers\RedSocialController@desactivar');
+Route::put('/redsocial/activar', 'App\Http\Controllers\RedSocialController@activar');
+
+// Rutas de clase vuelo
 Route::get('/clasevuelo', 'App\Http\Controllers\ClaseVueloController@index');
 Route::post('/clasevuelo/registrar', 'App\Http\Controllers\ClaseVueloController@store');
 Route::put('/clasevuelo/actualizar', 'App\Http\Controllers\ClaseVueloController@update');
 Route::put('/clasevuelo/desactivar', 'App\Http\Controllers\ClaseVueloController@desactivar');
 Route::put('/clasevuelo/activar', 'App\Http\Controllers\ClaseVueloController@activar');
 
+// Rutas de tipo costo
 Route::get('/tipocosto', 'App\Http\Controllers\TipoCostoController@index');
 Route::post('/tipocosto/registrar', 'App\Http\Controllers\TipoCostoController@store');
 Route::put('/tipocosto/actualizar', 'App\Http\Controllers\TipoCostoController@update');
 Route::put('/tipocosto/desactivar', 'App\Http\Controllers\TipoCostoController@desactivar');
 Route::put('/tipocosto/activar', 'App\Http\Controllers\TipoCostoController@activar');
 
+// Rutas de rol
 Route::get('/rol', 'App\Http\Controllers\RolController@index');
 Route::post('/rol/registrar', 'App\Http\Controllers\RolController@store');
 Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');

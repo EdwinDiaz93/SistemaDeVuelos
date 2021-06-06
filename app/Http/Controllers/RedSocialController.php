@@ -8,53 +8,70 @@ use Illuminate\Http\Request;
 class RedSocialController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-       $redes=RedSocial::all(); 
-       return view("redsocial.index",compact("redes"));
+        //if(!$request->ajax()) return redirect('/');
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
+
+        if($buscar==''){
+            $redes = RedSocial::orderBy('idredsocial', 'desc')->paginate(3);
+        }
+        else{
+            $redes = RedSocial::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idredsocial', 'desc')->paginate(3);        
+        }
+        
+        return [
+
+            'pagination' => [
+
+                'total'        =>  $redes->total(),
+                'current_page' =>  $redes->currentPage(),
+                'per_page'     =>  $redes->perPage(),
+                'last_page'    =>  $redes->lastPage(),
+                'from'         =>  $redes->firstItem(),
+                'to'           =>  $redes->lastItem(),
+            ],
+            'redes' => $redes 
+        ];
     }
 
-   
-    public function create()
-    {
-        $redsocial= new RedSocial();
-        return view("redsocial.create",compact("redsocial"));
-    }
-
-    
+          
     public function store(Request $request)
     {
-        $data=$request->validate([
-            'nombreredsocial' => 'required|min:3',            
-        ],);     
-
-        RedSocial::create($data);
-        return redirect("redsocial");
+        if(!$request->ajax()) return redirect('/');
+        $redsocial = new RedSocial();
+        $redsocial->nombreredsocial = $request->nombre; // 'nombre' es lo que recibimos de la vista
+        $redsocial->estado = '1';
+        $redsocial->save();
     }
 
-      
    
-    public function edit(RedSocial $redsocial)
-    {        
-        return view("redsocial.edit",compact("redsocial"));
-    }
-
     
-    public function update(Request $request, RedSocial $redsocial)
+    public function update(Request $request)
     {
-        $data=$request->validate([
-            'nombreredsocial' => 'required|min:3',            
-        ],);           
-        $redsocial->update($data);
-
-        return redirect("redsocial");
+        if(!$request->ajax()) return redirect('/');
+        $redsocial = RedSocial::findOrFail($request->redsocial_id);
+        $redsocial->nombreredsocial = $request->nombre;
+        $redsocial->estado = '1';
+        $redsocial->save();
     }
 
    
-    public function destroy(RedSocial $redsocial)
+    public function desactivar(Request $request)
     {        
-        $redsocial->delete();
-        return redirect("redsocial");
+        if(!$request->ajax()) return redirect('/');
+        $redsocial = RedSocial::findOrFail($request->id); // 'id' dato que viene de la vista
+        $redsocial->estado = '0';
+        $redsocial->save();
+    }
+
+    public function activar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/');
+        $redsocial = RedSocial::findOrFail($request->id); // 'id' dato que viene de la vista
+        $redsocial->estado = '1';
+        $redsocial->save();
     }
 
   
