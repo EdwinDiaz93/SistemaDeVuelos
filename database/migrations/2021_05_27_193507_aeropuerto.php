@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Aeropuerto extends Migration
 {
@@ -19,6 +20,7 @@ class Aeropuerto extends Migration
             $table->char('telefono');
             $table->String('nomresponsable');
             $table->Integer('numbahias');
+            $table->boolean('estado')->default(1);
 
 
 

@@ -22,11 +22,18 @@ Route::group(['middleware'=>['guest']],function(){
 });
 
 Route::resource('/redsocial',"App\Http\Controllers\RedSocialController")->names("red");
-Route::resource('/aeropuerto', "App\Http\Controllers\AeropuertoController")->names("aeropuerto");
+//Route::resource('/aeropuerto', "App\Http\Controllers\AeropuertoController")->names("aeropuerto");
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
 Route::resource('tipoavion', "App\Http\Controllers\TipoAvionController")->names("tipoavion");
 Route::resource('aviones', "App\Http\Controllers\AvionController")->names("avion");
 Auth::routes();
+
+
+Route::get('/aeropuerto', 'App\Http\Controllers\AeropuertoController@index');
+Route::post('/aeropuerto/registrar', 'App\Http\Controllers\AeropuertoController@store');
+Route::put('/aeropuerto/actualizar', 'App\Http\Controllers\AeropuertoController@update');
+Route::put('/aeropuerto/desactivar', 'App\Http\Controllers\AeropuertoController@desactivar');
+Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@activar');
 
 Route::get('/clasevuelo', 'App\Http\Controllers\ClaseVueloController@index');
 Route::post('/clasevuelo/registrar', 'App\Http\Controllers\ClaseVueloController@store');

@@ -25,6 +25,7 @@ Vue.component('tipocosto', require('./components/TipoCosto.vue').default);
 Vue.component('rol', require('./components/Rol.vue').default);
 Vue.component('tipodocumento', require('./components/TipoDocumento.vue').default);
 Vue.component('horario', require('./components/Horario.vue').default);
+Vue.component('aeropuerto', require('./components/Aeropuerto.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
