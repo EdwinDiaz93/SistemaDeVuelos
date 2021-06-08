@@ -69,7 +69,7 @@ Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');
 Route::put('/rol/desactivar', 'App\Http\Controllers\RolController@desactivar');
 Route::put('/rol/activar', 'App\Http\Controllers\RolController@activar');
 
-<<<<<<< HEAD
+
 Route::get('/tipodocumento', 'App\Http\Controllers\TipoDocumentoController@index');
 Route::post('/tipodocumento/registrar', 'App\Http\Controllers\TipoDocumentoController@store');
 Route::put('/tipodocumento/actualizar', 'App\Http\Controllers\TipoDocumentoController@update');
@@ -86,13 +86,13 @@ Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar')
 
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
-=======
+
 Route::get('/costos', 'App\Http\Controllers\CostosController@index');
 Route::post('/costos/registrar', 'App\Http\Controllers\CostosController@store');
 Route::put('/costos/actualizar', 'App\Http\Controllers\CostosController@update');
 Route::put('/costos/desactivar', 'App\Http\Controllers\CostosController@desactivar');
 Route::put('/costos/activar', 'App\Http\Controllers\CostosController@activar');
 
->>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
