@@ -73,12 +73,12 @@
                     </li>
                 </ul>
             </li>
-<<<<<<< HEAD
+
             <li @click="menu=12" class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-book-open"></i> Ayuda <span class="badge badge-danger">PDF</span></a>
             </li>
             <li @click="menu=13" class="nav-item">
-=======
+
 
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Aerolineas</a>
@@ -103,7 +103,7 @@
                 <a class="nav-link" href="#"><i class="icon-book-open"></i> Ayuda <span class="badge badge-danger">PDF</span></a>
             </li>
             <li @click="menu=16" class="nav-item">
->>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
+
                 <a class="nav-link" href="#"><i class="icon-info"></i> Acerca de...<span class="badge badge-info">IT</span></a>
             </li>
         </ul>
