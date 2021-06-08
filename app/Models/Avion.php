@@ -13,7 +13,7 @@ class Avion extends Model
     protected $guarded=[];
 
     public function tipoaviones(){
-        return $this->hasMany(TipoAvion::class);
+        return $this->BelongsTo(TipoAvion::class,"tipoavion_id");
     }
 
     public function aerolineas(){

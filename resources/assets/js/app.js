@@ -23,7 +23,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('clasevuelo', require('./components/ClaseVuelo.vue').default);
 Vue.component('tipocosto', require('./components/TipoCosto.vue').default);
 Vue.component('rol', require('./components/Rol.vue').default);
+<<<<<<< HEAD
 Vue.component('costos', require('./components/Costos.vue').default);
+=======
+Vue.component("redsocial",require("./components/RedSocial.vue").default);
+Vue.component("tipoavion",require("./components/TipoAvion.vue").default);
+Vue.component("avion",require("./components/Avion.vue").default);
+>>>>>>> 4b5e8c0e8a06bc3a7f25eefa6f10f621e7bd5685
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

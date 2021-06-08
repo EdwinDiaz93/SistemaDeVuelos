@@ -17,6 +17,7 @@ class CreateAvionsTable extends Migration
             $table->bigIncrements('idavion');            
             $table->String("modeloavion");
             $table->String("marcaavion");
+            $table->boolean('estado')->default(1);
             $table->foreignId('tipoavion_id')->references('idtipoavion')->on('tipo_avions')->onDelete('cascade');
             $table->timestamps();
         });
