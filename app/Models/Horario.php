@@ -11,4 +11,10 @@ class Horario extends Model
    protected $table = 'Horario';
    protected $primaryKey = 'idhorario';   
    protected $fillable = ['fecha','hora','estado'];
+
+   // iniciando la funcion de la que hace referencia (1 a muchos)
+   public function pruebas()
+    {
+        return $this->hasMany('App\Models\Prueba');
+    }
 }

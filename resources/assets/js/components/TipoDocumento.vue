@@ -105,7 +105,7 @@
                                 <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Numero</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="numero" class="form-control" placeholder="Numero del documento">
+                                    <input type="number" minlength="1" maxlength="10" pattern="[0-9]{5}"  v-model="numero" class="form-control" placeholder="Numero del documento">
                                 </div>
                             </div>
                             
@@ -346,9 +346,9 @@
                 this.errorTipoDocumento=0;
                 this.errorMostrarMsjTipoDocumento=[];
 
-                if (!this.nombre) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de costo no puede estar vacio");
+                if (!this.nombre) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de documento no puede estar vacio");
 
-                if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de costo no puede estar vacio");
+                if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El numero no puede estar vacio");
 
                 if (this.errorMostrarMsjTipoDocumento.length) this.errorTipoDocumento = 1;
 

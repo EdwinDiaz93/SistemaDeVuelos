@@ -3825,8 +3825,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     validarTipoDocumentos: function validarTipoDocumentos() {
       this.errorTipoDocumento = 0;
       this.errorMostrarMsjTipoDocumento = [];
-      if (!this.nombre) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de costo no puede estar vacio");
-      if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de costo no puede estar vacio");
+      if (!this.nombre) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de documento no puede estar vacio");
+      if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El numero no puede estar vacio");
       if (this.errorMostrarMsjTipoDocumento.length) this.errorTipoDocumento = 1;
       return this.errorTipoDocumento;
     },
@@ -41502,7 +41502,7 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "date",
                             placeholder: "fecha del vuelo"
                           },
                           domProps: { value: _vm.fecha },
@@ -43157,7 +43157,10 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "number",
+                            minlength: "1",
+                            maxlength: "10",
+                            pattern: "[0-9]{5}",
                             placeholder: "Numero del documento"
                           },
                           domProps: { value: _vm.numero },
