@@ -14,11 +14,11 @@
     </template>
 
     <template v-if="menu==3">
-        <tipocosto></tipocosto>
+        <costos></costos>
     </template>
 
     <template v-if="menu==4">
-        <h1>Contenido del menu 4</h1>
+        <tipocosto></tipocosto>
     </template>
 
     <template v-if="menu==5">

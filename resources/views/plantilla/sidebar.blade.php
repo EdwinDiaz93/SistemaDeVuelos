@@ -22,10 +22,10 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wallet"></i> Costos</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=3" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-wallet"></i> Tipo de costos</a>
+                        <a class="nav-link" href="#"><i class="icon-wallet"></i> Costos</a>
                     </li>
                     <li @click="menu=4" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-notebook"></i> Proveedores</a>
+                        <a class="nav-link" href="#"><i class="icon-notebook"></i> Tipo de costos</a>
                     </li>
                 </ul>
             </li>
