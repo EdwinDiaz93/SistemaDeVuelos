@@ -57,6 +57,7 @@ Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update
 Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
 
+/*rutaS para el login*/ 
 
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
