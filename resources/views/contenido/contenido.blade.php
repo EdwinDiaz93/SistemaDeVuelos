@@ -61,11 +61,11 @@
         <tipoavion></tipoavion>
     </template>
 
-<<<<<<< HEAD
+
     <template v-if="menu==13">
         <h1>Contenido del menu 12</h1>
     </template>
-=======
+
     <template v-if="menu==15">
         <h1>Contenido del menu 13</h1>
     </template>
@@ -74,7 +74,7 @@
         <h1>Contenido del menu 14</h1>
     </template>
 
->>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
+
     
     <template v-if="menu==14">
         <horario></horario>
