@@ -25,10 +25,10 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wallet"></i> Costos</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=3" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-wallet"></i> Tipo de costos</a>
+                        <a class="nav-link" href="#"><i class="icon-wallet"></i> Costos</a>
                     </li>
                     <li @click="menu=4" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-notebook"></i> Proveedores</a>
+                        <a class="nav-link" href="#"><i class="icon-notebook"></i> Tipo de costos</a>
                     </li>
                 </ul>
             </li>
@@ -73,10 +73,37 @@
                     </li>
                 </ul>
             </li>
+<<<<<<< HEAD
             <li @click="menu=12" class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-book-open"></i> Ayuda <span class="badge badge-danger">PDF</span></a>
             </li>
             <li @click="menu=13" class="nav-item">
+=======
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Aerolineas</a>
+                <ul class="nav-dropdown-items">
+                    <li @click="menu=11" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-plane"></i> Aerolinea</a>
+                    </li>
+                    <li @click="menu=12" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-social-twitter"></i> Redes Sociales</a>
+                    </li>
+
+                    <li @click="menu=13" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-plane"></i> Avion</a>
+                    </li>
+
+                    <li @click="menu=14" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-plane"></i> Tipo Avion</a>
+                    </li>
+                </ul>
+            </li>
+            <li @click="menu=15" class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-book-open"></i> Ayuda <span class="badge badge-danger">PDF</span></a>
+            </li>
+            <li @click="menu=16" class="nav-item">
+>>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
                 <a class="nav-link" href="#"><i class="icon-info"></i> Acerca de...<span class="badge badge-info">IT</span></a>
             </li>
         </ul>

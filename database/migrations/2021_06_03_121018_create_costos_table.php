@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRedSocialsTable extends Migration
+class CreateCostosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateRedSocialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('red_socials', function (Blueprint $table) {
-            $table->bigIncrements('idredsocial');
-            $table->String("nombreredsocial")->unique();
+        Schema::create('costos', function (Blueprint $table) {
+            $table->bigIncrements('idcosto');
+            $table->integer('idtipocosto')->unsigned();
+            $table->float('cantidad');
+            $table->string('descripcion', 100);
             $table->boolean('estado')->default(1);
             $table->timestamps();
+
+            $table->foreign('idtipocosto')->references('idtipocosto')->on('tipo_costo');
+
         });
     }
 
@@ -28,6 +33,6 @@ class CreateRedSocialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('redsocial');
+        Schema::dropIfExists('costos');
     }
 }

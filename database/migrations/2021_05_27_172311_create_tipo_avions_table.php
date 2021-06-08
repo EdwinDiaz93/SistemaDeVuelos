@@ -17,6 +17,7 @@ class CreateTipoAvionsTable extends Migration
             $table->bigIncrements('idtipoavion');
             $table->String("nombretipoavion");
             $table->integer("cantidadasientos");
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }

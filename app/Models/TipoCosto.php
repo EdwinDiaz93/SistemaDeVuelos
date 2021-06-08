@@ -11,4 +11,9 @@ class TipoCosto extends Model
     protected $table = 'tipo_costo';
     protected $primaryKey = 'idtipocosto';   
     protected $fillable = ['nomtipocosto','estado'];
+
+    public function costos()
+    {
+        return $this->hasMany(Costos::class);
+    }
 }

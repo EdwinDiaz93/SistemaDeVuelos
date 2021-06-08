@@ -12,64 +12,73 @@ class AvionController extends Controller
      
     public function index()
     {
-        $aviones=Avion::all();
-        return view("avion.index",compact("aviones"));
+         //if(!$request->ajax()) return redirect('/');
+      $buscar = $request->buscar;
+      $criterio = $request->criterio;
+
+      if($buscar==''){
+          $tiposavion = TipoAvion::orderBy('idtipoavion', 'desc')->paginate(3);
+          $aviones=Avion::orderBy('idavion', 'desc')->paginate(3);
+      }
+      else{          
+          $aviones = Avion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idavion', 'desc')->paginate(3);
+      }
+      
+      return [
+
+          'pagination' => [
+
+              'total'        =>  $aviones->total(),
+              'current_page' =>  $aviones->currentPage(),
+              'per_page'     =>  $aviones->perPage(),
+              'last_page'    =>  $aviones->lastPage(),
+              'from'         =>  $aviones->firstItem(),
+              'to'           =>  $aviones->lastItem(),
+          ],
+          'aviones'=>$aviones,
+          'tiposavion' => $tiposavion
+      ];
+    }
+
+     
+    public function store(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+        $avion = new Avion();
+        $avion->modeloavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
+        $avion->marcaavion = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
+        $avion->estado = '1'; // 'cantidad' es lo que recibimos de la vista
+        $avion->tipoavion_id =$request->tipoavion_id;
+        $avion->save();
     }
 
   
-    public function create()
+     
+    public function update(Request $request)
     {
-        $avion=new Avion();
-        $tiposAvion=TipoAvion::all();
-        $vars=["avion"=>$avion,"tiposAvion"=>$tiposAvion];
-        return view("avion.create",compact("vars"));
+        if(!$request->ajax()) return redirect('/');
+        $avion = Avion::findOrFail($request->avion_id);
+        $avion->modeloavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
+        $avion->marcaavion = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
+        $avion->estado = '1'; // 'cantidad' es lo que recibimos de la vista
+        $avion->tipoavion_id =$request->tipoavion_id;
+        $avion->save();
     }
 
    
-    public function store(Request $request)
-    {
-        $data=$request->validate([
-            'modeloavion' => 'required|min:3',
-            'marcaavion' => 'required|min:3',
-            'tipoavion_id' => 'required',                     
-        ],);   
-        Avion::create($data);
-        return redirect("aviones");
-    }
-
-    
-    public function show(Avion $avione)
-    {
-        $tiposAvion=TipoAvion::all();
-        $vars=["avion"=>$avione,"tiposAvion"=>$tiposAvion];
-        return view("avion.show",compact("vars"));
-    }
-
-   
-    public function edit(Avion $avione)
-    {
-        $tiposAvion=TipoAvion::all();
-        $vars=["avion"=>$avione,"tiposAvion"=>$tiposAvion];
-        return view("avion.edit",compact("vars"));
-    }
-
-   
-    public function update(Request $request, Avion $avione)
-    {
-        $data=$request->validate([
-            'modeloavion' => 'required|min:3',
-            'marcaavion' => 'required|min:3',
-            'tipoavion_id' => 'required',                     
-        ],);   
-
-        $avione->update($data);
-        return redirect("aviones");
-    }
-
-   
-    public function destroy(Avion $avione)
+    public function desactivar(Request $request)
     {        
-        $avione->delete();
-        return redirect("aviones");
+        if(!$request->ajax()) return redirect('/');
+        $avion = Avion::findOrFail($request->id); // 'id' dato que viene de la vista
+        $avion->estado = '0';
+        $avion->save();
+    }
+
+    public function activar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/');
+        $avion = Avion::findOrFail($request->id); // 'id' dato que viene de la vista
+        $avion->estado = '1';
+        $avion->save();
     }
 }

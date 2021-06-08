@@ -380,7 +380,7 @@
                                this.modal = 1;
                                this.tituloModal = 'Actualizar Rol';
                                this.tipoAccion = 2;
-                               this.rol_id_id = data['idrol'];
+                               this.rol_id = data['idrol'];
                                this.nombre = data['nomrol'];
                                this.descripcion = data['descripcion'];
                                break;

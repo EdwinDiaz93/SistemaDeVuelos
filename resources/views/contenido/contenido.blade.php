@@ -14,11 +14,11 @@
     </template>
 
     <template v-if="menu==3">
-        <tipocosto></tipocosto>
+        <costos></costos>
     </template>
 
     <template v-if="menu==4">
-        <h1>Contenido del menu 4</h1>
+        <tipocosto></tipocosto>
     </template>
 
     <template v-if="menu==5">
@@ -50,12 +50,31 @@
     </template>
 
     <template v-if="menu==12">
-        <h1>Contenido del menu 12</h1>
+        <redsocial></redsocial>
     </template>
 
     <template v-if="menu==13">
+        <avion></avion>
+    </template>
+
+    <template v-if="menu==14">
+        <tipoavion></tipoavion>
+    </template>
+
+<<<<<<< HEAD
+    <template v-if="menu==13">
         <h1>Contenido del menu 12</h1>
     </template>
+=======
+    <template v-if="menu==15">
+        <h1>Contenido del menu 13</h1>
+    </template>
+
+    <template v-if="menu==16">
+        <h1>Contenido del menu 14</h1>
+    </template>
+
+>>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
     
     <template v-if="menu==14">
         <horario></horario>

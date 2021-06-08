@@ -35,6 +35,17 @@ class TipoCostoController extends Controller
         ];
        
     }
+<<<<<<< HEAD
+=======
+
+    public function selectTipoCosto(Request $request){
+        if(!$request->ajax()) return redirect('/');
+        $tipoCostos = TipoCosto::where('estado','=','1')    //selecciona solo las tipos de costos activos
+        ->select('idtipocosto','nomtipocosto')->orderBy('nomtipocosto', 'asc')->get();
+        return ['tipoCostos' => $tipoCostos];
+    }
+
+>>>>>>> 42b7d48e930aec087d17b32cc97814c6e0e28cfa
     public function store(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
