@@ -9,7 +9,7 @@ class CostosController extends Controller
 {
     public function index(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         
         $buscar = $request->buscar;
         $criterio = $request->criterio;
@@ -51,7 +51,7 @@ class CostosController extends Controller
 
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $costo = new Costos();
         $costo->idtipocosto = $request->idtipocosto;
         $costo->cantidad = $request->cantidad;
@@ -62,7 +62,7 @@ class CostosController extends Controller
 
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $costo = Costos::findOrFail($request->id);
         $costo->idtipocosto = $request->idtipocosto;
         $costo->cantidad = $request->cantidad;
@@ -73,7 +73,7 @@ class CostosController extends Controller
 
     public function desactivar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $costo = Costos::findOrFail($request->id);
         $costo->estado = '0';
         $costo->save();
@@ -81,7 +81,7 @@ class CostosController extends Controller
 
     public function activar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $costo = Costos::findOrFail($request->id);
         $costo->estado = '1';
         $costo->save();

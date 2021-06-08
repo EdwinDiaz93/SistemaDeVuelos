@@ -12,7 +12,7 @@ class Avion extends Model
     protected $primaryKey = 'idavion';
     protected $guarded=[];
 
-    public function tipoaviones(){
+    public function tipoavion(){
         return $this->BelongsTo(TipoAvion::class,"tipoavion_id");
     }
 

@@ -11,7 +11,7 @@ class TipoDocumentoController extends Controller
     public function index(Request $request)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
@@ -56,7 +56,7 @@ class TipoDocumentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function selectTipoDocumento(Request $request){
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoDocumentos = TipoDocumento::where('estado','=','1')    //selecciona solo los roles activos
         ->select('idtipodocumento','nomdocumento')->orderBy('nomdocumento', 'asc')->get();
         return ['tipoDocumentos' => $tipoDocumentos];
@@ -66,7 +66,7 @@ class TipoDocumentoController extends Controller
     public function store(Request $request)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoDocumento = new TipoDocumento();
         $tipoDocumento->nomdocumento = $request->nombre; // 'nombre' es lo que recibimos de la vista
         $tipoDocumento->numerodocumento = $request->numero; 
@@ -106,7 +106,7 @@ class TipoDocumentoController extends Controller
     public function update(Request $request)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoDocumento = TipoDocumento::findOrFail($request->tipoDocumento_id);
         $tipoDocumento->nomdocumento = $request->nombre;
         $tipoDocumento->numerodocumento = $request->numero;
@@ -127,7 +127,7 @@ class TipoDocumentoController extends Controller
 
     public function desactivar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoDocumento = TipoDocumento::findOrFail($request->id); // 'id' dato que viene de la vista
         $tipoDocumento->estado = '0';
         $tipoDocumento->save();

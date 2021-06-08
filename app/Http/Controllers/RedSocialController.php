@@ -39,7 +39,7 @@ class RedSocialController extends Controller
           
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $redsocial = new RedSocial();
         $redsocial->nombreredsocial = $request->nombre; // 'nombre' es lo que recibimos de la vista
         $redsocial->estado = '1';
@@ -50,7 +50,7 @@ class RedSocialController extends Controller
     
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $redsocial = RedSocial::findOrFail($request->redsocial_id);
         $redsocial->nombreredsocial = $request->nombre;
         $redsocial->estado = '1';
@@ -60,7 +60,7 @@ class RedSocialController extends Controller
    
     public function desactivar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $redsocial = RedSocial::findOrFail($request->id); // 'id' dato que viene de la vista
         $redsocial->estado = '0';
         $redsocial->save();
@@ -68,7 +68,7 @@ class RedSocialController extends Controller
 
     public function activar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $redsocial = RedSocial::findOrFail($request->id); // 'id' dato que viene de la vista
         $redsocial->estado = '1';
         $redsocial->save();

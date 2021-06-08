@@ -15,7 +15,7 @@ class HorarioController extends Controller
     public function index(Request $request)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
@@ -42,7 +42,7 @@ class HorarioController extends Controller
     }
 
     public function selectHorario(Request $request){
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $horarios = Horario::where('estado','=','1')    //selecciona solo los roles activos
         ->select('idhorario','fecha','hora')->orderBy('fecha', 'asc')->get();
         return ['horarios' => $horarios];
@@ -68,7 +68,7 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $horario = new Horario();
         $horario->fecha = $request->fecha;
         $horario->hora = $request->hora;
@@ -108,7 +108,7 @@ class HorarioController extends Controller
     public function update(Request $request, Horario $horario)
     {
         //
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $horario = Horario::findOrFail($request->horario_id);
         $horario->fecha = $request->fecha;
         $horario->hora = $request->hora;
@@ -118,7 +118,7 @@ class HorarioController extends Controller
 
     public function desactivar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $horario = Horario::findOrFail($request->id);
         $horario->estado = '0';
         $horario->save();
@@ -126,7 +126,7 @@ class HorarioController extends Controller
 
     public function activar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $horario = Horario::findOrFail($request->id);
         $horario->estado = '1';
         $horario->save();
