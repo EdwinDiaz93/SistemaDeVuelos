@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('/contenido/contenido');
 });
 
+// Rutas de avion
+Route::get('/avion', 'App\Http\Controllers\AvionController@index');
+Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');
+Route::put('/avion/actualizar', 'App\Http\Controllers\AvionController@update');
+Route::put('/avion/desactivar', 'App\Http\Controllers\AvionController@desactivar');
+Route::put('/avion/activar', 'App\Http\Controllers\AvionController@activar');
+
 // Rutas tipo de avion
 Route::get('/tipoavion', 'App\Http\Controllers\TipoAvionController@index');
 Route::post('/tipoavion/registrar', 'App\Http\Controllers\TipoAvionController@store');

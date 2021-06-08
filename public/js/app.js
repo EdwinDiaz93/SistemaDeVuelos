@@ -39470,6 +39470,40 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Avion.vue":
+/*!**************************************************!*\
+  !*** ./resources/assets/js/components/Avion.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__.default)(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/assets/js/components/Avion.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/ClaseVuelo.vue":
 /*!*******************************************************!*\
   !*** ./resources/assets/js/components/ClaseVuelo.vue ***!
@@ -55824,6 +55858,7 @@ Vue.component('tipocosto', __webpack_require__(/*! ./components/TipoCosto.vue */
 Vue.component('rol', __webpack_require__(/*! ./components/Rol.vue */ "./resources/assets/js/components/Rol.vue").default);
 Vue.component("redsocial", __webpack_require__(/*! ./components/RedSocial.vue */ "./resources/assets/js/components/RedSocial.vue").default);
 Vue.component("tipoavion", __webpack_require__(/*! ./components/TipoAvion.vue */ "./resources/assets/js/components/TipoAvion.vue").default);
+Vue.component("avion", __webpack_require__(/*! ./components/Avion.vue */ "./resources/assets/js/components/Avion.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
