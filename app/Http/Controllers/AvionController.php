@@ -10,18 +10,18 @@ class AvionController extends Controller
 {
     
      
-    public function index()
+    public function index(Request $request)
     {
-         //if(!$request->ajax()) return redirect('/');
-      $buscar = $request->buscar;
-      $criterio = $request->criterio;
+        //  if(!$request->ajax()) return redirect('/main');
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
 
       if($buscar==''){
-          $tiposavion = TipoAvion::orderBy('idtipoavion', 'desc')->paginate(3);
+          $tiposavion = TipoAvion::where("estado","=","1")->orderBy('idtipoavion', 'desc')->paginate(3);
           $aviones=Avion::orderBy('idavion', 'desc')->paginate(3);
       }
       else{          
-          $aviones = Avion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idavion', 'desc')->paginate(3);
+          $aviones = Avion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idavion', 'desc')->paginate(3);          
       }
       
       return [
@@ -43,11 +43,11 @@ class AvionController extends Controller
      
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $avion = new Avion();
-        $avion->modeloavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
-        $avion->marcaavion = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
-        $avion->estado = '1'; // 'cantidad' es lo que recibimos de la vista
+        $avion->modeloavion = $request->modeloavion; 
+        $avion->marcaavion = $request->marcaavion;         
+        $avion->estado = '1'; 
         $avion->tipoavion_id =$request->tipoavion_id;
         $avion->save();
     }
@@ -56,11 +56,11 @@ class AvionController extends Controller
      
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
-        $avion = Avion::findOrFail($request->avion_id);
-        $avion->modeloavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
-        $avion->marcaavion = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
-        $avion->estado = '1'; // 'cantidad' es lo que recibimos de la vista
+        if(!$request->ajax()) return redirect('/main');
+        $avion = Avion::findOrFail($request->idavion);
+        $avion->modeloavion = $request->modeloavion; 
+        $avion->marcaavion = $request->marcaavion;         
+        $avion->estado = '1'; 
         $avion->tipoavion_id =$request->tipoavion_id;
         $avion->save();
     }
@@ -68,7 +68,7 @@ class AvionController extends Controller
    
     public function desactivar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $avion = Avion::findOrFail($request->id); // 'id' dato que viene de la vista
         $avion->estado = '0';
         $avion->save();
@@ -76,7 +76,7 @@ class AvionController extends Controller
 
     public function activar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $avion = Avion::findOrFail($request->id); // 'id' dato que viene de la vista
         $avion->estado = '1';
         $avion->save();
