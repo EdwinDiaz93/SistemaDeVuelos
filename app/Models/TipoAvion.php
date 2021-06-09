@@ -11,4 +11,9 @@ class TipoAvion extends Model
     protected $table = 'tipo_avions';
     protected $primaryKey = 'idtipoavion';
     protected $guarded=[];
+
+
+    public function aviones(){
+        return $this->hasMany(Avion::class);
+    }
 }

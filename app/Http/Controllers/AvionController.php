@@ -18,7 +18,7 @@ class AvionController extends Controller
 
       if($buscar==''){
           $tiposavion = TipoAvion::where("estado","=","1")->orderBy('idtipoavion', 'desc')->paginate(3);
-          $aviones=Avion::orderBy('idavion', 'desc')->paginate(3);
+          $aviones=Avion::with("tipoavion")->orderBy('idavion', 'desc')->paginate(3);
       }
       else{          
           $aviones = Avion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idavion', 'desc')->paginate(3);          

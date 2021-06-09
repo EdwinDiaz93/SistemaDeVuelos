@@ -17,8 +17,11 @@ class CreateAvionsTable extends Migration
             $table->bigIncrements('idavion');            
             $table->String("modeloavion");
             $table->String("marcaavion");
+            $table->String("aerolinea_cod");
+            $table->integer("cantidad");
             $table->boolean('estado')->default(1);
             $table->foreignId('tipoavion_id')->references('idtipoavion')->on('tipo_avions')->onDelete('cascade');
+            $table->foreign('aerolinea_cod')->references('codaerolinea')->on('aero_lineas')->onDelete('cascade');
             $table->timestamps();
         });
     }

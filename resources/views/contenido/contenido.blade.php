@@ -30,7 +30,7 @@
     </template>
 
     <template v-if="menu==8">
-        <h1>Contenido del menu Aerolinea</h1>
+        <aerolinea></aerolinea>
     </template>
 
     <template v-if="menu==9">

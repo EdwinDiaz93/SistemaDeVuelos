@@ -9,8 +9,8 @@
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Avion
-                    <button type="button" @click="abrirModal('Avion', 'registrar')" class="btn btn-secondary">
+                    <i class="fa fa-align-justify"></i> Aerolinea
+                    <button type="button" @click="abrirModal('aeroLinea', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
                 </div>
@@ -19,11 +19,10 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                    <option value="modeloavion">Modelo</option>
-                                    <option value="marcaavion">Avion</option> 
+                                  <option value="codaerolinea">Codigo de Aerolinea</option>
                                 </select>
-                                <input type="text" v-model="buscar" @keyup.enter="listarAviones(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
-                                <button type="submit" @click="listarAviones(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <input type="text" v-model="buscar" @keyup.enter="listarAerolineas(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
+                                <button type="submit" @click="listarAerolineas(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -31,39 +30,41 @@
                         <thead>
                             <tr>
                                 <th>Opciones</th>
-                                <th>Modelo de avion</th>
-                                <th>Marca de avion</th>
-                                <th>Tipo de avion</th>
+                                <th>Codigo Aerolinea</th>
+                                <th>Nombre Aerolinea</th>
+                                <th>Nombre Representante</th>
+                                <th>Fecha Fundacion</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="Avion in arrayAvion" :key="Avion.idAvion">
+                            <tr v-for="aeroLinea in arrayAerolineas" :key="aeroLinea.codaerolinea">
                                 <td>
-                                    <button type="button" @click="abrirModal('Avion', 'actualizar', Avion)" class="btn btn-warning btn-sm">
+                                    <button type="button" @click="abrirModal('aeroLinea', 'actualizar', aeroLinea)" class="btn btn-warning btn-sm">
                                       <i class="icon-pencil"></i>
                                     </button> &nbsp;
-                                    <template v-if="Avion.estado=='1'">
-                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarAvion(Avion.idavion)">
+                                    <template v-if="aeroLinea.estado=='1'">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarAeroLinea(aeroLinea.codaerolinea)">
                                             <i class="icon-trash"></i>
                                         </button>
                                     </template>
                                     <template v-else>
-                                        <button type="button" class="btn btn-info btn-sm" @click="activarAvion(Avion.idavion)">
+                                        <button type="button" class="btn btn-info btn-sm" @click="activarAeroLinea(aeroLinea.codaerolinea)">
                                             <i class="icon-check"></i>
                                         </button>
                                     </template>
                                 </td>
-                                <td v-text="Avion.modeloavion"></td>
-                                <td v-text="Avion.marcaavion"></td> 
-                                <td v-text="Avion.tipoavion.nombretipoavion"></td>         
+                                <td v-text="aeroLinea.codaerolinea"></td>
+                                <td v-text="aeroLinea.nombreaerolinea"></td>
+                                <td v-text="aeroLinea.nombrerepresentante"></td>
+                                <td v-text="aeroLinea.fechafundacion"></td>
                                 <td>
-                                    <div v-if="Avion.estado=='1'">
+                                    <div v-if="aeroLinea.estado == '1'">
                                         <span class="badge badge-success">Activo</span>
                                     </div>
                                     <div v-else>
                                         <span class="badge badge-danger">Desactivo</span>
-                                    </div>
+                                    </div>                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -98,30 +99,46 @@
                     <div class="modal-body">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Tipo de Avion</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Codigo de Aerolinea</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" v-model="tipoavion_id">
-                                        <option value="0" disabled>Seleccione</option>
-                                        <option v-for="tipoAvion in arrayTipoAvion" :key="tipoAvion.idtipoavion" :value="tipoAvion.idtipoavion" 
-                                        v-text="tipoAvion.nombretipoavion"></option>
-                                    </select>
+                                    <input type="text" disabled v-model="codaerolinea" class="form-control" placeholder="codigo de aerolinea">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="email-input">Modelo Avion</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Nombre de Aerolinea</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="modeloavion" class="form-control" placeholder="Modelo del Avion">
+                                    <input type="text" v-model="nombreaerolinea" class="form-control" placeholder="nombre de aerolinea" >
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Marca avion</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Nombre Oficial</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="marcaavion" class="form-control" placeholder="Marca del avion">
+                                    <input type="text" v-model="nombreoficial" class="form-control" placeholder="nombre oficial" >
                                 </div>
                             </div>
-                            <div v-show="errorAvion" class="form-group row div-error">
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Nombre Corto</label>
+                                <div class="col-md-9">
+                                    <input type="text" v-model="nombrecorto" class="form-control" placeholder="nombre corto" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Nombre de Representante</label>
+                                <div class="col-md-9">
+                                    <input type="text" v-model="nombrerepresentante" class="form-control"  placeholder="nombre de representante">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Fecha de Fundacion</label>
+                                <div class="col-md-9">
+                                    <input type="date" v-model="fechafundacion" class="form-control" >
+                                </div>
+                            </div>
+                                                        
+                            <div v-show="errorAerolinea" class="form-group row div-error">
                                 <div class="text-center text-error">
-                                    <div v-for="error in errorMostrarMsjAvion" :key=error v-text="error">
+                                    <div v-for="error in errorMostrarMsjAerolinea" :key=error v-text="error">
+
                                     </div>
                                 </div>        
                             </div>
@@ -130,8 +147,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal">Cerrar</button>
-                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarAvion">Guardar</button>
-                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarAvion">Actualizar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarAeroLinea">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarAeroLinea">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -147,19 +164,19 @@
 <script>
     export default {
         data(){
-            return{
-                Avion_id : 0,
-                idAvion : 0,
-                tipoavion_id:0,
-                modeloavion : '',
-                marcaavion : '',                
-                arrayAvion : [],
-                arrayTipoAvion : [],
+            return{                
+                codaerolinea : '',                
+                nombreaerolinea : '',                
+                nombreoficial : '',                
+                nombrecorto : '',                
+                nombrerepresentante : '',                
+                fechafundacion : '',                
+                arrayAerolineas : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
-                errorAvion : 0,
-                errorMostrarMsjAvion: [],
+                errorAerolinea : 0,
+                errorMostrarMsjAerolinea: [],
                 pagination : {
                     'total': 0,
                     'current_page': 0,
@@ -170,7 +187,8 @@
                 },
                 offset : 3,
                 criterio : '', 
-                buscar : '',
+                buscar : ""
+
             } 
         },
 
@@ -205,14 +223,16 @@
         },
 
         methods: {
-            listarAviones(page,buscar,criterio){
+
+            
+            listarAerolineas(page,buscar,criterio){
                 let me=this;
-                var url ='/avion?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
-                axios.get(url).then(function (response) {
-                    var respuesta = response.data;                    
-                    me.arrayAvion = respuesta.aviones.data;
+                var url = '/aerolinea?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
+                axios.get(url).then(function (response) {                    
+                    var respuesta = response.data;                                        
+                    me.arrayAerolineas = respuesta.aerolineas.data;
                     me.pagination = respuesta.pagination;
-                    me.arrayTipoAvion=respuesta.tiposavion.data;
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -221,80 +241,84 @@
                 });
             },
 
-            
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 //actualizar pagina actual 
                 me.pagination.current_page = page;
                 //enviar peticion para visualizar la data  de esa pagina
-                me.listarAviones(page,buscar,criterio); 
+                me.listarAerolineas(page,buscar,criterio); 
             },
-
-           registrarAvion()
+           
+           registrarAeroLinea()
            {
-                if (this.validarAvion())   //evalua si el metodo validar categoria retorna 1
+                if (this.validarAeroLinea())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
                     return;
                 }
                 // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
                 let me=this;
-                axios.post('/avion/registrar', {                    
-                    'modeloavion': this.modeloavion,
-                    'marcaavion': this.marcaavion, 
-                    'tipoavion_id':this.tipoavion_id,
+                axios.post('/aerolinea/registrar', {
+                    'codaerolinea': this.codaerolinea,
+                    "nombreaerolinea":this.nombreaerolinea,
+                    "nombreoficial":this.nombreoficial,
+                    "nombrecorto":this.nombrecorto,
+                    "nombrerepresentante":this.nombrerepresentante,
+                    "fechafundacion":this.fechafundacion,
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarAviones(1,'','modeloavion');
+                    me.listarAerolineas(1,'','codaerolinea');
                 }).catch(function (error) {
                     console.log(error);
                 });
 
            },
 
-            actualizarAvion()
+            actualizarAeroLinea()
            {
-               if (this.validarAvion())   
-                {                              
+               if (this.validarAeroLinea())   //evalua si el metodo validar categoria retorna 1
+                {                              // y no realiza nada
                     return;
                 }
-
+                // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
                 let me=this;
-                axios.put('/avion/actualizar', {
-                    'idavion': this.Avion_id,
-                    'modeloavion': this.modeloavion,
-                    'marcaavion': this.marcaavion,
-                    "tipoavion_id":this.tipoavion_id,                    
+                axios.put('/aerolinea/actualizar', {
+                    'codaerolinea': this.codaerolinea,
+                    "nombreaerolinea":this.nombreaerolinea,
+                    "nombreoficial":this.nombreoficial,
+                    "nombrecorto":this.nombrecorto,
+                    "nombrerepresentante":this.nombrerepresentante,
+                    "fechafundacion":this.fechafundacion,                    
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarAviones(1,'','modeloavion');
+                    me.listarAerolineas(1,'','codaerolinea');
                 }).catch(function (error) {
                     console.log(error);
                 });
            },
 
-            desactivarAvion(id)
+            desactivarAeroLinea(id)
             {
 
                 swal({
-                title: '¿Estas seguro de desactivar este Avion?',
+                title: '¿Estas seguro de desactivar esta aerolinea?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonText: '#d33',
                 confirmButtonText: 'Aceptar!',
                 cancelButtonText: 'Cancelar',
-                confirmButtonClass: 'btn btn-success ml-3',
-                cancelButtonClass: 'btn btn-danger mr-3',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
                 buttonsStyling: false,
                 reverseButtons: true
                 }).then((result) => {
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/avion/desactivar', {
+                    axios.put('/aerolinea/desactivar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarAviones(1,'','modeloavion');
+                        me.listarAerolineas(1,'','codaerolinea');
                         swal(
                             'Desactivado!',
                             'El registro ha sido desactivado con exito.',
@@ -313,29 +337,29 @@
                 })
             },
 
-            activarAvion(id)
+            activarAeroLinea(id)
             {
 
                 swal({
-                title: '¿Estas seguro de activar este Avion?',
+                title: '¿Estas seguro de activar esta aerolinea?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonText: '#d33',
                 confirmButtonText: 'Aceptar!',
                 cancelButtonText: 'Cancelar',
-                confirmButtonClass: 'btn btn-success ml-3',
-                cancelButtonClass: 'btn btn-danger mr-3',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
                 buttonsStyling: false,
                 reverseButtons: true
                 }).then((result) => {
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/avion/activar', {
+                    axios.put('/aerolinea/activar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarAviones(1,'','modeloavion');
+                        me.listarAerolineas(1,'','codaerolinea');
                         swal(
                             'Activado!',
                             'El registro ha sido activado con exito.',
@@ -354,67 +378,77 @@
                 })
             },
 
-            validarAvion()
+            validarAeroLinea()
             {
-                this.errorAvion=0;
-                this.errorMostrarMsjAvion=[];
+                this.errorAerolinea=0;
+                this.errorMostrarMsjAerolinea=[];
 
-                if (!this.modeloavion) this.errorMostrarMsjAvion.push("Seleccione un modelo de avion");
-                if (!this.marcaavion ) this.errorMostrarMsjAvion.push("Seleccione una marca de avion");
-                if (this.tipoavion_id===0) this.errorMostrarMsjAvion.push("Selecicone un tipo de avion");
-            
+                if (!this.codaerolinea) this.errorMostrarMsjAerolinea.push("El codigo de la aerolina no puede estar vacio ni se puede repetir");
+                if (!this.nombreaerolinea) this.errorMostrarMsjAerolinea.push("El nombre de la aerolinea no puede estar vacio");
+                if (!this.nombreoficial) this.errorMostrarMsjAerolinea.push("El nombre oficial no puede estar vacio");
+                if (!this.nombrecorto) this.errorMostrarMsjAerolinea.push("El nombre corto no puede estar vacio");
+                if (!this.nombrerepresentante) this.errorMostrarMsjAerolinea.push("El nombre del representante no puede estar vacio");
+                if (!this.fechafundacion) this.errorMostrarMsjAerolinea.push("La fecha no puede estar vacia");
 
-                if (this.errorMostrarMsjAvion.length) this.errorAvion = 1;
+                if (this.errorMostrarMsjAerolinea.length) this.errorAerolinea = 1;
 
-                return this.errorAvion;
+                return this.errorAerolinea;
             },
 
            cerrarModal()
            {
-              this.modal = 0;
-              this.tituloModal = '';
-              this.tipoavion_id= 0;
-              this.modeloavion = '';
-              this.marcaavion = "";              
-              this.errorAvion = 0;
+                this.modal=0;
+                this.tituloModal='';
+                this.codaerolinea='';
+                this.nombreaerolinea='';
+                this.nombreoficial='';
+                this.nombrecorto='';
+                this.nombrerepresentante='';
+                this.fechafundacion='';
            },
 
            abrirModal(modelo, accion, data = [])
            {
                switch(modelo)
                {
-                   case "Avion":
+                   case "aeroLinea":
                    {
                        switch(accion)
                        {
                            case 'registrar':
                            {
-                               this.modal = 1;
-                               this.tituloModal = 'Registrar Avion';
-                               this.tipoavion_id= 0;
-                               this.modeloavion = '';
-                               this.marcaavion = '';                               
-                               this.tipoAccion = 1;
+                                this.modal = 1;
+                                this.tipoAccion = 1;
+                                this.tituloModal = 'Registrar AeroLinea';
+                                this.codaerolinea='';
+                                this.nombreaerolinea='';
+                                this.nombreoficial='';
+                                this.nombrecorto='';
+                                this.nombrerepresentante='';
+                                this.fechafundacion=''                                
                                break;
                            } 
                            case 'actualizar':
                            {
                                this.modal = 1;
-                               this.tituloModal = 'Actualizar Avion';
                                this.tipoAccion = 2;
-                               this.Avion_id = data['idavion'];
-                               this.tipoavion_id = data['tipoavion_id'];
-                               this.modeloavion = data['modeloavion'];
-                               this.marcaavion = data['marcaavion'];
+                               this.tituloModal = 'Actualizar AeroLinea';
+                               this.codaerolinea=data['codaerolinea'];
+                                this.nombreaerolinea=data['nombreaerolinea'];
+                                this.nombreoficial=data['nombreoficial'];
+                                this.nombrecorto=data['nombrecorto'];
+                                this.nombrerepresentante=data['nombrerepresentante'];
+                                this.fechafundacion=data['fechafundacion'];
                                break;
                            }    
                         }
                    }    
-                }                
+                }
+
            }
         },
         mounted() {
-            this.listarAviones(1,this.buscar,this.criterio);
+            this.listarAerolineas(1,this.buscar,this.criterio);
         }
     }
 </script>

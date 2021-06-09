@@ -18,7 +18,7 @@ class AeroLinea extends Model
     }
 
     public function aviones(){
-        return $this->belongsToMany(Avion::class,"aerolinea_avion","aerolinea_cod","avion_id")->withPivot("cantidad");
+        return $this->belongsTo(Avion::class);
     }
     
 }

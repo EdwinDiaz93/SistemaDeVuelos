@@ -4,97 +4,80 @@ namespace App\Http\Controllers;
 
 use App\Models\AeroLinea;
 use App\Models\RedSocial;
-use App\Models\Avion;
 use Illuminate\Http\Request;
 
 class AeroLineaController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
-        $aerolineas=AeroLinea::all();
-        return view("aerolinea.index", compact("aerolineas"));
+          //  if(!$request->ajax()) return redirect('/main');
+          $buscar = $request->buscar;
+          $criterio = $request->criterio;
+  
+        if($buscar==''){          
+            $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
+        }
+        else{          
+            $aerolineas = AeroLinea::where($criterio, 'like', '%'. $buscar . '%')->orderBy('codaerolinea', 'desc')->paginate(3);          
+        }
+        
+        return [
+  
+            'pagination' => [
+  
+                'total'        =>  $aerolineas->total(),
+                'current_page' =>  $aerolineas->currentPage(),
+                'per_page'     =>  $aerolineas->perPage(),
+                'last_page'    =>  $aerolineas->lastPage(),
+                'from'         =>  $aerolineas->firstItem(),
+                'to'           =>  $aerolineas->lastItem(),
+            ],
+            'aerolineas'=>$aerolineas,            
+        ];
     }
 
-   
-    public function create()
-    {
-        $aerolinea= new AeroLinea();
-        $redes=RedSocial::all();
-        $aviones=Avion::all();
-        $vars=["aerolinea"=>$aerolinea,"redes"=>$redes,"aviones"=>$aviones];
-        return view("aerolinea.create",compact("vars"));
-    }
-
-   
+  
     public function store(Request $request)
     {           
-        $data=$request->validate([
-            'codaerolinea' => 'required|min:3',
-            'nombreaerolinea' => 'required|min:3',
-            'nombreoficial' => 'required|min:3',
-            'nombrecorto' => 'required|min:3',
-            'nombrerepresentante' => 'required|min:3',
-            'fechafundacion' => 'required|date',            
-        ],);     
-
-        $aeroLineaCreada=AeroLinea::create($data);
-       
-        
-        foreach ($request->get('urls') as $index=>$url ) {     
-            $aeroLineaCreada->redes()->attach([$index=>["url"=>$url]]);
-        }
-
-        foreach ($request->get('cantidades') as $index=>$cantidad ) {     
-            $aeroLineaCreada->aviones()->attach([$index=>["cantidad"=>$cantidad]]);
-        }
-
-        return redirect("aerolineas");
+        if(!$request->ajax()) return redirect('/main');
+        $aerolinea = new AeroLinea();
+        $aerolinea->codaerolinea = $request->codaerolinea; 
+        $aerolinea->nombreaerolinea = $request->nombreaerolinea;         
+        $aerolinea->nombreoficial = $request->nombreoficial;         
+        $aerolinea->nombrecorto = $request->nombrecorto;         
+        $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
+        $aerolinea->fechafundacion = $request->fechafundacion;         
+        $aerolinea->estado = '1';         
+        $aerolinea->save();
     }
 
-   
-    public function show(AeroLinea $aerolinea){       
-       return view("aerolinea.show",compact("aerolinea"));
-    }
-
-    
-    public function edit(AeroLinea $aerolinea)
+    public function update(Request $request)
     {
-        $redes=RedSocial::all();
-        $vars=["aerolinea"=>$aerolinea,"redes"=>$redes];
-        return view("aerolinea.edit",compact("vars"));
+        if(!$request->ajax()) return redirect('/main');
+        $aerolinea = AeroLinea::findOrFail($request->codaerolinea);        
+        $aerolinea->nombreaerolinea = $request->nombreaerolinea;         
+        $aerolinea->nombreoficial = $request->nombreoficial;         
+        $aerolinea->nombrecorto = $request->nombrecorto;         
+        $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
+        $aerolinea->fechafundacion = $request->fechafundacion;         
+        $aerolinea->estado = '1'; 
+        $aerolinea->save();
     }
 
-    public function update(Request $request, AeroLinea $aerolinea)
-    {
-        $data=$request->validate([
-            'codaerolinea' => 'required|min:3',
-            'nombreaerolinea' => 'required|min:3',
-            'nombreoficial' => 'required|min:3',
-            'nombrecorto' => 'required|min:3',
-            'nombrerepresentante' => 'required|min:3',
-            'fechafundacion' => 'required|date',            
-        ],);    
-
-        $aerolinea->update($data);        
-
-        foreach ($request->get('urls') as $index=>$url ) {     
-            $aerolinea->redes()->detach([$index]);
-            $aerolinea->redes()->attach([$index=>["url"=>$url]]);
-        }
-
-        foreach ($request->get('cantidades') as $index=>$cantidad ) {     
-            $aerolinea->aviones()->detach([$index]);
-            $aerolinea->aviones()->attach([$index=>["cantidad"=>$cantidad]]);
-        }
-
-        return redirect("aerolineas");
+    public function desactivar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/main');
+        $aerolinea = AeroLinea::findOrFail($request->id); // 'id' dato que viene de la vista
+        $aerolinea->estado = '0';
+        $aerolinea->save();
     }
 
-    
-    public function destroy(AeroLinea $aerolinea)
-    {
-        $aerolinea->delete();
-        return redirect("aerolineas");
+    public function activar(Request $request)
+    {        
+        if(!$request->ajax()) return redirect('/main');
+        $aerolinea = AeroLinea::findOrFail($request->id); // 'id' dato que viene de la vista
+        $aerolinea->estado = '1';
+        $aerolinea->save();
     }
 }

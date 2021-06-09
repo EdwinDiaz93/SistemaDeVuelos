@@ -21,6 +21,12 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
+// Rutas de aerolinea
+Route::get('/aerolinea', 'App\Http\Controllers\AeroLineaController@index');
+Route::post('/aerolinea/registrar', 'App\Http\Controllers\AeroLineaController@store');
+Route::put('/aerolinea/actualizar', 'App\Http\Controllers\AeroLineaController@update');
+Route::put('/aerolinea/desactivar', 'App\Http\Controllers\AeroLineaController@desactivar');
+Route::put('/aerolinea/activar', 'App\Http\Controllers\AeroLineaController@activar');
 // Rutas de avion
 Route::get('/avion', 'App\Http\Controllers\AvionController@index');
 Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');

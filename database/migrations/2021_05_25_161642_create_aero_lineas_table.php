@@ -20,6 +20,7 @@ class CreateAeroLineasTable extends Migration
             $table->String('nombrecorto');
             $table->String('nombrerepresentante');
             $table->date('fechafundacion');
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }
