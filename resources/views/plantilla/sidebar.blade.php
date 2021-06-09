@@ -60,6 +60,9 @@
                     <li @click="menu=8" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-user-following"></i> Roles</a>
                     </li>
+                    <li @click="menu=15" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-user-following"></i> Empleados</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-dropdown">

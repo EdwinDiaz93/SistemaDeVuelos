@@ -22,7 +22,7 @@
     </template>
 
     <template v-if="menu==5">
-        <h1>Contenido del menu 5</h1>
+    <user></user>
     </template>
 
     <template v-if="menu==6">
@@ -30,7 +30,7 @@
     </template>
 
     <template v-if="menu==7">
-        <h1>Contenido del menu 7</h1>
+    <user></user>
     </template>
 
     <template v-if="menu==8">
@@ -59,5 +59,9 @@
     
     <template v-if="menu==14">
         <horario></horario>
+    </template>
+
+    <template v-if="menu==15">
+        <empleado></empleado>
     </template>
 @endsection

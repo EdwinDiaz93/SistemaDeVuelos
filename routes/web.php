@@ -45,6 +45,8 @@ Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');
 Route::put('/rol/desactivar', 'App\Http\Controllers\RolController@desactivar');
 Route::put('/rol/activar', 'App\Http\Controllers\RolController@activar');
 
+Route::get('/rol/selectRol', 'App\Http\Controllers\RolController@selectRol');
+
 Route::get('/tipodocumento', 'App\Http\Controllers\TipoDocumentoController@index');
 Route::post('/tipodocumento/registrar', 'App\Http\Controllers\TipoDocumentoController@store');
 Route::put('/tipodocumento/actualizar', 'App\Http\Controllers\TipoDocumentoController@update');
@@ -56,6 +58,18 @@ Route::post('/horario/registrar', 'App\Http\Controllers\HorarioController@store'
 Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update');
 Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
+
+Route::get('/empleado', 'App\Http\Controllers\EmpleadoController@index');
+Route::post('/empleado/registrar', 'App\Http\Controllers\EmpleadoController@store');
+Route::put('/empleado/actualizar', 'App\Http\Controllers\EmpleadoController@update');
+Route::put('/empleado/desactivar', 'App\Http\Controllers\EmpleadoController@desactivar');
+Route::put('/empleado/activar', 'App\Http\Controllers\EmpladoController@activar');
+
+Route::get('/user', 'App\Http\Controllers\UserController@index');
+Route::post('/user/registrar', 'App\Http\Controllers\UserController@store');
+Route::put('/user/actualizar', 'App\Http\Controllers\UserController@update');
+Route::put('/user/desactivar', 'App\Http\Controllers\UserController@desactivar');
+Route::put('/user/activar', 'App\Http\Controllers\UserController@activar');
 
 /*rutaS para el login*/ 
 

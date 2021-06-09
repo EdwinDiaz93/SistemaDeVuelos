@@ -19,7 +19,7 @@ class LoginController extends Controller
   public function login(Request $request){
      $this->validateLogin($request);
 
-      if(Auth::attempt(['usuario'=> $request->usuario,'password'=> $request->password,'condicion'=>1])){
+      if(Auth::attempt(['usuario'=> $request->usuario,'password'=> $request->password,'estado'=>1])){
           return redirect()->route('main');
       }
 
@@ -31,7 +31,8 @@ class LoginController extends Controller
   protected function validateLogin(Request $request){
     $this->validate($request,[
         'usuario' => 'required|string',
-        'password' => 'required|string' 
+        //'email' => 'required|string',
+        'password' => 'required|string'
       ]);
   }
 
