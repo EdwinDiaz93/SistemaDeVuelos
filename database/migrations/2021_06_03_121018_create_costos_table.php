@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvionsTable extends Migration
+class CreateCostosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateAvionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('avions', function (Blueprint $table) {
-            $table->bigIncrements('idavion');            
-            $table->String("modeloavion");
-            $table->String("marcaavion");
+        Schema::create('costos', function (Blueprint $table) {
+            $table->bigIncrements('idcosto');
+            $table->integer('idtipocosto')->unsigned();
+            $table->float('cantidad');
+            $table->string('descripcion', 100);
             $table->boolean('estado')->default(1);
-            $table->foreignId('tipoavion_id')->references('idtipoavion')->on('tipo_avions')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('idtipocosto')->references('idtipocosto')->on('tipo_costo');
+
         });
     }
 
@@ -30,6 +33,6 @@ class CreateAvionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avions');
+        Schema::dropIfExists('costos');
     }
 }

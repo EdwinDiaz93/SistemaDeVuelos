@@ -39,7 +39,7 @@ class TipoAvionController extends Controller
     
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoavion = new TipoAvion();
         $tipoavion->nombretipoavion = $request->nombre; // 'nombre' es lo que recibimos de la vista
         $tipoavion->cantidadasientos = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
@@ -50,7 +50,7 @@ class TipoAvionController extends Controller
     
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoavion = TipoAvion::findOrFail($request->tipoavion_id);
         $tipoavion->nombretipoavion = $request->nombre;
         $tipoavion->cantidadasientos = $request->cantidad; // 'cantidad' es lo que recibimos de la vista
@@ -61,7 +61,7 @@ class TipoAvionController extends Controller
     
     public function desactivar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoavion = TipoAvion::findOrFail($request->id); // 'id' dato que viene de la vista
         $tipoavion->estado = '0';
         $tipoavion->save();
@@ -69,7 +69,7 @@ class TipoAvionController extends Controller
 
     public function activar(Request $request)
     {        
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoavion = TipoAvion::findOrFail($request->id); // 'id' dato que viene de la vista
         $tipoavion->estado = '1';
         $tipoavion->save();

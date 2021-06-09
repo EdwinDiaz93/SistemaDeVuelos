@@ -21,9 +21,6 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
-
-
-
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
 Route::resource('aviones', "App\Http\Controllers\AvionController")->names("avion");
 Auth::routes();
@@ -34,6 +31,21 @@ Route::post('/aeropuerto/registrar', 'App\Http\Controllers\AeropuertoController@
 Route::put('/aeropuerto/actualizar', 'App\Http\Controllers\AeropuertoController@update');
 Route::put('/aeropuerto/desactivar', 'App\Http\Controllers\AeropuertoController@desactivar');
 Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@activar');
+
+
+// Rutas de avion
+Route::get('/avion', 'App\Http\Controllers\AvionController@index');
+Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');
+Route::put('/avion/actualizar', 'App\Http\Controllers\AvionController@update');
+Route::put('/avion/desactivar', 'App\Http\Controllers\AvionController@desactivar');
+Route::put('/avion/activar', 'App\Http\Controllers\AvionController@activar');
+
+// Rutas de avion
+Route::get('/avion', 'App\Http\Controllers\AvionController@index');
+Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');
+Route::put('/avion/actualizar', 'App\Http\Controllers\AvionController@update');
+Route::put('/avion/desactivar', 'App\Http\Controllers\AvionController@desactivar');
+Route::put('/avion/activar', 'App\Http\Controllers\AvionController@activar');
 
 // Rutas tipo de avion
 Route::get('/tipoavion', 'App\Http\Controllers\TipoAvionController@index');
@@ -62,6 +74,7 @@ Route::post('/tipocosto/registrar', 'App\Http\Controllers\TipoCostoController@st
 Route::put('/tipocosto/actualizar', 'App\Http\Controllers\TipoCostoController@update');
 Route::put('/tipocosto/desactivar', 'App\Http\Controllers\TipoCostoController@desactivar');
 Route::put('/tipocosto/activar', 'App\Http\Controllers\TipoCostoController@activar');
+Route::get('/tipocosto/selectTipoCosto', 'App\Http\Controllers\TipoCostoController@selectTipoCosto');
 
 // Rutas de rol
 Route::get('/rol', 'App\Http\Controllers\RolController@index');
@@ -69,6 +82,7 @@ Route::post('/rol/registrar', 'App\Http\Controllers\RolController@store');
 Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');
 Route::put('/rol/desactivar', 'App\Http\Controllers\RolController@desactivar');
 Route::put('/rol/activar', 'App\Http\Controllers\RolController@activar');
+
 
 Route::get('/tipodocumento', 'App\Http\Controllers\TipoDocumentoController@index');
 Route::post('/tipodocumento/registrar', 'App\Http\Controllers\TipoDocumentoController@store');
@@ -82,8 +96,17 @@ Route::put('/horario/actualizar', 'App\Http\Controllers\HorarioController@update
 Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desactivar');
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
 
+/*rutaS para el login*/ 
 
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
+
+Route::get('/costos', 'App\Http\Controllers\CostosController@index');
+Route::post('/costos/registrar', 'App\Http\Controllers\CostosController@store');
+Route::put('/costos/actualizar', 'App\Http\Controllers\CostosController@update');
+Route::put('/costos/desactivar', 'App\Http\Controllers\CostosController@desactivar');
+Route::put('/costos/activar', 'App\Http\Controllers\CostosController@activar');
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -35,9 +35,18 @@ class TipoCostoController extends Controller
         ];
        
     }
+
+    public function selectTipoCosto(Request $request){
+        if(!$request->ajax()) return redirect('/main');
+        $tipoCostos = TipoCosto::where('estado','=','1')    //selecciona solo las tipos de costos activos
+        ->select('idtipocosto','nomtipocosto')->orderBy('nomtipocosto', 'asc')->get();
+        return ['tipoCostos' => $tipoCostos];
+    }
+
+
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoCosto = new TipoCosto();
         $tipoCosto->nomtipocosto = $request->nombre; // 'nombre' es lo que recibimos de la vista
         $tipoCosto->estado = '1';
@@ -46,7 +55,7 @@ class TipoCostoController extends Controller
 
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoCosto = TipoCosto::findOrFail($request->tipoCosto_id);
         $tipoCosto->nomtipocosto = $request->nombre;
         $tipoCosto->estado = '1';
@@ -55,7 +64,7 @@ class TipoCostoController extends Controller
 
     public function desactivar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoCosto = TipoCosto::findOrFail($request->id); // 'id' dato que viene de la vista
         $tipoCosto->estado = '0';
         $tipoCosto->save();
@@ -63,7 +72,7 @@ class TipoCostoController extends Controller
 
     public function activar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $tipoCosto = TipoCosto::findOrFail($request->id);  // 'id' dato que viene de la vista
         $tipoCosto->estado = '1';
         $tipoCosto->save();

@@ -12,8 +12,8 @@ class Avion extends Model
     protected $primaryKey = 'idavion';
     protected $guarded=[];
 
-    public function tipoaviones(){
-        return $this->hasMany(TipoAvion::class);
+    public function tipoavion(){
+        return $this->BelongsTo(TipoAvion::class,"tipoavion_id");
     }
 
     public function aerolineas(){

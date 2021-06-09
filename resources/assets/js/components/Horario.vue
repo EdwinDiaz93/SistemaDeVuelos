@@ -99,7 +99,7 @@
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="fecha" class="form-control" placeholder="fecha del vuelo">
+                                    <input type="date"  v-model="fecha" class="form-control" placeholder="fecha del vuelo">
                                 </div>
                                  <label class="col-md-3 form-control-label" for="text-input">Hora</label>
                                 <div class="col-md-9">

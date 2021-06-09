@@ -10,7 +10,7 @@ class RolController extends Controller
 
     public function index(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
@@ -38,7 +38,7 @@ class RolController extends Controller
     }
 
     public function selectRol(Request $request){
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $roles = Rol::where('estado','=','1')    //selecciona solo los roles activos
         ->select('idrol','nomrol')->orderBy('nomrol', 'asc')->get();
         return ['roles' => $roles];
@@ -46,7 +46,7 @@ class RolController extends Controller
 
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $rol = new Rol();
         $rol->nomrol = $request->nombre;
         $rol->descripcion = $request->descripcion;
@@ -56,7 +56,7 @@ class RolController extends Controller
 
     public function update(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $rol = Rol::findOrFail($request->rol_id);
         $rol->nomrol = $request->nombre;
         $rol->descripcion = $request->descripcion;
@@ -66,7 +66,7 @@ class RolController extends Controller
 
     public function desactivar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $rol = Rol::findOrFail($request->id);
         $rol->estado = '0';
         $rol->save();
@@ -74,7 +74,7 @@ class RolController extends Controller
 
     public function activar(Request $request)
     {
-        if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/main');
         $rol = Rol::findOrFail($request->id);
         $rol->estado = '1';
         $rol->save();

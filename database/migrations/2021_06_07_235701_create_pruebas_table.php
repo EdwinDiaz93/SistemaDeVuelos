@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvionsTable extends Migration
+class CreatePruebasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateAvionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('avions', function (Blueprint $table) {
-            $table->bigIncrements('idavion');            
-            $table->String("modeloavion");
-            $table->String("marcaavion");
+        Schema::create('pruebas', function (Blueprint $table) {
+           
+            $table->bigIncrements('idprueba');
+            $table->integer('idhorario')->unsigned();
+            $table->String('nombrep',20);
             $table->boolean('estado')->default(1);
-            $table->foreignId('tipoavion_id')->references('idtipoavion')->on('tipo_avions')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('idhorario')->references('idhorario')->on('horario');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateAvionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avions');
+        Schema::dropIfExists('pruebas');
     }
 }
