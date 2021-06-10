@@ -17,11 +17,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        'idpersona',
+        'nomusuario',
         'password',
+        'email',
+        'estado',
+        'idrol',
     ];
 
+    protected $primaryKey = 'idusuario';
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -40,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rol(){
+        return $this->belongsTo(Rol::class);
+    }
+
+    public function persona(){
+        return $this->belongsTo(Persona::class);
+    }
 }

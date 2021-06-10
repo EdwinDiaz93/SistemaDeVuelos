@@ -11,4 +11,9 @@ class Rol extends Model
     protected $table = 'rol';
     protected $primaryKey = 'idrol';   
     protected $fillable = ['nomrol','descripcion', 'estado'];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }
