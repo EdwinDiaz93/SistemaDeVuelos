@@ -31,6 +31,7 @@ Vue.component("avion",require("./components/Avion.vue").default);
 Vue.component("aerolinea",require("./components/Aerolinea.vue").default)
 Vue.component("aeropuerto",require("./components/Aeropuerto.vue").default);
 Vue.component("precio",require("./components/Precio.vue").default);
+Vue.component("vuelo",require("./components/Vuelo.vue").default);
 
 
 /**

@@ -42593,6 +42593,40 @@ component.options.__file = "resources/assets/js/components/TipoDocumento.vue"
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Vuelo.vue":
+/*!**************************************************!*\
+  !*** ./resources/assets/js/components/Vuelo.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__.default)(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/assets/js/components/Vuelo.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js& ***!
@@ -63238,6 +63272,7 @@ Vue.component("avion", __webpack_require__(/*! ./components/Avion.vue */ "./reso
 Vue.component("aerolinea", __webpack_require__(/*! ./components/Aerolinea.vue */ "./resources/assets/js/components/Aerolinea.vue").default);
 Vue.component("aeropuerto", __webpack_require__(/*! ./components/Aeropuerto.vue */ "./resources/assets/js/components/Aeropuerto.vue").default);
 Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
+Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

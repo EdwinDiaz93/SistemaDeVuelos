@@ -23,6 +23,13 @@ Route::group(['middleware'=>['guest']],function(){
 
 
 // Rutas de precio
+Route::get('/vuelo', 'App\Http\Controllers\VueloController@index');
+Route::post('/vuelo/registrar', 'App\Http\Controllers\VueloController@store');
+Route::put('/vuelo/actualizar', 'App\Http\Controllers\VueloController@update');
+Route::put('/vuelo/desactivar', 'App\Http\Controllers\VueloController@desactivar');
+Route::put('/vuelo/activar', 'App\Http\Controllers\VueloController@activar');
+
+// Rutas de precio
 Route::get('/precio', 'App\Http\Controllers\PrecioController@index');
 Route::post('/precio/registrar', 'App\Http\Controllers\PrecioController@store');
 Route::put('/precio/actualizar', 'App\Http\Controllers\PrecioController@update');
