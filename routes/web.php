@@ -21,14 +21,14 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
-<<<<<<< HEAD
+
 // Rutas de aerolinea
 Route::get('/aerolinea', 'App\Http\Controllers\AeroLineaController@index');
 Route::post('/aerolinea/registrar', 'App\Http\Controllers\AeroLineaController@store');
 Route::put('/aerolinea/actualizar', 'App\Http\Controllers\AeroLineaController@update');
 Route::put('/aerolinea/desactivar', 'App\Http\Controllers\AeroLineaController@desactivar');
 Route::put('/aerolinea/activar', 'App\Http\Controllers\AeroLineaController@activar');
-=======
+
 /*rutas para el aeropuerto*/
 Route::get('/aeropuerto', 'App\Http\Controllers\AeropuertoController@index');
 Route::post('/aeropuerto/registrar', 'App\Http\Controllers\AeropuertoController@store');
@@ -39,7 +39,7 @@ Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@act
 Route::get('/pais/selectPais', 'App\Http\Controllers\PaisController@selectPais');
 Route::get('/ciudad/selectCiudad', 'App\Http\Controllers\CiudadController@selectCiudad');
 
->>>>>>> EliasD
+
 // Rutas de avion
 Route::get('/avion', 'App\Http\Controllers\AvionController@index');
 Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');
