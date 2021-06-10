@@ -34,7 +34,7 @@
     </template>
 
     <template v-if="menu==9">
-        
+        <precio></precio>
     </template>
 
     <template v-if="menu==10">
