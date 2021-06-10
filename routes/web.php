@@ -41,13 +41,6 @@ Route::put('/tipoavion/actualizar', 'App\Http\Controllers\TipoAvionController@up
 Route::put('/tipoavion/desactivar', 'App\Http\Controllers\TipoAvionController@desactivar');
 Route::put('/tipoavion/activar', 'App\Http\Controllers\TipoAvionController@activar');
 
-// Rutas de redsocial
-Route::get('/redsocial', 'App\Http\Controllers\RedSocialController@index');
-Route::post('/redsocial/registrar', 'App\Http\Controllers\RedSocialController@store');
-Route::put('/redsocial/actualizar', 'App\Http\Controllers\RedSocialController@update');
-Route::put('/redsocial/desactivar', 'App\Http\Controllers\RedSocialController@desactivar');
-Route::put('/redsocial/activar', 'App\Http\Controllers\RedSocialController@activar');
-
 
 Route::resource('/aerolineas', "App\Http\Controllers\AeroLineaController")->names("aerolinea");
 Route::resource('aviones', "App\Http\Controllers\AvionController")->names("avion");

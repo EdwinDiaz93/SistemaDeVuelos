@@ -28,8 +28,6 @@ Vue.component('tipodocumento', require('./components/TipoDocumento.vue').default
 Vue.component('horario', require('./components/Horario.vue').default);
 
 Vue.component('costos', require('./components/Costos.vue').default);
-
-Vue.component("redsocial",require("./components/RedSocial.vue").default);
 Vue.component("tipoavion",require("./components/TipoAvion.vue").default);
 Vue.component("avion",require("./components/Avion.vue").default);
 Vue.component("aerolinea",require("./components/Aerolinea.vue").default)

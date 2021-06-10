@@ -46,6 +46,9 @@ class AeroLineaController extends Controller
         $aerolinea->nombreaerolinea = $request->nombreaerolinea;         
         $aerolinea->nombreoficial = $request->nombreoficial;         
         $aerolinea->nombrecorto = $request->nombrecorto;         
+        $aerolinea->facebook= $request->facebook;
+        $aerolinea->twitter= $request->twitter;
+        $aerolinea->instagram= $request->instagram;
         $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
         $aerolinea->fechafundacion = $request->fechafundacion;         
         $aerolinea->estado = '1';         
@@ -58,7 +61,10 @@ class AeroLineaController extends Controller
         $aerolinea = AeroLinea::findOrFail($request->codaerolinea);        
         $aerolinea->nombreaerolinea = $request->nombreaerolinea;         
         $aerolinea->nombreoficial = $request->nombreoficial;         
-        $aerolinea->nombrecorto = $request->nombrecorto;         
+        $aerolinea->nombrecorto = $request->nombrecorto;    
+        $aerolinea->facebook= $request->facebook;
+        $aerolinea->twitter= $request->twitter;
+        $aerolinea->instagram= $request->instagram;     
         $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
         $aerolinea->fechafundacion = $request->fechafundacion;         
         $aerolinea->estado = '1'; 

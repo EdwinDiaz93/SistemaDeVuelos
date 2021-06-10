@@ -55,8 +55,7 @@
                     <li @click="menu=8" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-plane"></i> Aerolinea</a>
                     </li>
-                    <li @click="menu=9" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-social-twitter"></i> Redes Sociales</a>
+                    <li @click="menu=9" class="nav-item">                        
                     </li>
 
                     <li @click="menu=10" class="nav-item">

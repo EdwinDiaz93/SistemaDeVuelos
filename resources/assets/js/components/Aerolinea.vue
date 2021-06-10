@@ -88,7 +88,7 @@
         </div>
         <!--Inicio del modal agregar/actualizar-->
         <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-primary modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -99,39 +99,50 @@
                     <div class="modal-body">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Codigo de Aerolinea</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Codigo de Aerolinea</label>
+                                <div class="col-md-4">
                                     <input type="text" v-model="codaerolinea" class="form-control" placeholder="codigo de aerolinea">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre de Aerolinea</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Nombre de Aerolinea</label>
+                                <div class="col-md-4">
                                     <input type="text" v-model="nombreaerolinea" class="form-control" placeholder="nombre de aerolinea" >
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre Oficial</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Nombre Oficial</label>
+                                <div class="col-md-4">
                                     <input type="text" v-model="nombreoficial" class="form-control" placeholder="nombre oficial" >
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre Corto</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Nombre Corto</label>
+                                <div class="col-md-4">
                                     <input type="text" v-model="nombrecorto" class="form-control" placeholder="nombre corto" >
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre de Representante</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Nombre de Representante</label>
+                                <div class="col-md-4">
                                     <input type="text" v-model="nombrerepresentante" class="form-control"  placeholder="nombre de representante">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Fecha de Fundacion</label>
-                                <div class="col-md-9">
+                                <label class="col-md-2 form-control-label" for="text-input">Fecha de Fundacion</label>
+                                <div class="col-md-4">
                                     <input type="date" v-model="fechafundacion" class="form-control" >
+                                </div>
+                            </div>                           
+
+                            <div class="form-group row">
+                                <label class="col-md-2 form-control-label" for="text-input">Facebook URL</label>
+                                <div class="col-md-4">
+                                    <input type="text" v-model="facebook" class="form-control" >
+                                </div>
+                                <label class="col-md-2 form-control-label" for="text-input">Twitter URL</label>
+                                <div class="col-md-4">
+                                    <input type="text" v-model="twitter" class="form-control" >
+                                </div>
+                            </div>                            
+                            <div class="form-group row">
+                                <label class="col-md-2 form-control-label" for="text-input">Instagram URL</label>
+                                <div class="col-md-4">
+                                    <input type="text" v-model="instagram" class="form-control" >
                                 </div>
                             </div>
                                                         
@@ -170,7 +181,10 @@
                 nombreoficial : '',                
                 nombrecorto : '',                
                 nombrerepresentante : '',                
-                fechafundacion : '',                
+                fechafundacion : '',
+                facebook:'',
+                twitter:'',
+                instagram:'',
                 arrayAerolineas : [],
                 modal : 0,
                 tituloModal : '', 
@@ -262,6 +276,9 @@
                     "nombreaerolinea":this.nombreaerolinea,
                     "nombreoficial":this.nombreoficial,
                     "nombrecorto":this.nombrecorto,
+                    "facebook":this.facebook,
+                    "twitter":this.twitter,
+                    "instagram":this.instagram,
                     "nombrerepresentante":this.nombrerepresentante,
                     "fechafundacion":this.fechafundacion,
                 }).then(function (response) {
@@ -286,6 +303,9 @@
                     "nombreaerolinea":this.nombreaerolinea,
                     "nombreoficial":this.nombreoficial,
                     "nombrecorto":this.nombrecorto,
+                    "facebook":this.facebook,
+                    "twitter":this.twitter,
+                    "instagram":this.instagram,
                     "nombrerepresentante":this.nombrerepresentante,
                     "fechafundacion":this.fechafundacion,                    
                 }).then(function (response) {
@@ -388,6 +408,9 @@
                 if (!this.nombreoficial) this.errorMostrarMsjAerolinea.push("El nombre oficial no puede estar vacio");
                 if (!this.nombrecorto) this.errorMostrarMsjAerolinea.push("El nombre corto no puede estar vacio");
                 if (!this.nombrerepresentante) this.errorMostrarMsjAerolinea.push("El nombre del representante no puede estar vacio");
+                if (!this.facebook) this.errorMostrarMsjAerolinea.push("El url de facebook es obligatorio");
+                if (!this.twitter) this.errorMostrarMsjAerolinea.push("El url de twitter es obligatorio");
+                if (!this.instagram) this.errorMostrarMsjAerolinea.push("El url de instagram es obligatorio");
                 if (!this.fechafundacion) this.errorMostrarMsjAerolinea.push("La fecha no puede estar vacia");
 
                 if (this.errorMostrarMsjAerolinea.length) this.errorAerolinea = 1;
@@ -403,6 +426,9 @@
                 this.nombreaerolinea='';
                 this.nombreoficial='';
                 this.nombrecorto='';
+                this.facebook='';
+                this.twitter='';
+                this.instagram='';
                 this.nombrerepresentante='';
                 this.fechafundacion='';
            },
@@ -424,6 +450,9 @@
                                 this.nombreaerolinea='';
                                 this.nombreoficial='';
                                 this.nombrecorto='';
+                                this.facebook='';
+                                this.twitter='';
+                                this.instagram='';
                                 this.nombrerepresentante='';
                                 this.fechafundacion=''                                
                                break;
@@ -437,6 +466,9 @@
                                 this.nombreaerolinea=data['nombreaerolinea'];
                                 this.nombreoficial=data['nombreoficial'];
                                 this.nombrecorto=data['nombrecorto'];
+                                this.facebook=data["facebook"];
+                                this.twitter=data["twitter"];
+                                this.instagram=data["instagram"];
                                 this.nombrerepresentante=data['nombrerepresentante'];
                                 this.fechafundacion=data['fechafundacion'];
                                break;
@@ -455,7 +487,7 @@
 <style>
     .modal-content{
         width: 100% !important;
-        position: absolute !important;
+        position: absolute !important;                
     }
     .mostrar{
         display: list-item  !important;

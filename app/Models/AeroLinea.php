@@ -13,10 +13,7 @@ class AeroLinea extends Model
     protected $primaryKey = 'codaerolinea';
     protected $guarded=[];
 
-    public function redes(){
-        return $this->belongsToMany(RedSocial::class,"aerolinea_redsocial","aerolinea_cod","redsocial_id")->withPivot("url");
-    }
-
+    
     public function aviones(){
         return $this->hasMany(Avion::class);
     }

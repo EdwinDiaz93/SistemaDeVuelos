@@ -18,6 +18,9 @@ class CreateAeroLineasTable extends Migration
             $table->String('nombreaerolinea');
             $table->String('nombreoficial');
             $table->String('nombrecorto');
+            $table->String('facebook');
+            $table->String('twitter');
+            $table->String('instagram');
             $table->String('nombrerepresentante');
             $table->date('fechafundacion');
             $table->boolean('estado')->default(1);
