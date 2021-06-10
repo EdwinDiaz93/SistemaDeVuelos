@@ -21,6 +21,16 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
+/*rutas para el aeropuerto*/
+Route::get('/aeropuerto', 'App\Http\Controllers\AeropuertoController@index');
+Route::post('/aeropuerto/registrar', 'App\Http\Controllers\AeropuertoController@store');
+Route::put('/aeropuerto/actualizar', 'App\Http\Controllers\AeropuertoController@update');
+Route::put('/aeropuerto/desactivar', 'App\Http\Controllers\AeropuertoController@desactivar');
+Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@activar');
+
+Route::get('/pais/selectPais', 'App\Http\Controllers\PaisController@selectPais');
+Route::get('/ciudad/selectCiudad', 'App\Http\Controllers\CiudadController@selectCiudad');
+
 // Rutas de avion
 Route::get('/avion', 'App\Http\Controllers\AvionController@index');
 Route::post('/avion/registrar', 'App\Http\Controllers\AvionController@store');
