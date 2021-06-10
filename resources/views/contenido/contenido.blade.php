@@ -44,5 +44,11 @@
     <template v-if="menu==11">
         <tipoavion></tipoavion>
     </template>
-    
+
+    <template v-if="menu==12">
+        <h1>Contenido del menu Aeropuerto</h1>
+    </template>
+    <template v-if="menu==13">
+        <aeropuerto></aeropuerto>
+    </template>
 @endsection

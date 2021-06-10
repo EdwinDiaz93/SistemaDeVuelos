@@ -1834,10 +1834,17 @@ module.exports = {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2021,6 +2028,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+<<<<<<< HEAD
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2039,6 +2047,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipoAccion: 0,
       errorAerolinea: 0,
       errorMostrarMsjAerolinea: [],
+=======
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      aeropuerto_id: 0,
+      codaeropuerto: '',
+      nomaeropuerto: '',
+      telefono: '',
+      nomresponsable: '',
+      numbahias: '',
+      idpais: 0,
+      nompais: '',
+      idciudad: 0,
+      nomciudad: '',
+      arrayAeropuerto: [],
+      modal: 0,
+      tituloModal: '',
+      tipoAccion: 0,
+      errorAeropuerto: 0,
+      errorMostrarMsjAeropuerto: [],
+>>>>>>> EliasD
       pagination: {
         'total': 0,
         'current_page': 0,
@@ -2048,8 +2086,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'to': 0
       },
       offset: 3,
+<<<<<<< HEAD
       criterio: '',
       buscar: ""
+=======
+      criterio: 'codaeropuerto',
+      buscar: '',
+      arrayPais: [],
+      //almacena el listado de los paises
+      arrayCiudad: [] //almacena el listado de las ciudades
+
+>>>>>>> EliasD
     };
   },
   computed: {
@@ -2084,13 +2131,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
+<<<<<<< HEAD
     listarAerolineas: function listarAerolineas(page, buscar, criterio) {
       var me = this;
       var url = '/aerolinea?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayAerolineas = respuesta.aerolineas.data;
+=======
+    listarAeropuerto: function listarAeropuerto(page, buscar, criterio) {
+      var me = this;
+      var url = '/aeropuerto?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayAeropuerto = respuesta.aeropuertos.data;
+>>>>>>> EliasD
         me.pagination = respuesta.pagination;
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {});
+    },
+    selectPais: function selectPais() {
+      var me = this;
+      var url = '/pais/selectPais';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayPais = respuesta.pais; //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {});
+    },
+    selectCiudad: function selectCiudad() {
+      var me = this;
+      var url = '/ciudad/selectCiudad';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayCiudad = respuesta.ciudad; //console.log(response);
       })["catch"](function (error) {
         console.log(error);
       }).then(function () {});
@@ -2100,10 +2176,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
+<<<<<<< HEAD
       me.listarAerolineas(page, buscar, criterio);
     },
     registrarAeroLinea: function registrarAeroLinea() {
       if (this.validarAeroLinea()) //evalua si el metodo validar categoria retorna 1
+=======
+      me.listarAeropuerto(page, buscar, criterio);
+    },
+    registrarAeropuerto: function registrarAeropuerto() {
+      if (this.validarAeropuerto()) //evalua si el metodo validar categoria retorna 1
+>>>>>>> EliasD
         {
           // y no realiza nada
           return;
@@ -2111,6 +2194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var me = this;
+<<<<<<< HEAD
       axios.post('/aerolinea/registrar', {
         'codaerolinea': this.codaerolinea,
         "nombreaerolinea": this.nombreaerolinea,
@@ -2124,10 +2208,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         me.cerrarModal();
         me.listarAerolineas(1, '', 'codaerolinea');
+=======
+      axios.post('/aeropuerto/registrar', {
+        'codaeropuerto': this.codaeropuerto,
+        'nomaeropuerto': this.nomaeropuerto,
+        'telefono': this.telefono,
+        'nomresponsable': this.nomresponsable,
+        'numbahias': this.numbahias,
+        'idpais': this.idpais,
+        'idciudad': this.idciudad
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarAeropuerto(1, '', 'codaeropuerto');
+>>>>>>> EliasD
       })["catch"](function (error) {
         console.log(error);
       });
     },
+<<<<<<< HEAD
     actualizarAeroLinea: function actualizarAeroLinea() {
       if (this.validarAeroLinea()) //evalua si el metodo validar categoria retorna 1
         {
@@ -2150,16 +2248,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         me.cerrarModal();
         me.listarAerolineas(1, '', 'codaerolinea');
+=======
+    actualizarAeropuerto: function actualizarAeropuerto() {
+      if (this.validarAeropuerto()) {
+        return;
+      }
+
+      var me = this;
+      axios.put('/aeropuerto/actualizar', {
+        'id': this.aeropuerto_id,
+        'codaeropuerto': this.codaeropuerto,
+        'nomaeropuerto': this.nomaeropuerto,
+        'telefono': this.telefono,
+        'nomresponsable': this.nomresponsable,
+        'numbahias': this.numbahias,
+        'idpais': this.idpais,
+        'idciudad': this.idciudad
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarAeropuerto(1, '', 'codaeropuerto');
+>>>>>>> EliasD
       })["catch"](function (error) {
         console.log(error);
       });
     },
+<<<<<<< HEAD
     desactivarAeroLinea: function desactivarAeroLinea(id) {
+=======
+    desactivarAeropuerto: function desactivarAeropuerto(id) {
+>>>>>>> EliasD
       var _swal,
           _this = this;
 
       swal((_swal = {
+<<<<<<< HEAD
         title: '¿Estas seguro de desactivar esta aerolinea?',
+=======
+        title: '¿Estas seguro de desactivar este Aeropuerto?',
+>>>>>>> EliasD
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -2168,10 +2294,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
         if (result.value) {
           var me = _this;
+<<<<<<< HEAD
           axios.put('/aerolinea/desactivar', {
             'id': id
           }).then(function (response) {
             me.listarAerolineas(1, '', 'codaerolinea');
+=======
+          axios.put('/aeropuerto/desactivar', {
+            'id': id
+          }).then(function (response) {
+            me.listarAeropuerto(1, '', 'codaeropuerto');
+>>>>>>> EliasD
             swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -2180,12 +2313,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+<<<<<<< HEAD
     activarAeroLinea: function activarAeroLinea(id) {
+=======
+    activarAeropuerto: function activarAeropuerto(id) {
+>>>>>>> EliasD
       var _swal2,
           _this2 = this;
 
       swal((_swal2 = {
+<<<<<<< HEAD
         title: '¿Estas seguro de activar esta aerolinea?',
+=======
+        title: '¿Estas seguro de activar este Aeropuerto?',
+>>>>>>> EliasD
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -2194,10 +2335,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
         if (result.value) {
           var me = _this2;
+<<<<<<< HEAD
           axios.put('/aerolinea/activar', {
             'id': id
           }).then(function (response) {
             me.listarAerolineas(1, '', 'codaerolinea');
+=======
+          axios.put('/aeropuerto/activar', {
+            'id': id
+          }).then(function (response) {
+            me.listarAeropuerto(1, '', 'codaeropuerto');
+>>>>>>> EliasD
             swal('Activado!', 'El registro ha sido activado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -2206,6 +2354,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+<<<<<<< HEAD
     validarAeroLinea: function validarAeroLinea() {
       this.errorAerolinea = 0;
       this.errorMostrarMsjAerolinea = [];
@@ -2220,10 +2369,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.fechafundacion) this.errorMostrarMsjAerolinea.push("La fecha no puede estar vacia");
       if (this.errorMostrarMsjAerolinea.length) this.errorAerolinea = 1;
       return this.errorAerolinea;
+=======
+    validarAeropuerto: function validarAeropuerto() {
+      this.errorAeropuerto = 0;
+      this.errorMostrarMsjAeropuerto = [];
+      if (!this.codaeropuerto) this.errorMostrarMsjAeropuerto.push("El codigo del Aeropuerto no puede estar vacio");
+      if (!this.nomaeropuerto) this.errorMostrarMsjAeropuerto.push("El nombre del Aeropuerto no puede estar vacio");
+      if (!this.telefono) this.errorMostrarMsjAeropuerto.push("El telefono del Aeropuerto no puede estar vacio");
+      if (!this.nomresponsable) this.errorMostrarMsjAeropuerto.push("El nombrel del responsabe del Aeropuerto no puede estar vacio");
+      if (!this.numbahias) this.errorMostrarMsjAeropuerto.push("El Numero de Bahias del Aeropuerto debe ser un numero y no puede estar vacio");
+      if (this.idpais == 0) this.errorMostrarMsjAeropuerto.push("Seleccione el pais de Aeropuerto");
+      if (this.idciudad == 0) this.errorMostrarMsjAeropuerto.push("Seleccione la ciudad de Aeropuerto");
+      if (this.errorMostrarMsjAeropuerto.length) this.errorAeropuerto = 1;
+      return this.errorAeropuerto;
+>>>>>>> EliasD
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
+<<<<<<< HEAD
       this.codaerolinea = '';
       this.nombreaerolinea = '';
       this.nombreoficial = '';
@@ -2233,17 +2397,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.instagram = '';
       this.nombrerepresentante = '';
       this.fechafundacion = '';
+=======
+      this.idpais = 0;
+      this.nompais = '';
+      this.idciudad = 0;
+      this.nomciudad = '';
+      this.codaeropuerto = '';
+      this.nomaeropuerto = '';
+      this.telefono = '';
+      this.nomresponsable = '';
+      this.numbahias = 0;
+      this.errorAeropuerto = 0;
+>>>>>>> EliasD
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       switch (modelo) {
+<<<<<<< HEAD
         case "aeroLinea":
+=======
+        case "aeropuerto":
+>>>>>>> EliasD
           {
             switch (accion) {
               case 'registrar':
                 {
                   this.modal = 1;
+<<<<<<< HEAD
                   this.tipoAccion = 1;
                   this.tituloModal = 'Registrar AeroLinea';
                   this.codaerolinea = '';
@@ -2255,12 +2436,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.instagram = '';
                   this.nombrerepresentante = '';
                   this.fechafundacion = '';
+=======
+                  this.tituloModal = 'Registrar Aeropuerto';
+                  this.tipoAccion = 1;
+                  this.codaeropuerto = '';
+                  this.nomaeropuerto = '';
+                  this.telefono = '';
+                  this.nomresponsable = '';
+                  this.numbahias = 0;
+                  this.idpais = 0;
+                  this.nompais = '';
+                  this.idciudad = 0;
+                  this.nomciudad = '';
+>>>>>>> EliasD
                   break;
                 }
 
               case 'actualizar':
                 {
                   this.modal = 1;
+<<<<<<< HEAD
                   this.tipoAccion = 2;
                   this.tituloModal = 'Actualizar AeroLinea';
                   this.codaerolinea = data['codaerolinea'];
@@ -2272,24 +2467,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.instagram = data["instagram"];
                   this.nombrerepresentante = data['nombrerepresentante'];
                   this.fechafundacion = data['fechafundacion'];
+=======
+                  this.tituloModal = 'Actualizar Aeropuerto';
+                  this.tipoAccion = 2;
+                  this.aeropuerto_id = data['id'];
+                  this.codaeropuerto = data['codaeropuerto'];
+                  this.nomaeropuerto = data['nomaeropuerto'];
+                  this.telefono = data['telefono'];
+                  this.nomresponsable = data['nomresponsable'];
+                  this.numbahias = data['numbahias'];
+                  this.idpais = data['idpais'];
+                  this.idciudad = data['idciudad'];
+>>>>>>> EliasD
                   break;
                 }
             }
           }
       }
+
+      this.selectPais();
+      this.selectCiudad();
     }
   },
   mounted: function mounted() {
+<<<<<<< HEAD
     this.listarAerolineas(1, this.buscar, this.criterio);
+=======
+    this.listarAeropuerto(1, this.buscar, this.criterio);
+>>>>>>> EliasD
   }
 });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Avion.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Avion.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2427,6 +2648,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -2481,6 +2703,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipoAccion: 0,
       errorAvion: 0,
       errorMostrarMsjAvion: [],
+=======
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      claseVuelo_id: 0,
+      nombre: '',
+      descripcion: '',
+      arrayClaseVuelo: [],
+      modal: 0,
+      tituloModal: '',
+      tipoAccion: 0,
+      errorClaseVuelo: 0,
+      errorMostrarMsjClaseVuelo: [],
+>>>>>>> EliasD
       pagination: {
         'total': 0,
         'current_page': 0,
@@ -2490,7 +2726,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'to': 0
       },
       offset: 3,
+<<<<<<< HEAD
       criterio: '',
+=======
+      criterio: 'nomclasevuelo',
+>>>>>>> EliasD
       buscar: ''
     };
   },
@@ -2526,6 +2766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
+<<<<<<< HEAD
     listarAviones: function listarAviones(page, buscar, criterio) {
       var me = this;
       var url = '/avion?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
@@ -2536,6 +2777,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         me.pagination = respuesta.pagination;
         me.arrayTipoAvion = respuesta.tiposavion.data;
         me.arrayAeroLinea = respuesta.aerolineas.data;
+=======
+    listarClaseVuelos: function listarClaseVuelos(page, buscar, criterio) {
+      var me = this;
+      var url = '/clasevuelo?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayClaseVuelo = respuesta.claseVuelos.data;
+        me.pagination = respuesta.pagination;
+>>>>>>> EliasD
       })["catch"](function (error) {
         console.log(error);
       }).then(function () {});
@@ -2545,10 +2795,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
+<<<<<<< HEAD
       me.listarAviones(page, buscar, criterio);
     },
     registrarAvion: function registrarAvion() {
       if (this.validarAvion()) //evalua si el metodo validar categoria retorna 1
+=======
+      me.listarClaseVuelos(page, buscar, criterio);
+    },
+    registrarClaseVuelo: function registrarClaseVuelo() {
+      if (this.validarClaseVuelo()) //evalua si el metodo validar categoria retorna 1
+>>>>>>> EliasD
         {
           // y no realiza nada
           return;
@@ -2556,6 +2813,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var me = this;
+<<<<<<< HEAD
       axios.post('/avion/registrar', {
         'modeloavion': this.modeloavion,
         'marcaavion': this.marcaavion,
@@ -2565,10 +2823,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         me.cerrarModal();
         me.listarAviones(1, '', 'modeloavion');
+=======
+      axios.post('/clasevuelo/registrar', {
+        'nombre': this.nombre
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarClaseVuelos(1, '', 'nombre');
+>>>>>>> EliasD
       })["catch"](function (error) {
         console.log(error);
       });
     },
+<<<<<<< HEAD
     actualizarAvion: function actualizarAvion() {
       if (this.validarAvion()) {
         return;
@@ -2585,16 +2851,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         me.cerrarModal();
         me.listarAviones(1, '', 'modeloavion');
+=======
+    actualizarClaseVuelo: function actualizarClaseVuelo() {
+      if (this.validarClaseVuelo()) //evalua si el metodo validar categoria retorna 1
+        {
+          // y no realiza nada
+          return;
+        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
+
+
+      var me = this;
+      axios.put('/clasevuelo/actualizar', {
+        'nombre': this.nombre,
+        'claseVuelo_id': this.claseVuelo_id
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarClaseVuelos(1, '', 'nombre');
+>>>>>>> EliasD
       })["catch"](function (error) {
         console.log(error);
       });
     },
+<<<<<<< HEAD
     desactivarAvion: function desactivarAvion(id) {
+=======
+    desactivarClaseVuelo: function desactivarClaseVuelo(id) {
+>>>>>>> EliasD
       var _swal,
           _this = this;
 
       swal((_swal = {
+<<<<<<< HEAD
         title: '¿Estas seguro de desactivar este Avion?',
+=======
+        title: '¿Estas seguro de desactivar esta clase de vuelo?',
+>>>>>>> EliasD
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -2603,10 +2894,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
         if (result.value) {
           var me = _this;
+<<<<<<< HEAD
           axios.put('/avion/desactivar', {
             'id': id
           }).then(function (response) {
             me.listarAviones(1, '', 'modeloavion');
+=======
+          axios.put('/clasevuelo/desactivar', {
+            'id': id
+          }).then(function (response) {
+            me.listarClaseVuelos(1, '', 'nombre');
+>>>>>>> EliasD
             swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -2615,12 +2913,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+<<<<<<< HEAD
     activarAvion: function activarAvion(id) {
+=======
+    activarClaseVuelo: function activarClaseVuelo(id) {
+>>>>>>> EliasD
       var _swal2,
           _this2 = this;
 
       swal((_swal2 = {
+<<<<<<< HEAD
         title: '¿Estas seguro de activar este Avion?',
+=======
+        title: '¿Estas seguro de activar esta clase de vuelo?',
+>>>>>>> EliasD
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -2629,10 +2935,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
         if (result.value) {
           var me = _this2;
+<<<<<<< HEAD
           axios.put('/avion/activar', {
             'id': id
           }).then(function (response) {
             me.listarAviones(1, '', 'modeloavion');
+=======
+          axios.put('/clasevuelo/activar', {
+            'id': id
+          }).then(function (response) {
+            me.listarClaseVuelos(1, '', 'nombre');
+>>>>>>> EliasD
             swal('Activado!', 'El registro ha sido activado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -2641,6 +2954,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+<<<<<<< HEAD
     validarAvion: function validarAvion() {
       this.errorAvion = 0;
       this.errorMostrarMsjAvion = [];
@@ -2651,33 +2965,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.cantidad === 0 || this.cantidad < 0) this.errorMostrarMsjAvion.push("cantidad no puede estar vacia y debe ser mayor a 0");
       if (this.errorMostrarMsjAvion.length) this.errorAvion = 1;
       return this.errorAvion;
+=======
+    validarClaseVuelo: function validarClaseVuelo() {
+      this.errorClaseVuelo = 0;
+      this.errorMostrarMsjClaseVuelo = [];
+      if (!this.nombre) this.errorMostrarMsjClaseVuelo.push("El nombre de la clase no puede estar vacio");
+      if (this.errorMostrarMsjClaseVuelo.length) this.errorClaseVuelo = 1;
+      return this.errorClaseVuelo;
+>>>>>>> EliasD
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
+<<<<<<< HEAD
       this.tipoavion_id = 0;
       this.cantidad = 0;
       this.aerolinea_cod = '';
       this.modeloavion = '';
       this.marcaavion = "";
       this.errorAvion = 0;
+=======
+      this.nombre = '';
+      this.descripcion = '';
+>>>>>>> EliasD
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       switch (modelo) {
+<<<<<<< HEAD
         case "Avion":
+=======
+        case "claseVuelo":
+>>>>>>> EliasD
           {
             switch (accion) {
               case 'registrar':
                 {
                   this.modal = 1;
+<<<<<<< HEAD
                   this.tituloModal = 'Registrar Avion';
                   this.tipoavion_id = 0;
                   this.modeloavion = '';
                   this.marcaavion = '';
                   this.aerolinea_cod = '';
                   this.cantidad = 0;
+=======
+                  this.tituloModal = 'Registrar Clase de Vuelo';
+                  this.nombre = '';
+>>>>>>> EliasD
                   this.tipoAccion = 1;
                   break;
                 }
@@ -2685,6 +3021,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 'actualizar':
                 {
                   this.modal = 1;
+<<<<<<< HEAD
                   this.tituloModal = 'Actualizar Avion';
                   this.tipoAccion = 2;
                   this.Avion_id = data['idavion'];
@@ -2693,6 +3030,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.cantidad = data['cantidad'];
                   this.modeloavion = data['modeloavion'];
                   this.marcaavion = data['marcaavion'];
+=======
+                  this.tituloModal = 'Actualizar Clase de Vuelo';
+                  this.tipoAccion = 2;
+                  this.claseVuelo_id = data['idclasevuelo'];
+                  this.nombre = data['nomclasevuelo'];
+>>>>>>> EliasD
                   break;
                 }
             }
@@ -2701,16 +3044,427 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+<<<<<<< HEAD
     this.listarAviones(1, this.buscar, this.criterio);
+=======
+    this.listarClaseVuelos(1, this.buscar, this.criterio);
+>>>>>>> EliasD
   }
 });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Costos.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Costos.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      costo_id: 0,
+      idtipocosto: 0,
+      nombre_tipocosto: '',
+      cantidad: 0,
+      descripcion: '',
+      arrayCosto: [],
+      modal: 0,
+      tituloModal: '',
+      tipoAccion: 0,
+      errorCosto: 0,
+      errorMostrarMsjCosto: [],
+      pagination: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      },
+      offset: 3,
+      criterio: 'nomtipocosto',
+      buscar: '',
+      arrayTipoCosto: [] //almacena el listado de las categorias 
+
+    };
+  },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+
+      var from = this.pagination.current_page - this.offset;
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + this.offset * 2;
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
+  methods: {
+    listarCostos: function listarCostos(page, buscar, criterio) {
+      var me = this;
+      var url = '/costos?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayCosto = respuesta.costos.data;
+        me.pagination = respuesta.pagination;
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {});
+    },
+    selectTipoCosto: function selectTipoCosto() {
+      var me = this;
+      var url = '/tipocosto/selectTipoCosto';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayTipoCosto = respuesta.tipoCostos; //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {});
+    },
+    cambiarPagina: function cambiarPagina(page, buscar, criterio) {
+      var me = this; //actualizar pagina actual 
+
+      me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
+
+      me.listarCostos(page, buscar, criterio);
+    },
+    registrarCosto: function registrarCosto() {
+      if (this.validarCosto()) //evalua si el metodo validar categoria retorna 1
+        {
+          // y no realiza nada
+          return;
+        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
+
+
+      var me = this;
+      axios.post('/costos/registrar', {
+        'idtipocosto': this.idtipocosto,
+        'cantidad': this.cantidad,
+        'descripcion': this.descripcion
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarCostos(1, '', 'descripcion');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    actualizarCosto: function actualizarCosto() {
+      if (this.validarCosto()) {
+        return;
+      }
+
+      var me = this;
+      axios.put('/costos/actualizar', {
+        'idtipocosto': this.idtipocosto,
+        'cantidad': this.cantidad,
+        'descripcion': this.descripcion,
+        'id': this.costo_id
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarCostos(1, '', 'descripcion');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    desactivarCosto: function desactivarCosto(id) {
+      var _swal,
+          _this = this;
+
+      swal((_swal = {
+        title: '¿Estas seguro de desactivar este costo?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Aceptar!'
+      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
+        if (result.value) {
+          var me = _this;
+          axios.put('/costos/desactivar', {
+            'id': id
+          }).then(function (response) {
+            me.listarCostos(1, '', 'descripcion');
+            swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        } else if ( //Read more about handling dismissals
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    activarCosto: function activarCosto(id) {
+      var _swal2,
+          _this2 = this;
+
+      swal((_swal2 = {
+        title: '¿Estas seguro de activar este costo?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Aceptar!'
+      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          axios.put('/costos/activar', {
+            'id': id
+          }).then(function (response) {
+            me.listarCostos(1, '', 'descripcion');
+            swal('Activado!', 'El registro ha sido activado con exito.', 'success');
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        } else if ( //Read more about handling dismissals
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    validarCosto: function validarCosto() {
+      this.errorCosto = 0;
+      this.errorMostrarMsjCosto = [];
+      if (this.idtipocosto == 0) this.errorMostrarMsjCosto.push("Seleccione un tipo de costo");
+      if (!this.descripcion) this.errorMostrarMsjCosto.push("La descripcion del costo no puede estar vacio");
+      if (!this.cantidad) this.errorMostrarMsjCosto.push("La cantidad del costo debe ser un numero y no puede estar vacio");
+      if (this.errorMostrarMsjCosto.length) this.errorCosto = 1;
+      return this.errorCosto;
+    },
+    cerrarModal: function cerrarModal() {
+      this.modal = 0;
+      this.tituloModal = '';
+      this.idtipocosto = 0;
+      this.nombre_tipocosto = '';
+      this.cantidad = 0;
+      this.descripcion = '';
+      this.errorCosto = 0;
+    },
+    abrirModal: function abrirModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case "costo":
+          {
+            switch (accion) {
+              case 'registrar':
+                {
+                  this.modal = 1;
+                  this.tituloModal = 'Registrar Costo';
+                  this.idtipocosto = 0;
+                  this.nombre_tipocosto = '';
+                  this.cantidad = 0;
+                  this.descripcion = '';
+                  this.tipoAccion = 1;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  this.modal = 1;
+                  this.tituloModal = 'Actualizar Costo';
+                  this.tipoAccion = 2;
+                  this.costo_id = data['idcosto'];
+                  this.idtipocosto = data['idtipocosto'];
+                  this.cantidad = data['cantidad'];
+                  this.descripcion = data['descripcion'];
+                  break;
+                }
+            }
+          }
+      }
+
+      this.selectTipoCosto();
+    }
+  },
+  mounted: function mounted() {
+    this.listarCostos(1, this.buscar, this.criterio);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10000,10 +10754,41 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-content{\n    width: 100% !important;\n    position: absolute !important;\n}\n.mostrar{\n    display: list-item  !important;\n    opacity: 1 !important;\n    position: absolute i !important;\n    background-color: #3c29297a !important;\n}\n.div-error{\n    display: flex;\n    justify-content: center;\n}\n.text-error{\n    color: red !important;\n    font-weight: bold;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -41221,10 +42006,17 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/assets/js/components/Aerolinea.vue":
 /*!******************************************************!*\
   !*** ./resources/assets/js/components/Aerolinea.vue ***!
   \******************************************************/
+=======
+/***/ "./resources/assets/js/components/Aeropuerto.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/Aeropuerto.vue ***!
+  \*******************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -41232,9 +42024,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _Aerolinea_vue_vue_type_template_id_ff05a7f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Aerolinea.vue?vue&type=template&id=ff05a7f6& */ "./resources/assets/js/components/Aerolinea.vue?vue&type=template&id=ff05a7f6&");
 /* harmony import */ var _Aerolinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Aerolinea.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js&");
 /* harmony import */ var _Aerolinea_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Aerolinea.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&");
+=======
+/* harmony import */ var _Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Aeropuerto.vue?vue&type=template&id=ffaddaf6& */ "./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6&");
+/* harmony import */ var _Aeropuerto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Aeropuerto.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Aeropuerto.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&");
+>>>>>>> EliasD
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -41245,9 +42043,15 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+<<<<<<< HEAD
   _Aerolinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _Aerolinea_vue_vue_type_template_id_ff05a7f6___WEBPACK_IMPORTED_MODULE_0__.render,
   _Aerolinea_vue_vue_type_template_id_ff05a7f6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+=======
+  _Aeropuerto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+>>>>>>> EliasD
   false,
   null,
   null,
@@ -41257,7 +42061,11 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
+<<<<<<< HEAD
 component.options.__file = "resources/assets/js/components/Aerolinea.vue"
+=======
+component.options.__file = "resources/assets/js/components/Aeropuerto.vue"
+>>>>>>> EliasD
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -41629,10 +42437,17 @@ component.options.__file = "resources/assets/js/components/TipoDocumento.vue"
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
+=======
+/***/ "./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -41640,6 +42455,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aerolinea.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
@@ -41658,6 +42474,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Avion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Avion.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+=======
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aeropuerto.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+>>>>>>> EliasD
 
 /***/ }),
 
@@ -41789,15 +42609,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/assets/js/components/Aerolinea.vue?vue&type=template&id=ff05a7f6&":
 /*!*************************************************************************************!*\
   !*** ./resources/assets/js/components/Aerolinea.vue?vue&type=template&id=ff05a7f6& ***!
   \*************************************************************************************/
+=======
+/***/ "./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6& ***!
+  \**************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+<<<<<<< HEAD
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_template_id_ff05a7f6___WEBPACK_IMPORTED_MODULE_0__.render),
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_template_id_ff05a7f6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
@@ -41819,6 +42647,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_template_id_65a8cae8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_template_id_65a8cae8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Avion.vue?vue&type=template&id=65a8cae8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Avion.vue?vue&type=template&id=65a8cae8&");
+=======
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_template_id_ffaddaf6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aeropuerto.vue?vue&type=template&id=ffaddaf6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6&");
+>>>>>>> EliasD
 
 
 /***/ }),
@@ -41959,14 +42793,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************!*\
   !*** ./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css& ***!
   \***************************************************************************************/
+=======
+/***/ "./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aerolinea.vue?vue&type=style&index=0&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aerolinea_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
@@ -41988,6 +42830,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Avion_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+=======
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aeropuerto.vue?vue&type=style&index=0&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Aeropuerto_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+>>>>>>> EliasD
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -42112,10 +42960,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=template&id=ff05a7f6&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=template&id=ff05a7f6& ***!
   \****************************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=template&id=ffaddaf6& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -42135,7 +42990,11 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("i", { staticClass: "fa fa-align-justify" }),
+<<<<<<< HEAD
           _vm._v(" Aerolinea\n                "),
+=======
+          _vm._v(" Aeropuerto\n                "),
+>>>>>>> EliasD
           _c(
             "button",
             {
@@ -42143,7 +43002,11 @@ var render = function() {
               attrs: { type: "button" },
               on: {
                 click: function($event) {
+<<<<<<< HEAD
                   return _vm.abrirModal("aeroLinea", "registrar")
+=======
+                  return _vm.abrirModal("aeropuerto", "registrar")
+>>>>>>> EliasD
                 }
               }
             },
@@ -42187,8 +43050,17 @@ var render = function() {
                     }
                   },
                   [
+<<<<<<< HEAD
                     _c("option", { attrs: { value: "codaerolinea" } }, [
                       _vm._v("Codigo de Aerolinea")
+=======
+                    _c("option", { attrs: { value: "codaeropuerto" } }, [
+                      _vm._v("Codigo del Aeropuerto")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "nomaeropuerto" } }, [
+                      _vm._v("Nombre del Aeropuerto")
+>>>>>>> EliasD
                     ])
                   ]
                 ),
@@ -42213,7 +43085,11 @@ var render = function() {
                       ) {
                         return null
                       }
+<<<<<<< HEAD
                       return _vm.listarAerolineas(1, _vm.buscar, _vm.criterio)
+=======
+                      return _vm.listarAeropuerto(1, _vm.buscar, _vm.criterio)
+>>>>>>> EliasD
                     },
                     input: function($event) {
                       if ($event.target.composing) {
@@ -42231,7 +43107,11 @@ var render = function() {
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
+<<<<<<< HEAD
                         return _vm.listarAerolineas(1, _vm.buscar, _vm.criterio)
+=======
+                        return _vm.listarAeropuerto(1, _vm.buscar, _vm.criterio)
+>>>>>>> EliasD
                       }
                     }
                   },
@@ -42249,8 +43129,13 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
+<<<<<<< HEAD
                 _vm._l(_vm.arrayAerolineas, function(aeroLinea) {
                   return _c("tr", { key: aeroLinea.codaerolinea }, [
+=======
+                _vm._l(_vm.arrayAeropuerto, function(aeropuerto) {
+                  return _c("tr", { key: aeropuerto.id }, [
+>>>>>>> EliasD
                     _c(
                       "td",
                       [
@@ -42262,9 +43147,15 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 return _vm.abrirModal(
+<<<<<<< HEAD
                                   "aeroLinea",
                                   "actualizar",
                                   aeroLinea
+=======
+                                  "aeropuerto",
+                                  "actualizar",
+                                  aeropuerto
+>>>>>>> EliasD
                                 )
                               }
                             }
@@ -42272,7 +43163,11 @@ var render = function() {
                           [_c("i", { staticClass: "icon-pencil" })]
                         ),
                         _vm._v("  \n                                "),
+<<<<<<< HEAD
                         aeroLinea.estado == "1"
+=======
+                        aeropuerto.estado == "1"
+>>>>>>> EliasD
                           ? [
                               _c(
                                 "button",
@@ -42281,8 +43176,13 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
+<<<<<<< HEAD
                                       return _vm.desactivarAeroLinea(
                                         aeroLinea.codaerolinea
+=======
+                                      return _vm.desactivarAeropuerto(
+                                        aeropuerto.id
+>>>>>>> EliasD
                                       )
                                     }
                                   }
@@ -42298,8 +43198,13 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
+<<<<<<< HEAD
                                       return _vm.activarAeroLinea(
                                         aeroLinea.codaerolinea
+=======
+                                      return _vm.activarAeropuerto(
+                                        aeropuerto.id
+>>>>>>> EliasD
                                       )
                                     }
                                   }
@@ -42317,24 +43222,57 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
+<<<<<<< HEAD
                         textContent: _vm._s(aeroLinea.nombreaerolinea)
+=======
+                        textContent: _vm._s(aeropuerto.codaeropuerto)
+>>>>>>> EliasD
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
+<<<<<<< HEAD
                         textContent: _vm._s(aeroLinea.nombrerepresentante)
+=======
+                        textContent: _vm._s(aeropuerto.nomaeropuerto)
+>>>>>>> EliasD
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
+<<<<<<< HEAD
                       domProps: {
                         textContent: _vm._s(aeroLinea.fechafundacion)
+=======
+                      domProps: { textContent: _vm._s(aeropuerto.telefono) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: {
+                        textContent: _vm._s(aeropuerto.nomresponsable)
+>>>>>>> EliasD
                       }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(aeropuerto.numbahias) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(aeropuerto.nompais) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(aeropuerto.nomciudad) }
                     }),
                     _vm._v(" "),
                     _c("td", [
+<<<<<<< HEAD
                       aeroLinea.estado == "1"
+=======
+                      aeropuerto.estado == "1"
+>>>>>>> EliasD
                         ? _c("div", [
                             _c("span", { staticClass: "badge badge-success" }, [
                               _vm._v("Activo")
@@ -42499,10 +43437,17 @@ var render = function() {
                       _c(
                         "label",
                         {
+<<<<<<< HEAD
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
                         [_vm._v("Codigo de Aerolinea")]
+=======
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Codigo del Aeropuerto")]
+>>>>>>> EliasD
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
@@ -42511,21 +43456,33 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
+<<<<<<< HEAD
                               value: _vm.codaerolinea,
                               expression: "codaerolinea"
+=======
+                              value: _vm.codaeropuerto,
+                              expression: "codaeropuerto"
+>>>>>>> EliasD
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+<<<<<<< HEAD
                             placeholder: "codigo de aerolinea"
                           },
                           domProps: { value: _vm.codaerolinea },
+=======
+                            placeholder: "codigo del aeropuerto"
+                          },
+                          domProps: { value: _vm.codaeropuerto },
+>>>>>>> EliasD
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
+<<<<<<< HEAD
                               _vm.codaerolinea = $event.target.value
                             }
                           }
@@ -42563,6 +43520,9 @@ var render = function() {
                                 return
                               }
                               _vm.nombreaerolinea = $event.target.value
+=======
+                              _vm.codaeropuerto = $event.target.value
+>>>>>>> EliasD
                             }
                           }
                         })
@@ -42573,6 +43533,7 @@ var render = function() {
                       _c(
                         "label",
                         {
+<<<<<<< HEAD
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
@@ -42580,26 +43541,47 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
+=======
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Nombre del Aeropuerto")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+>>>>>>> EliasD
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
+<<<<<<< HEAD
                               value: _vm.nombreoficial,
                               expression: "nombreoficial"
+=======
+                              value: _vm.nomaeropuerto,
+                              expression: "nomaeropuerto"
+>>>>>>> EliasD
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+<<<<<<< HEAD
                             placeholder: "nombre oficial"
                           },
                           domProps: { value: _vm.nombreoficial },
+=======
+                            placeholder: "nombre del aeropuerto"
+                          },
+                          domProps: { value: _vm.nomaeropuerto },
+>>>>>>> EliasD
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
+<<<<<<< HEAD
                               _vm.nombreoficial = $event.target.value
                             }
                           }
@@ -42634,6 +43616,9 @@ var render = function() {
                                 return
                               }
                               _vm.nombrecorto = $event.target.value
+=======
+                              _vm.nomaeropuerto = $event.target.value
+>>>>>>> EliasD
                             }
                           }
                         })
@@ -42644,6 +43629,7 @@ var render = function() {
                       _c(
                         "label",
                         {
+<<<<<<< HEAD
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
@@ -42651,26 +43637,47 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
+=======
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Telefono Aeropuerto")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+>>>>>>> EliasD
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
+<<<<<<< HEAD
                               value: _vm.nombrerepresentante,
                               expression: "nombrerepresentante"
+=======
+                              value: _vm.telefono,
+                              expression: "telefono"
+>>>>>>> EliasD
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+<<<<<<< HEAD
                             placeholder: "nombre de representante"
                           },
                           domProps: { value: _vm.nombrerepresentante },
+=======
+                            placeholder: "telefono del aeropuerto"
+                          },
+                          domProps: { value: _vm.telefono },
+>>>>>>> EliasD
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
+<<<<<<< HEAD
                               _vm.nombrerepresentante = $event.target.value
                             }
                           }
@@ -42705,6 +43712,9 @@ var render = function() {
                                 return
                               }
                               _vm.fechafundacion = $event.target.value
+=======
+                              _vm.telefono = $event.target.value
+>>>>>>> EliasD
                             }
                           }
                         })
@@ -42715,6 +43725,7 @@ var render = function() {
                       _c(
                         "label",
                         {
+<<<<<<< HEAD
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
@@ -42722,11 +43733,21 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
+=======
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Responsable del Aeropuerto")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+>>>>>>> EliasD
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
+<<<<<<< HEAD
                               value: _vm.facebook,
                               expression: "facebook"
                             }
@@ -42767,12 +43788,28 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: { type: "text" },
                           domProps: { value: _vm.twitter },
+=======
+                              value: _vm.nomresponsable,
+                              expression: "nomresponsable"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "responsable del aeropuerto"
+                          },
+                          domProps: { value: _vm.nomresponsable },
+>>>>>>> EliasD
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
+<<<<<<< HEAD
                               _vm.twitter = $event.target.value
+=======
+                              _vm.nomresponsable = $event.target.value
+>>>>>>> EliasD
                             }
                           }
                         })
@@ -42783,6 +43820,7 @@ var render = function() {
                       _c(
                         "label",
                         {
+<<<<<<< HEAD
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
@@ -42790,11 +43828,21 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
+=======
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Numero de Bahias")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+>>>>>>> EliasD
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
+<<<<<<< HEAD
                               value: _vm.instagram,
                               expression: "instagram"
                             }
@@ -42802,12 +43850,693 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: { type: "text" },
                           domProps: { value: _vm.instagram },
+=======
+                              value: _vm.numbahias,
+                              expression: "numbahias"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "number",
+                            placeholder: "numero de bahias"
+                          },
+                          domProps: { value: _vm.numbahias },
+>>>>>>> EliasD
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
+<<<<<<< HEAD
                               _vm.instagram = $event.target.value
+=======
+                              _vm.numbahias = $event.target.value
+>>>>>>> EliasD
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Pais")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idpais,
+                                expression: "idpais"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idpais = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayPais, function(pais) {
+                              return _c("option", {
+                                key: pais.idpais,
+                                domProps: {
+                                  value: pais.idpais,
+                                  textContent: _vm._s(pais.nompais)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Ciudad")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idciudad,
+                                expression: "idciudad"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idciudad = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayCiudad, function(ciudad) {
+                              return _c("option", {
+                                key: ciudad.idciudad,
+                                domProps: {
+                                  value: ciudad.idciudad,
+                                  textContent: _vm._s(ciudad.nomciudad)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+<<<<<<< HEAD
+                            value: _vm.errorAerolinea,
+                            expression: "errorAerolinea"
+=======
+                            value: _vm.errorAeropuerto,
+                            expression: "errorAeropuerto"
+>>>>>>> EliasD
+                          }
+                        ],
+                        staticClass: "form-group row div-error"
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "text-center text-error" },
+<<<<<<< HEAD
+                          _vm._l(_vm.errorMostrarMsjAerolinea, function(error) {
+=======
+                          _vm._l(_vm.errorMostrarMsjAeropuerto, function(
+                            error
+                          ) {
+                            return _c("div", {
+                              key: error,
+                              domProps: { textContent: _vm._s(error) }
+                            })
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.cerrarModal }
+                  },
+                  [_vm._v("Cerrar")]
+                ),
+                _vm._v(" "),
+                _vm.tipoAccion == 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.registrarAeropuerto()
+                          }
+                        }
+                      },
+                      [_vm._v("Guardar")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.tipoAccion == 2
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.actualizarAeropuerto()
+                          }
+                        }
+                      },
+                      [_vm._v("Actualizar")]
+                    )
+                  : _vm._e()
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ol", { staticClass: "breadcrumb" }, [
+      _c("li", { staticClass: "breadcrumb-item" }, [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Sistema Vuelos")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Opciones")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Codigo Aeropuerto")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre Aeropuerto")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Responsable del Aeropuerto")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Numero de Bahias")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Pais")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ciudad")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=template&id=30eb4794&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/ClaseVuelo.vue?vue&type=template&id=30eb4794& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { staticClass: "main" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("i", { staticClass: "fa fa-align-justify" }),
+          _vm._v(" Clases de Vuelos\n                "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.abrirModal("claseVuelo", "registrar")
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "icon-plus" }),
+              _vm._v(" Nuevo\n                ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.criterio,
+                        expression: "criterio"
+                      }
+                    ],
+                    staticClass: "form-control col-md-3",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.criterio = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "nomclasevuelo" } }, [
+                      _vm._v("Nombre")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.buscar,
+                      expression: "buscar"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Texto a buscar" },
+                  domProps: { value: _vm.buscar },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.listarClaseVuelos(1, _vm.buscar, _vm.criterio)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.buscar = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        return _vm.listarClaseVuelos(
+                          1,
+                          _vm.buscar,
+                          _vm.criterio
+                        )
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-search" }), _vm._v(" Buscar")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "table table-bordered table-striped table-sm" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.arrayClaseVuelo, function(claseVuelo) {
+                  return _c("tr", { key: claseVuelo.idclasevuelo }, [
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning btn-sm",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.abrirModal(
+                                  "claseVuelo",
+                                  "actualizar",
+                                  claseVuelo
+                                )
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "icon-pencil" })]
+                        ),
+                        _vm._v("  \n                                "),
+                        claseVuelo.estado == "1"
+                          ? [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger btn-sm",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.desactivarClaseVuelo(
+                                        claseVuelo.idclasevuelo
+                                      )
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "icon-trash" })]
+                              )
+                            ]
+                          : [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-info btn-sm",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.activarClaseVuelo(
+                                        claseVuelo.idclasevuelo
+                                      )
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "icon-check" })]
+                              )
+                            ]
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: {
+                        textContent: _vm._s(claseVuelo.nomclasevuelo)
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      claseVuelo.estado == "1"
+                        ? _c("div", [
+                            _c("span", { staticClass: "badge badge-success" }, [
+                              _vm._v("Activo")
+                            ])
+                          ])
+                        : _c("div", [
+                            _c("span", { staticClass: "badge badge-danger" }, [
+                              _vm._v("Desactivo")
+                            ])
+                          ])
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("nav", [
+            _c(
+              "ul",
+              { staticClass: "pagination" },
+              [
+                _vm.pagination.current_page > 1
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.cambiarPagina(
+                                _vm.pagination.current_page - 1,
+                                _vm.buscar,
+                                _vm.criterio
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Ant")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.pagesNumber, function(page) {
+                  return _c(
+                    "li",
+                    {
+                      key: page,
+                      staticClass: "page-item",
+                      class: [page == _vm.isActived ? "active" : ""]
+                    },
+                    [
+                      _c("a", {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        domProps: { textContent: _vm._s(page) },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.cambiarPagina(
+                              page,
+                              _vm.buscar,
+                              _vm.criterio
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm.pagination.current_page < _vm.pagination.last_page
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.cambiarPagina(
+                                _vm.pagination.current_page + 1,
+                                _vm.buscar,
+                                _vm.criterio
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Sig")]
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        class: { mostrar: _vm.modal },
+        staticStyle: { display: "none" },
+        attrs: {
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "myModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-primary modal-lg",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h4", {
+                  staticClass: "modal-title",
+                  domProps: { textContent: _vm._s(_vm.tituloModal) }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: { type: "button", "aria-label": "Close" },
+                    on: { click: _vm.cerrarModal }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    staticClass: "form-horizontal",
+                    attrs: {
+                      action: "",
+                      method: "post",
+                      enctype: "multipart/form-data"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Nombre")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nombre,
+                              expression: "nombre"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Nombre clase de vuelo"
+                          },
+                          domProps: { value: _vm.nombre },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.nombre = $event.target.value
                             }
                           }
                         })
@@ -42821,8 +44550,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.errorAerolinea,
-                            expression: "errorAerolinea"
+                            value: _vm.errorClaseVuelo,
+                            expression: "errorClaseVuelo"
                           }
                         ],
                         staticClass: "form-group row div-error"
@@ -42831,7 +44560,10 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "text-center text-error" },
-                          _vm._l(_vm.errorMostrarMsjAerolinea, function(error) {
+                          _vm._l(_vm.errorMostrarMsjClaseVuelo, function(
+                            error
+                          ) {
+>>>>>>> EliasD
                             return _c("div", {
                               key: error,
                               domProps: { textContent: _vm._s(error) }
@@ -48201,21 +49933,33 @@ function normalizeComponent (
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+>>>>>>> EliasD
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
+<<<<<<< HEAD
 var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aerolinea.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aerolinea.vue?vue&type=style&index=0&lang=css&");
+=======
+var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Aeropuerto.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Aeropuerto.vue?vue&type=style&index=0&lang=css&");
+>>>>>>> EliasD
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+<<<<<<< HEAD
 var update = add("78a9addf", content, false, {});
 // Hot Module Replacement
 if(false) {}
@@ -48238,6 +49982,9 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("fc9b0b26", content, false, {});
+=======
+var update = add("64d861cd", content, false, {});
+>>>>>>> EliasD
 // Hot Module Replacement
 if(false) {}
 
@@ -60790,7 +62537,11 @@ Vue.component('horario', __webpack_require__(/*! ./components/Horario.vue */ "./
 Vue.component('costos', __webpack_require__(/*! ./components/Costos.vue */ "./resources/assets/js/components/Costos.vue").default);
 Vue.component("tipoavion", __webpack_require__(/*! ./components/TipoAvion.vue */ "./resources/assets/js/components/TipoAvion.vue").default);
 Vue.component("avion", __webpack_require__(/*! ./components/Avion.vue */ "./resources/assets/js/components/Avion.vue").default);
+<<<<<<< HEAD
 Vue.component("aerolinea", __webpack_require__(/*! ./components/Aerolinea.vue */ "./resources/assets/js/components/Aerolinea.vue").default);
+=======
+Vue.component("aeropuerto", __webpack_require__(/*! ./components/Aeropuerto.vue */ "./resources/assets/js/components/Aeropuerto.vue").default);
+>>>>>>> EliasD
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
