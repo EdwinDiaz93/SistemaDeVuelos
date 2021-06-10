@@ -17,6 +17,6 @@ class Avion extends Model
     }
 
     public function aerolineas(){
-        return $this->hasMany(AeroLinea::class,"aerolinea_cod");
+        return $this->belongsTo(AeroLinea::class);
     }
 }

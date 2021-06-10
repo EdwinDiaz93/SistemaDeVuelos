@@ -2413,16 +2413,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       Avion_id: 0,
       idAvion: 0,
+      cantidad: 0,
+      aerolinea_cod: '',
       tipoavion_id: 0,
       modeloavion: '',
       marcaavion: '',
       arrayAvion: [],
       arrayTipoAvion: [],
+      arrayAeroLinea: [],
       modal: 0,
       tituloModal: '',
       tipoAccion: 0,
@@ -2478,9 +2499,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = '/avion?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
+        console.log(respuesta);
         me.arrayAvion = respuesta.aviones.data;
         me.pagination = respuesta.pagination;
         me.arrayTipoAvion = respuesta.tiposavion.data;
+        me.arrayAeroLinea = respuesta.aerolineas.data;
       })["catch"](function (error) {
         console.log(error);
       }).then(function () {});
@@ -2504,7 +2527,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('/avion/registrar', {
         'modeloavion': this.modeloavion,
         'marcaavion': this.marcaavion,
-        'tipoavion_id': this.tipoavion_id
+        'tipoavion_id': this.tipoavion_id,
+        "aerolinea_cod": this.aerolinea_cod,
+        "cantidad": this.cantidad
       }).then(function (response) {
         me.cerrarModal();
         me.listarAviones(1, '', 'modeloavion');
@@ -2522,7 +2547,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'idavion': this.Avion_id,
         'modeloavion': this.modeloavion,
         'marcaavion': this.marcaavion,
-        "tipoavion_id": this.tipoavion_id
+        "tipoavion_id": this.tipoavion_id,
+        "aerolinea_cod": this.aerolinea_cod,
+        "cantidad": this.cantidad
       }).then(function (response) {
         me.cerrarModal();
         me.listarAviones(1, '', 'modeloavion');
@@ -2585,9 +2612,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     validarAvion: function validarAvion() {
       this.errorAvion = 0;
       this.errorMostrarMsjAvion = [];
-      if (!this.modeloavion) this.errorMostrarMsjAvion.push("Seleccione un modelo de avion");
-      if (!this.marcaavion) this.errorMostrarMsjAvion.push("Seleccione una marca de avion");
-      if (this.tipoavion_id === 0) this.errorMostrarMsjAvion.push("Selecicone un tipo de avion");
+      if (!this.modeloavion) this.errorMostrarMsjAvion.push("modelo de avion no puede estar vacio");
+      if (!this.marcaavion) this.errorMostrarMsjAvion.push("marca de avion no puede estar vacio");
+      if (this.tipoavion_id === 0) this.errorMostrarMsjAvion.push("tipo de avion no puede estar vacio");
+      if (this.aerolinea_cod === "") this.errorMostrarMsjAvion.push("aerolinea no puede estar vacia");
+      if (this.cantidad === 0 || this.cantidad < 0) this.errorMostrarMsjAvion.push("cantidad no puede estar vacia y debe ser mayor a 0");
       if (this.errorMostrarMsjAvion.length) this.errorAvion = 1;
       return this.errorAvion;
     },
@@ -2595,6 +2624,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modal = 0;
       this.tituloModal = '';
       this.tipoavion_id = 0;
+      this.cantidad = 0;
+      this.aerolinea_cod = '';
       this.modeloavion = '';
       this.marcaavion = "";
       this.errorAvion = 0;
@@ -2613,6 +2644,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.tipoavion_id = 0;
                   this.modeloavion = '';
                   this.marcaavion = '';
+                  this.aerolinea_cod = '';
+                  this.cantidad = 0;
                   this.tipoAccion = 1;
                   break;
                 }
@@ -2624,6 +2657,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.tipoAccion = 2;
                   this.Avion_id = data['idavion'];
                   this.tipoavion_id = data['tipoavion_id'];
+                  this.aerolinea_cod = data['aerolinea_cod'];
+                  this.cantidad = data['cantidad'];
                   this.modeloavion = data['modeloavion'];
                   this.marcaavion = data['marcaavion'];
                   break;
@@ -42919,7 +42954,6 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            disabled: "",
                             placeholder: "codigo de aerolinea"
                           },
                           domProps: { value: _vm.codaerolinea },
@@ -43443,6 +43477,10 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(Avion.aerolinea_cod) }
+                    }),
+                    _vm._v(" "),
                     _c("td", [
                       Avion.estado == "1"
                         ? _c("div", [
@@ -43647,7 +43685,7 @@ var render = function() {
                             _c(
                               "option",
                               { attrs: { value: "0", disabled: "" } },
-                              [_vm._v("Seleccione")]
+                              [_vm._v("Seleccione o agregue  un tipo de avion")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayTipoAvion, function(tipoAvion) {
@@ -43656,6 +43694,67 @@ var render = function() {
                                 domProps: {
                                   value: tipoAvion.idtipoavion,
                                   textContent: _vm._s(tipoAvion.nombretipoavion)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Aero Linea")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.aerolinea_cod,
+                                expression: "aerolinea_cod"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.aerolinea_cod = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "", disabled: "" } },
+                              [_vm._v("Seleccione o agregue una aerolinea")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayAeroLinea, function(aeroLinea) {
+                              return _c("option", {
+                                key: aeroLinea.codaerolinea,
+                                domProps: {
+                                  value: aeroLinea.codaerolinea,
+                                  textContent: _vm._s(aeroLinea.nombreaerolinea)
                                 }
                               })
                             })
@@ -43735,6 +43834,41 @@ var render = function() {
                                 return
                               }
                               _vm.marcaavion = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Cantidad de aviones")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.cantidad,
+                              expression: "cantidad"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number" },
+                          domProps: { value: _vm.cantidad },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.cantidad = $event.target.value
                             }
                           }
                         })
@@ -43838,6 +43972,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Marca de avion")]),
         _vm._v(" "),
         _c("th", [_vm._v("Tipo de avion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Codigo de Aerolinea")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avion;
 use App\Models\TipoAvion;
+use App\Models\AeroLinea;
 use Illuminate\Http\Request;
 
 class AvionController extends Controller
@@ -18,7 +19,8 @@ class AvionController extends Controller
 
       if($buscar==''){
           $tiposavion = TipoAvion::where("estado","=","1")->orderBy('idtipoavion', 'desc')->paginate(3);
-          $aviones=Avion::with("tipoavion")->orderBy('idavion', 'desc')->paginate(3);
+          $aviones=Avion::with("tipoavion","aerolineas")->orderBy('idavion', 'desc')->paginate(3);
+          $aerolineas=AeroLinea::where("estado","=","1")->orderBy('codaerolinea', 'desc')->paginate(3);
       }
       else{          
           $aviones = Avion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idavion', 'desc')->paginate(3);          
@@ -36,7 +38,8 @@ class AvionController extends Controller
               'to'           =>  $aviones->lastItem(),
           ],
           'aviones'=>$aviones,
-          'tiposavion' => $tiposavion
+          'tiposavion' => $tiposavion,
+          'aerolineas' => $aerolineas,
       ];
     }
 
@@ -47,6 +50,8 @@ class AvionController extends Controller
         $avion = new Avion();
         $avion->modeloavion = $request->modeloavion; 
         $avion->marcaavion = $request->marcaavion;         
+        $avion->cantidad = $request->cantidad;         
+        $avion->aerolinea_cod = $request->aerolinea_cod;         
         $avion->estado = '1'; 
         $avion->tipoavion_id =$request->tipoavion_id;
         $avion->save();
@@ -59,7 +64,9 @@ class AvionController extends Controller
         if(!$request->ajax()) return redirect('/main');
         $avion = Avion::findOrFail($request->idavion);
         $avion->modeloavion = $request->modeloavion; 
-        $avion->marcaavion = $request->marcaavion;         
+        $avion->marcaavion = $request->marcaavion;
+        $avion->cantidad = $request->cantidad;         
+        $avion->aerolinea_cod = $request->aerolinea_cod;   
         $avion->estado = '1'; 
         $avion->tipoavion_id =$request->tipoavion_id;
         $avion->save();
