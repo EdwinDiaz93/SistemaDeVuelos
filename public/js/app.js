@@ -4706,7 +4706,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -50499,10 +50498,6 @@ var render = function() {
                       _vm._v("Nombre")
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "papellido" } }, [
-                      _vm._v("apellido")
-                    ]),
-                    _vm._v(" "),
                     _c("option", { attrs: { value: "fechanaci" } }, [
                       _vm._v("fecha")
                     ]),
@@ -51011,10 +51006,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Estado civil persona"
-                          },
+                          attrs: { type: "text", placeholder: "Puesto" },
                           domProps: { value: _vm.puesto },
                           on: {
                             input: function($event) {
@@ -51085,10 +51077,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Genero de la persona"
-                          },
+                          attrs: { type: "number", placeholder: "Salario" },
                           domProps: { value: _vm.salario },
                           on: {
                             input: function($event) {

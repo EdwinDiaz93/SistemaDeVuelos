@@ -12,13 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/main', function () {
     return view('/contenido/contenido');
 })->name('main');
 
+
+Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('logout','App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
 Route::group(['middleware'=>['guest']],function(){
-   
+
 });
 
 
@@ -110,8 +114,6 @@ Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desact
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
 
 /*rutaS para el login*/ 
-Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
-Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 

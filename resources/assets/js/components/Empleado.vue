@@ -21,7 +21,6 @@
                                 <select class="form-control col-md-3" v-model="criterio">
                                      <option value="pnombre">Nombre</option>
                                      <!-- <option value="snombre">Nombre</option>-->
-                                      <option value="papellido">apellido</option>
                                       <!-- <option value="sapellido">apellido</option> -->
                                       <option value="fechanaci">fecha</option>
                                        <option value="direccion">direccion</option>
@@ -139,7 +138,7 @@
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Estado Civil</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="puesto" class="form-control" placeholder="Estado civil persona">
+                                    <input type="text" v-model="puesto" class="form-control" placeholder="Puesto">
                                 </div>
                             </div>                           
                             <div class="form-group row">
@@ -149,7 +148,7 @@
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Genero</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="salario" class="form-control" placeholder="Genero de la persona">
+                                    <input type="number" v-model="salario" class="form-control" placeholder="Salario">
                                 </div>
                             </div>     
                             <div class="form-group row">

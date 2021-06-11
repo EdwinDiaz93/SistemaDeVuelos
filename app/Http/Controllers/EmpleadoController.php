@@ -36,7 +36,7 @@ class EmpleadoController extends Controller
             ->join('rol','rol.idrol','=','users.idrol')
             ->select('personas.pnombre','personas.snombre','personas.papellido','personas.sapellido','personas.dui','personas.nit',
                      'personas.pasaporte','personas.fechanaci','personas.direccion', 'personas.telefono', 'personas.movil',
-                     'empleados.puesto','empleados.salario','empleados.estado', 
+                     'empleados.puesto','empleados.salario','empleados.condicion', 
                      'rol.nomrol as nombre_rol',
                      'users.nomusuario', 'users.password', 'users.email', 'users.estado')
             ->where('personas.'.$criterio, 'like', '%'. $buscar . '%' )
@@ -77,12 +77,12 @@ class EmpleadoController extends Controller
             $persona->movil = $request->movil;
             $persona->save();
 
-            $cliente = new Empleado();
+            $empleado = new Empleado();
             $empleado->idpersona = $persona->idpersona;
             $empleado->puesto = $request->puesto;
             $empleado->salario = $request->salario;
-            $empleado->estado = '1';
-            $cliente->save();
+            $empleado->condicion = '1';
+            $empleado->save();
 
             $user = new User();
             $user->idpersona = $persona->idpersona;
@@ -100,6 +100,54 @@ class EmpleadoController extends Controller
         catch(Exception $e){
             DB::rollBack();
         }
+    }
+
+    public function update(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        
+        try{
+            DB::beginTransaction();
+
+            //Buscar primero el empleado a modificar
+            $empleado = Empleado::findOrFail($request->idempleado);
+
+            $persona = Persona::findOrFail($proveedor->idpersona);
+
+            $persona->pnombre = $request->pnombre;
+            $persona->snombre = $request->snombre;
+            $persona->papellido = $request->papellido;
+            $persona->sapellido = $request->sapellido;
+            $persona->fechanaci = $request->fechanaci;
+            $persona->direccion = $request->direccion;
+            $persona->dui = $request->dui;
+            $persona->nit = $request->nit;
+            $persona->pasaporte = $request->pasaporte;
+            $persona->telefono = $request->telefono;
+            $persona->movil = $request->movil;
+            $persona->save();
+
+            
+            $empleado->idpersona = $persona->idpersona;
+            $empleado->puesto = $request->puesto;
+            $empleado->salario = $request->salario;
+            $empleado->condicion = '1';
+            $empleado->save();
+           
+            $user->idpersona = $persona->idpersona;
+            $user->nomusuario = $request->nomusuario;
+            $user->password = bcrypt($request->password);
+            $user->email = $request->email;
+            $user->estado = '1';
+            $user->idrol = $request->idrol;
+            $user->save();
+
+            DB::commit();
+
+        } catch (Exception $e){
+            DB::rollBack();
+        }
+
     }
 
     public function desactivar(Request $request)
