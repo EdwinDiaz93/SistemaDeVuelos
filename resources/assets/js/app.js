@@ -30,12 +30,9 @@ Vue.component("tipoavion",require("./components/TipoAvion.vue").default);
 Vue.component("avion",require("./components/Avion.vue").default);
 Vue.component("aerolinea",require("./components/Aerolinea.vue").default)
 Vue.component("aeropuerto",require("./components/Aeropuerto.vue").default);
-<<<<<<< HEAD
 Vue.component("cliente",require("./components/Cliente.vue").default);
-=======
 Vue.component("precio",require("./components/Precio.vue").default);
 Vue.component("vuelo",require("./components/Vuelo.vue").default);
->>>>>>> e389c3eea0e15f40dfafb759e95db93163a15e62
 
 
 /**

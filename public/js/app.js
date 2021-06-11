@@ -66743,12 +66743,9 @@ Vue.component("tipoavion", __webpack_require__(/*! ./components/TipoAvion.vue */
 Vue.component("avion", __webpack_require__(/*! ./components/Avion.vue */ "./resources/assets/js/components/Avion.vue").default);
 Vue.component("aerolinea", __webpack_require__(/*! ./components/Aerolinea.vue */ "./resources/assets/js/components/Aerolinea.vue").default);
 Vue.component("aeropuerto", __webpack_require__(/*! ./components/Aeropuerto.vue */ "./resources/assets/js/components/Aeropuerto.vue").default);
-<<<<<<< HEAD
 Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
-=======
 Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
 Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
->>>>>>> e389c3eea0e15f40dfafb759e95db93163a15e62
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
