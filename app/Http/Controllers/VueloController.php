@@ -8,6 +8,7 @@ use App\Models\AeroLinea;
 use App\Models\Horario;
 use App\Models\Aeropuerto;
 use App\Models\Precio;
+use App\Models\ClaseVuelo;
 
 
 class VueloController extends Controller
@@ -23,8 +24,9 @@ class VueloController extends Controller
             $vuelos=Vuelo::orderBy('idvuelo', 'desc')->paginate(3);
             $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
             $horarios=Horario::orderBy('idhorario', 'desc')->paginate(3);
-            $aeropuertos=Aeropuerto::orderBy('idhorario', 'desc')->paginate(3);
+            $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
             $precios=Precio::orderBy('idprecio', 'desc')->paginate(3);
+            $clasevuelos=ClaseVuelo::orderBy('idclasevuelo', 'desc')->paginate(3);
         }
         else{          
             $vuelos = Vuelo::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idvuelo', 'desc')->paginate(3);          
@@ -46,6 +48,7 @@ class VueloController extends Controller
             'horarios'=>$horarios,            
             'aeropuertos'=>$aeropuertos,            
             'precios'=>$precios,            
+            'clasevuelos'=>$clasevuelos,            
         ];
     }
 
@@ -70,7 +73,7 @@ class VueloController extends Controller
     public function update(Request $request)
     {
         if(!$request->ajax()) return redirect('/main');
-        $aerolinea = Vuelo::findOrFail($request->idvuelo);        
+        $vuelo = Vuelo::findOrFail($request->idvuelo);        
         $vuelo->aerolinea_cod = $request->aerolinea_cod; 
         $vuelo->idprecio = $request->idprecio;         
         $vuelo->idhorariosalida = $request->idhorariosalida;         

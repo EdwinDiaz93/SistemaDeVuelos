@@ -103,7 +103,7 @@
                                 </div>
                                  <label class="col-md-3 form-control-label" for="text-input">Hora</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="hora" class="form-control" placeholder="hora del vuelo">
+                                    <input type="time" v-model="hora" class="form-control" placeholder="hora del vuelo">
                                 </div>
                             </div>
                             
