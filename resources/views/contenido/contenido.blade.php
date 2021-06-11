@@ -51,4 +51,7 @@
     <template v-if="menu==13">
         <aeropuerto></aeropuerto>
     </template>
+    <template v-if="menu==20">
+        <cliente></cliente>
+    </template>
 @endsection

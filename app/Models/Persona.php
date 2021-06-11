@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
-    protected $table = 'persona';
+    protected $table = 'personas';
     protected $primaryKey = 'idpersona';  
     protected $fillable =[
     'pnombre',
     'snombre',
     'papellido',
     'sapellido', 
+    'dui', 
+    'nit',
+    'pasaporte',
     'fechanaci',
     'direccion',
     'telefono',

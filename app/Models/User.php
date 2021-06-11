@@ -16,6 +16,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+    protected $primaryKey = 'idusuario'; 
     protected $fillable = [
         'idpersona',
         'nomusuario',
@@ -25,7 +27,7 @@ class User extends Authenticatable
         'idrol',
     ];
 
-    protected $primaryKey = 'idusuario';
+    public $timestamps = false;
     /**
      * The attributes that should be hidden for arrays.
      *

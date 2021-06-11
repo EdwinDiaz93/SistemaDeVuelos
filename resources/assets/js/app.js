@@ -30,6 +30,7 @@ Vue.component("tipoavion",require("./components/TipoAvion.vue").default);
 Vue.component("avion",require("./components/Avion.vue").default);
 Vue.component("aerolinea",require("./components/Aerolinea.vue").default)
 Vue.component("aeropuerto",require("./components/Aeropuerto.vue").default);
+Vue.component("cliente",require("./components/Cliente.vue").default);
 
 
 /**

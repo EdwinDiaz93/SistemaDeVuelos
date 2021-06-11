@@ -80,6 +80,7 @@ Route::post('/rol/registrar', 'App\Http\Controllers\RolController@store');
 Route::put('/rol/actualizar', 'App\Http\Controllers\RolController@update');
 Route::put('/rol/desactivar', 'App\Http\Controllers\RolController@desactivar');
 Route::put('/rol/activar', 'App\Http\Controllers\RolController@activar');
+Route::get('/rol/selectRol', 'App\Http\Controllers\RolController@selectRol');
 
 
 Route::get('/tipodocumento', 'App\Http\Controllers\TipoDocumentoController@index');
@@ -105,6 +106,7 @@ Route::put('/costos/actualizar', 'App\Http\Controllers\CostosController@update')
 Route::put('/costos/desactivar', 'App\Http\Controllers\CostosController@desactivar');
 Route::put('/costos/activar', 'App\Http\Controllers\CostosController@activar');
 
-
+Route::get('/cliente', 'App\Http\Controllers\ClienteController@index');
+Route::post('/cliente/registrar', 'App\Http\Controllers\ClienteController@store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

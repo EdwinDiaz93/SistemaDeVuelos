@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+    protected $table = 'clientes';
+    protected $primaryKey = 'idcliente';  
+    protected $fillable =[
+        'idpersona',
+        'estadocivil',
+        'genero',
+        'nomcontacto',
+        'numfrecuente'];
+
+    public function tipoCosto(){
+
+        return $this->belongsTo(Persona::class);
+    }
 }
