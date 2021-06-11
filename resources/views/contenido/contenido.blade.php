@@ -51,13 +51,12 @@
     <template v-if="menu==13">
         <aeropuerto></aeropuerto>
     </template>
-<<<<<<< HEAD
+
     <template v-if="menu==20">
         <cliente></cliente>
-=======
-
+        </template>
     <template v-if="menu==17">
         <vuelo></vuelo>
->>>>>>> e389c3eea0e15f40dfafb759e95db93163a15e62
+
     </template>
 @endsection
