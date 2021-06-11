@@ -13,7 +13,7 @@ class AeroLinea extends Model
     protected $primaryKey = 'codaerolinea';
     protected $guarded=[];
     protected $casts = [
-        'fechafundacion' => 'datetime:Y-m-d',    
+        'fechafundacion' => 'datetime:d-m-Y',    
      ];
     
     public function aviones(){

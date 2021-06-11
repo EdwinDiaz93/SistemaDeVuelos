@@ -13,7 +13,7 @@ class Horario extends Model
    protected $fillable = ['fecha','hora','estado'];   
 
    protected $casts = [
-    'fecha' => 'datetime:Y-m-d',    
+    'fecha' => 'datetime:d-m-Y',    
  ];
 
    // iniciando la funcion de la que hace referencia (1 a muchos)
