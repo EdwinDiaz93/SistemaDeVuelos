@@ -54,16 +54,16 @@
 
     <template v-if="menu==20">
         <cliente></cliente>
-<<<<<<< HEAD
+
         </template>
     <template v-if="menu==17">
         <vuelo></vuelo>
 
-=======
+
     </template>   
     
     <template v-if="menu==17">
         <vuelo></vuelo>
->>>>>>> 9ce3eb3f330381631bf04640cf19c09e9625f409
+
     </template>
 @endsection

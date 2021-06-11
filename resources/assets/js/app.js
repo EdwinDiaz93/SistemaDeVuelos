@@ -30,18 +30,13 @@ Vue.component("tipoavion",require("./components/TipoAvion.vue").default);
 Vue.component("avion",require("./components/Avion.vue").default);
 Vue.component("aerolinea",require("./components/Aerolinea.vue").default)
 Vue.component("aeropuerto",require("./components/Aeropuerto.vue").default);
-<<<<<<< HEAD
-
-Vue.component("cliente",require("./components/Cliente.vue").default);
-
-Vue.component("precio",require("./components/Precio.vue").default);
-Vue.component("vuelo",require("./components/Vuelo.vue").default);
-
-=======
 Vue.component("cliente",require("./components/Cliente.vue").default);
 Vue.component("precio",require("./components/Precio.vue").default);
 Vue.component("vuelo",require("./components/Vuelo.vue").default);
->>>>>>> 9ce3eb3f330381631bf04640cf19c09e9625f409
+Vue.component("cliente",require("./components/Cliente.vue").default);
+Vue.component("precio",require("./components/Precio.vue").default);
+Vue.component("vuelo",require("./components/Vuelo.vue").default);
+
 
 
 /**
