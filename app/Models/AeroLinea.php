@@ -12,7 +12,9 @@ class AeroLinea extends Model
     public $incrementing = false;
     protected $primaryKey = 'codaerolinea';
     protected $guarded=[];
-
+    protected $casts = [
+        'fechafundacion' => 'datetime:d-m-Y',    
+     ];
     
     public function aviones(){
         return $this->hasMany(Avion::class);

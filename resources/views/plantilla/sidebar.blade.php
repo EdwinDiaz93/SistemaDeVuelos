@@ -14,6 +14,12 @@
                     <li @click="menu=2" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-bag"></i> Horarios</a>
                     </li>
+                    <li @click="menu=9" class="nav-item">                        
+                        <a class="nav-link" href="#"><i class="icon-bag"></i> Precios</a>
+                    </li>
+                    <li @click="menu=17" class="nav-item">                        
+                        <a class="nav-link" href="#"><i class="icon-bag"></i> Registrar vuelo</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-dropdown">
@@ -55,8 +61,7 @@
                     <li @click="menu=8" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-plane"></i> Aerolinea</a>
                     </li>
-                    <li @click="menu=9" class="nav-item">                        
-                    </li>
+                    
 
                     <li @click="menu=10" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-plane"></i> Avion</a>

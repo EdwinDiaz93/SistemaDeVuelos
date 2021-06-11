@@ -108,8 +108,13 @@
                           
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="email-input">Codigo del Aeropuerto</label>
-                                <div class="col-md-9">
+                                <div class="col-md-9">                                    
+                                    <div v-if="tipoAccion==1">
                                     <input type="text" v-model="codaeropuerto" class="form-control" placeholder="codigo del aeropuerto">
+                                    </div>
+                                    <div v-else>
+                                        <input type="text" disabled v-model="codaeropuerto" class="form-control" placeholder="codigo del aeropuerto">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">

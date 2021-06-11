@@ -22,6 +22,20 @@ Route::group(['middleware'=>['guest']],function(){
 });
 
 
+// Rutas de precio
+Route::get('/vuelo', 'App\Http\Controllers\VueloController@index');
+Route::post('/vuelo/registrar', 'App\Http\Controllers\VueloController@store');
+Route::put('/vuelo/actualizar', 'App\Http\Controllers\VueloController@update');
+Route::put('/vuelo/desactivar', 'App\Http\Controllers\VueloController@desactivar');
+Route::put('/vuelo/activar', 'App\Http\Controllers\VueloController@activar');
+
+// Rutas de precio
+Route::get('/precio', 'App\Http\Controllers\PrecioController@index');
+Route::post('/precio/registrar', 'App\Http\Controllers\PrecioController@store');
+Route::put('/precio/actualizar', 'App\Http\Controllers\PrecioController@update');
+Route::put('/precio/desactivar', 'App\Http\Controllers\PrecioController@desactivar');
+Route::put('/precio/activar', 'App\Http\Controllers\PrecioController@activar');
+
 // Rutas de aerolinea
 Route::get('/aerolinea', 'App\Http\Controllers\AeroLineaController@index');
 Route::post('/aerolinea/registrar', 'App\Http\Controllers\AeroLineaController@store');

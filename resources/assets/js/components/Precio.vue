@@ -9,8 +9,8 @@
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Horarios
-                    <button type="button" @click="abrirModal('horario', 'registrar')" class="btn btn-secondary">
+                    <i class="fa fa-align-justify"></i> Precio
+                    <button type="button" @click="abrirModal('precio', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
                 </div>
@@ -19,50 +19,46 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                  <option value="fecha">Fecha</option>
-                                   <option value="hora">Hora</option>
+                                  <option value="cantidadprecio">Precio</option>
                                 </select>
-                                <input type="text" v-model="buscar" @keyup.enter="listarHorarios(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
-                                <button type="submit" @click="listarHorarios(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <input type="text" v-model="buscar" @keyup.enter="listarPrecio(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
+                                <button type="submit" @click="listarPrecio(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                             </div>
                         </div>
                     </div>
                     <table class="table table-bordered table-striped table-sm">
                         <thead>
                             <tr>
-                                <th>Opciones</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
+                                <th>Opciones</th>                                
+                                <th>Cantidad Precio</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="horario in arrayHorario" :key="horario.idhorario">
+                            <tr v-for="precio in arrayPrecio" :key="precio.idprecio">
                                 <td>
-                                    <button type="button" @click="abrirModal('horario', 'actualizar', horario)" class="btn btn-warning btn-sm">
+                                    <button type="button" @click="abrirModal('precio', 'actualizar', precio)" class="btn btn-warning btn-sm">
                                       <i class="icon-pencil"></i>
                                     </button> &nbsp;
-                                    <template v-if="horario.estado=='1'">
-                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarHorario(horario.idhorario)">
+                                    <template v-if="precio.estado=='1'">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="desactivarPrecio(precio.idprecio)">
                                             <i class="icon-trash"></i>
                                         </button>
                                     </template>
                                     <template v-else>
-                                        <button type="button" class="btn btn-info btn-sm" @click="activarHorario(horario.idhorario)">
+                                        <button type="button" class="btn btn-info btn-sm" @click="activarPrecio(precio.idprecio)">
                                             <i class="icon-check"></i>
                                         </button>
                                     </template>
-                                </td>
-                                 <td v-text="horario.fecha"></td>
-                                <td v-text="horario.hora"></td>
+                                </td>                                
+                                <td v-text="precio.cantidadprecio"></td>
                                 <td>
-                                    <div v-if="horario.estado == '1'">
+                                    <div v-if="precio.estado == '1'">
                                         <span class="badge badge-success">Activo</span>
                                     </div>
                                     <div v-else>
                                         <span class="badge badge-danger">Desactivo</span>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -95,21 +91,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">                            
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Cantidad Precio</label>
                                 <div class="col-md-9">
-                                    <input type="date"  v-model="fecha" class="form-control" placeholder="fecha del vuelo">
-                                </div>
-                                 <label class="col-md-3 form-control-label" for="text-input">Hora</label>
-                                <div class="col-md-9">
-                                    <input type="time" v-model="hora" class="form-control" placeholder="hora del vuelo">
+                                    <input type="number" v-model="cantidadprecio" class="form-control" >
                                 </div>
                             </div>
                             
-                            <div v-show="errorHorario" class="form-group row div-error">
+                            <div v-show="errorPrecio" class="form-group row div-error">
                                 <div class="text-center text-error">
-                                    <div v-for="error in errorMostrarMsjHorario" :key=error v-text="error">
+                                    <div v-for="error in errorMostrarMsjPrecio" :key=error v-text="error">
 
                                     </div>
                                 </div>        
@@ -119,8 +111,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal">Cerrar</button>
-                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarHorario">Guardar</button>
-                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarHorario">Actualizar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPrecio">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPrecio">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -137,15 +129,14 @@
     export default {
         data(){
             return{
-                horario_id : 0,
-                fecha : '',
-                hora: '', 
-                arrayHorario : [],
+                precio_id : 0,                              
+                cantidadprecio : 0,                
+                arrayPrecio : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
-                errorHorario : 0,
-                errorMostrarMsjHorario: [],
+                errorPrecio : 0,
+                errorMostrarMsjPrecio: [],
                 pagination : {
                     'total': 0,
                     'current_page': 0,
@@ -155,8 +146,8 @@
                     'to': 0,
                 },
                 offset : 3,
-                criterio : 'fecha', 
-                buscar : ''
+                criterio : '', 
+                buscar : ""
 
             } 
         },
@@ -194,13 +185,15 @@
         methods: {
 
             
-            listarHorarios(page,buscar,criterio){
+            listarPrecio(page,buscar,criterio){
                 let me=this;
-                var url = '/horario?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
-                axios.get(url).then(function (response) {
-                    var respuesta = response.data;
-                    me.arrayHorario = respuesta.horarios.data;
+                var url = '/precio?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
+                axios.get(url).then(function (response) {                    
+                    var respuesta = response.data;                    
+                    console.log(respuesta);
+                    me.arrayPrecio = respuesta.precios.data;
                     me.pagination = respuesta.pagination;
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -214,54 +207,52 @@
                 //actualizar pagina actual 
                 me.pagination.current_page = page;
                 //enviar peticion para visualizar la data  de esa pagina
-                me.listarHorarios(page,buscar,criterio); 
+                me.listarPrecio(page,buscar,criterio); 
             },
            
-           registrarHorario()
+           registrarPrecio()
            {
-                if (this.validarHorarios())   //evalua si el metodo validar categoria retorna 1
+                if (this.validarPrecio())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
                     return;
                 }
                 // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
                 let me=this;
-                axios.post('/horario/registrar', {
-                    'fecha': this.fecha, 
-                    'hora': this.hora,  
+                axios.post('/precio/registrar', {                    
+                    "cantidadprecio":this.cantidadprecio,
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarHorarios(1,'','fecha');
+                    me.listarPrecio(1,'','cantidadprecio');
                 }).catch(function (error) {
                     console.log(error);
                 });
 
            },
 
-            actualizarHorario()
+            actualizarPrecio()
            {
-               if (this.validarHorarios())   //evalua si el metodo validar categoria retorna 1
+               if (this.validarPrecio())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
                     return;
                 }
                 // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
                 let me=this;
-                axios.put('/horario/actualizar', {
-                    'fecha': this.fecha,
-                    'hora': this.hora,
-                    'horario_id': this.horario_id    
+                axios.put('/precio/actualizar', {                    
+                    'precio_id': this.precio_id,
+                    "cantidadprecio":this.cantidadprecio,
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarHorarios(1,'','fecha');
+                    me.listarPrecio(1,'','cantidadprecio');
                 }).catch(function (error) {
                     console.log(error);
                 });
            },
 
-            desactivarHorario(id)
+            desactivarPrecio(id)
             {
 
                 swal({
-                title: '¿Estas seguro de desactivar este tipo de costo?',
+                title: '¿Estas seguro de desactivar este precio?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -276,10 +267,10 @@
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/horario/desactivar', {
+                    axios.put('/precio/desactivar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarHorarios(1,'','fecha');
+                        me.listarPrecio(1,'','cantidadprecio');
                         swal(
                             'Desactivado!',
                             'El registro ha sido desactivado con exito.',
@@ -298,11 +289,11 @@
                 })
             },
 
-            activarHorario(id)
+            activarPrecio(id)
             {
 
                 swal({
-                title: '¿Estas seguro de activar este tipo de costo?',
+                title: '¿Estas seguro de activar este precio?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -317,10 +308,10 @@
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/horario/activar', {
+                    axios.put('/precio/activar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarHorarios(1,'','fecha');
+                        me.listarPrecio(1,'','cantidadprecio');
                         swal(
                             'Activado!',
                             'El registro ha sido activado con exito.',
@@ -339,53 +330,48 @@
                 })
             },
 
-            validarHorarios()
+            validarPrecio()
             {
-                this.errorHorario=0;
-                this.errorMostrarMsjHorario=[];
+                this.errorPrecio=0;
+                this.errorMostrarMsjPrecio=[];                
 
-                if (!this.fecha) this.errorMostrarMsjHorario.push("la fecha no puede estar vacia");
+                if (!this.cantidadprecio || this.cantidadprecio<=0) this.errorMostrarMsjPrecio.push("La cantidad precio no puede estar vacio y debe ser mayor a 0");
 
-                if (!this.hora) this.errorMostrarMsjHorario.push("la hora no puede estar vacia");
+                if (this.errorMostrarMsjPrecio.length) this.errorTipoAvion = 1;
 
-                if (this.errorMostrarMsjHorario.length) this.errorHorario = 1;
-
-                return this.errorHorario;
+                return this.errorPrecio;
             },
 
            cerrarModal()
            {
               this.modal=0;
-              this.tituloModal='';
-              this.fecha='';
-              this.hora='';
+              this.tituloModal='';              
+              this.cantidadprecio=0;
            },
 
            abrirModal(modelo, accion, data = [])
            {
                switch(modelo)
                {
-                   case "horario":
+                   case "precio":
                    {
                        switch(accion)
                        {
                            case 'registrar':
                            {
                                this.modal = 1;
-                               this.tituloModal = 'Registrar horario';
-                               this.fecha = '';
-                               this.hora = '';
+                               this.tituloModal = 'Registrar Precio';                               
+                               this.cantidadprecio =0;
                                this.tipoAccion = 1;
                                break;
                            } 
                            case 'actualizar':
                            {
                                this.modal = 1;
-                               this.tituloModal = 'Actualizar horario';
+                               this.tituloModal = 'Actualizar precio';
                                this.tipoAccion = 2;
-                               this.horario_id = data['idhorario'];
-                               this.fecha = data['fecha'];
-                               this.hora = data['hora'];
+                               this.precio_id = data['idprecio'];
+                               this.cantidadprecio = data['cantidadprecio'];
                                break;
                            }    
                         }
@@ -395,7 +381,7 @@
            }
         },
         mounted() {
-            this.listarHorarios(1,this.buscar,this.criterio);
+            this.listarPrecio(1,this.buscar,this.criterio);
         }
     }
 </script>
