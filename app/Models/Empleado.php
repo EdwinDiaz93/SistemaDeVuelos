@@ -9,4 +9,15 @@ class Empleado extends Model
 {
     protected $table = 'empleados';
     protected $primaryKey = 'idempleado';  
+    protected $fillable =[
+        'idpersona',
+        'puesto',
+        'salario',
+         'condicion'];
+
+    public function tipoCosto(){
+
+        return $this->belongsTo(Persona::class);
+    }
 }
+ 

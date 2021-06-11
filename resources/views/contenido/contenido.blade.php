@@ -22,7 +22,7 @@
     </template>
 
     <template v-if="menu==6">
-        <h1>Contenido del menu Usuario</h1>
+    <user></user>
     </template>
 
     <template v-if="menu==7">
@@ -54,16 +54,14 @@
 
     <template v-if="menu==20">
         <cliente></cliente>
-
         </template>
+        
     <template v-if="menu==17">
         <vuelo></vuelo>
-
-
     </template>   
     
-    <template v-if="menu==17">
-        <vuelo></vuelo>
+    <template v-if="menu==21">
+        <empleado></empleado>
 
     </template>
 @endsection

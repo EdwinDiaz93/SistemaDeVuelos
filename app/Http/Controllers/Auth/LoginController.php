@@ -9,6 +9,8 @@ use App\Providers\RouteServiceProvider;
 //importaciones para la vista login
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Rol;
+use App\Models\Users;
 
 class LoginController extends Controller
 {
@@ -19,7 +21,7 @@ class LoginController extends Controller
   public function login(Request $request){
      $this->validateLogin($request);
 
-      if(Auth::attempt(['usuario'=> $request->usuario,'password'=> $request->password,'condicion'=>1])){
+      if(Auth::attempt(['usuario'=> $request->usuario,'password'=> $request->password,'estado'=>1])){
           return redirect()->route('main');
       }
 

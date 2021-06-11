@@ -18,7 +18,7 @@ Route::get('/main', function () {
 })->name('main');
 
 Route::group(['middleware'=>['guest']],function(){
-
+   
 });
 
 
@@ -110,9 +110,10 @@ Route::put('/horario/desactivar', 'App\Http\Controllers\HorarioController@desact
 Route::put('/horario/activar', 'App\Http\Controllers\HorarioController@activar');
 
 /*rutaS para el login*/ 
-
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
 Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
 
 Route::get('/costos', 'App\Http\Controllers\CostosController@index');
 Route::post('/costos/registrar', 'App\Http\Controllers\CostosController@store');
@@ -123,4 +124,17 @@ Route::put('/costos/activar', 'App\Http\Controllers\CostosController@activar');
 Route::get('/cliente', 'App\Http\Controllers\ClienteController@index');
 Route::post('/cliente/registrar', 'App\Http\Controllers\ClienteController@store');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('/empleado', 'App\Http\Controllers\EmpleadoController@index');
+Route::post('/empleado/registrar', 'App\Http\Controllers\EmpleadoController@store');
+Route::put('/empleado/actualizar', 'App\Http\Controllers\EmpleadoController@update');
+Route::put('/empleado/desactivar', 'App\Http\Controllers\EmpleadoController@desactivar');
+Route::put('/empleado/activar', 'App\Http\Controllers\EmpladoController@activar');
+
+Route::get('/user', 'App\Http\Controllers\UserController@index');
+Route::post('/user/registrar', 'App\Http\Controllers\UserController@store');
+Route::put('/user/actualizar', 'App\Http\Controllers\UserController@update');
+Route::put('/user/desactivar', 'App\Http\Controllers\UserController@desactivar');
+Route::put('/user/activar', 'App\Http\Controllers\UserController@activar');

@@ -14,12 +14,12 @@ class CreateEmpleadosTable extends Migration
     public function up()
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->bigIncrements("idempleado");            
-            $table->integer('idpersona')->unsigned();
-            $table->String('puesto',25);
-            $table->float('salario',4,2);
-            $table->boolean('estado')->default(1);
-           // $table->timestamps();
+            $table->bigIncrements("idempleado");  
+            $table->integer('idpersona')->unsigned();   
+            $table->String('puesto',25)->nullable;
+            $table->float('salario',8,4)->nullable;
+            $table->boolean('condicion')->default(1);
+            $table->timestamps();
             $table->foreign('idpersona')->references('idpersona')->on('personas');
         });
     }
