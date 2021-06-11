@@ -9,7 +9,7 @@ class Ciudad extends Model
 {
     protected $table = 'ciudad';
     protected $primaryKey = 'idciudad';   
-    protected $fillable = ['nomciudad','estado','idpais'];
+    protected $guarded = [];
     
 
      //relacion uno a muchos 
@@ -21,4 +21,5 @@ class Ciudad extends Model
     public function pais(){
         return $this->belongsTo(Pais::class);
     }
+    
 }

@@ -101,7 +101,7 @@
                     <div class="modal-body">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group row">
-                                <label class="col-md-2 form-control-label" for="text-input">Codigo de Aerolinea</label>
+                                <label class="col-md-2 form-control-label" for="text-input">Nombre de Aerolinea</label>
                                 <div class="col-md-4">
                                    <select class="form-control" v-model="aerolinea_cod">
                                         <option value="" disabled>Seleccione o agregue  una aerolinea</option>
@@ -124,15 +124,15 @@
                                     <select class="form-control" v-model="idhorariosalida">
                                         <option value="0" disabled>Seleccione o agregue  un horario</option>
                                         <option v-for="horario in arrayHorarios" :key="horario.idhorario" :value="horario.idhorario" 
-                                        v-text="horario.fecha"></option>
+                                        >Fecha: {{horario.fecha}} Hora:{{horario.hora}}</option>
                                     </select>
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Horario Regreso</label>
                                 <div class="col-md-4">
                                     <select class="form-control" v-model="idhorarioregreso">
-                                        <option value="0" disabled>Seleccione o agregue  un horario</option>
+                                        <option value="1" disabled>Seleccione o agregue  un horario</option>
                                         <option v-for="horario in arrayHorarios" :key="horario.idhorario" :value="horario.idhorario" 
-                                        v-text="horario.fecha"></option>
+                                        > Fecha: {{horario.fecha}} Hora:{{horario.hora}}</option>
                                     </select>
                                 </div>
                             </div>                            

@@ -10,11 +10,18 @@ class Horario extends Model
    // use HasFactory;
    protected $table = 'Horario';
    protected $primaryKey = 'idhorario';   
-   protected $fillable = ['fecha','hora','estado'];
+   protected $fillable = ['fecha','hora','estado'];   
+
+   protected $casts = [
+    'fecha' => 'datetime:Y-m-d',    
+ ];
 
    // iniciando la funcion de la que hace referencia (1 a muchos)
    public function pruebas()
     {
         return $this->hasMany('App\Models\Prueba');
     }
+
+      
+
 }

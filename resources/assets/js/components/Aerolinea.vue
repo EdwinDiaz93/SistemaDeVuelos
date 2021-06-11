@@ -100,8 +100,13 @@
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Codigo de Aerolinea</label>
-                                <div class="col-md-4">
+                                <div class="col-md-4">                                    
+                                     <div v-if="tipoAccion == 1">
                                     <input type="text" v-model="codaerolinea" class="form-control" placeholder="codigo de aerolinea">
+                                    </div>
+                                    <div v-else>
+                                    <input type="text" disabled v-model="codaerolinea" class="form-control" placeholder="codigo de aerolinea">
+                                    </div>                                    
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Nombre de Aerolinea</label>
                                 <div class="col-md-4">

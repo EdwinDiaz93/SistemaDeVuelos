@@ -2021,6 +2021,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2299,6 +2304,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44167,30 +44177,60 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.codaerolinea,
-                              expression: "codaerolinea"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "codigo de aerolinea"
-                          },
-                          domProps: { value: _vm.codaerolinea },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.codaerolinea = $event.target.value
-                            }
-                          }
-                        })
+                        _vm.tipoAccion == 1
+                          ? _c("div", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.codaerolinea,
+                                    expression: "codaerolinea"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "codigo de aerolinea"
+                                },
+                                domProps: { value: _vm.codaerolinea },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.codaerolinea = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          : _c("div", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.codaerolinea,
+                                    expression: "codaerolinea"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  disabled: "",
+                                  placeholder: "codigo de aerolinea"
+                                },
+                                domProps: { value: _vm.codaerolinea },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.codaerolinea = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
                       ]),
                       _vm._v(" "),
                       _c(
@@ -44995,30 +45035,60 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.codaeropuerto,
-                              expression: "codaeropuerto"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "codigo del aeropuerto"
-                          },
-                          domProps: { value: _vm.codaeropuerto },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.codaeropuerto = $event.target.value
-                            }
-                          }
-                        })
+                        _vm.tipoAccion == 1
+                          ? _c("div", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.codaeropuerto,
+                                    expression: "codaeropuerto"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "codigo del aeropuerto"
+                                },
+                                domProps: { value: _vm.codaeropuerto },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.codaeropuerto = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          : _c("div", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.codaeropuerto,
+                                    expression: "codaeropuerto"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  disabled: "",
+                                  placeholder: "codigo del aeropuerto"
+                                },
+                                domProps: { value: _vm.codaeropuerto },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.codaeropuerto = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -51474,7 +51544,7 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Codigo de Aerolinea")]
+                        [_vm._v("Nombre de Aerolinea")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
@@ -51634,13 +51704,21 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayHorarios, function(horario) {
-                              return _c("option", {
-                                key: horario.idhorario,
-                                domProps: {
-                                  value: horario.idhorario,
-                                  textContent: _vm._s(horario.fecha)
-                                }
-                              })
+                              return _c(
+                                "option",
+                                {
+                                  key: horario.idhorario,
+                                  domProps: { value: horario.idhorario }
+                                },
+                                [
+                                  _vm._v(
+                                    "Fecha: " +
+                                      _vm._s(horario.fecha) +
+                                      " Hora:" +
+                                      _vm._s(horario.hora)
+                                  )
+                                ]
+                              )
                             })
                           ],
                           2
@@ -51688,18 +51766,26 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "0", disabled: "" } },
+                              { attrs: { value: "1", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un horario")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayHorarios, function(horario) {
-                              return _c("option", {
-                                key: horario.idhorario,
-                                domProps: {
-                                  value: horario.idhorario,
-                                  textContent: _vm._s(horario.fecha)
-                                }
-                              })
+                              return _c(
+                                "option",
+                                {
+                                  key: horario.idhorario,
+                                  domProps: { value: horario.idhorario }
+                                },
+                                [
+                                  _vm._v(
+                                    " Fecha: " +
+                                      _vm._s(horario.fecha) +
+                                      " Hora:" +
+                                      _vm._s(horario.hora)
+                                  )
+                                ]
+                              )
                             })
                           ],
                           2
