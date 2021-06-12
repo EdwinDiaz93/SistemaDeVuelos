@@ -5629,17 +5629,363 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Precio.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Precio.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************************************/
-=======
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      precio_id: 0,
+      cantidadprecio: 0,
+      arrayPrecio: [],
+      modal: 0,
+      tituloModal: '',
+      tipoAccion: 0,
+      errorPrecio: 0,
+      errorMostrarMsjPrecio: [],
+      pagination: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      },
+      offset: 3,
+      criterio: '',
+      buscar: ""
+    };
+  },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+
+      var from = this.pagination.current_page - this.offset;
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + this.offset * 2;
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
+  methods: {
+    listarPrecio: function listarPrecio(page, buscar, criterio) {
+      var me = this;
+      var url = '/precio?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        console.log(respuesta);
+        me.arrayPrecio = respuesta.precios.data;
+        me.pagination = respuesta.pagination;
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {});
+    },
+    cambiarPagina: function cambiarPagina(page, buscar, criterio) {
+      var me = this; //actualizar pagina actual 
+
+      me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
+
+      me.listarPrecio(page, buscar, criterio);
+    },
+    registrarPrecio: function registrarPrecio() {
+      if (this.validarPrecio()) //evalua si el metodo validar categoria retorna 1
+        {
+          // y no realiza nada
+          return;
+        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
+
+
+      var me = this;
+      axios.post('/precio/registrar', {
+        "cantidadprecio": this.cantidadprecio
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarPrecio(1, '', 'cantidadprecio');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    actualizarPrecio: function actualizarPrecio() {
+      if (this.validarPrecio()) //evalua si el metodo validar categoria retorna 1
+        {
+          // y no realiza nada
+          return;
+        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
+
+
+      var me = this;
+      axios.put('/precio/actualizar', {
+        'precio_id': this.precio_id,
+        "cantidadprecio": this.cantidadprecio
+      }).then(function (response) {
+        me.cerrarModal();
+        me.listarPrecio(1, '', 'cantidadprecio');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    desactivarPrecio: function desactivarPrecio(id) {
+      var _swal,
+          _this = this;
+
+      swal((_swal = {
+        title: '¿Estas seguro de desactivar este precio?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Aceptar!'
+      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
+        if (result.value) {
+          var me = _this;
+          axios.put('/precio/desactivar', {
+            'id': id
+          }).then(function (response) {
+            me.listarPrecio(1, '', 'cantidadprecio');
+            swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        } else if ( //Read more about handling dismissals
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    activarPrecio: function activarPrecio(id) {
+      var _swal2,
+          _this2 = this;
+
+      swal((_swal2 = {
+        title: '¿Estas seguro de activar este precio?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: '#d33',
+        confirmButtonText: 'Aceptar!'
+      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          axios.put('/precio/activar', {
+            'id': id
+          }).then(function (response) {
+            me.listarPrecio(1, '', 'cantidadprecio');
+            swal('Activado!', 'El registro ha sido activado con exito.', 'success');
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        } else if ( //Read more about handling dismissals
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    validarPrecio: function validarPrecio() {
+      this.errorPrecio = 0;
+      this.errorMostrarMsjPrecio = [];
+      if (!this.cantidadprecio || this.cantidadprecio <= 0) this.errorMostrarMsjPrecio.push("La cantidad precio no puede estar vacio y debe ser mayor a 0");
+      if (this.errorMostrarMsjPrecio.length) this.errorTipoAvion = 1;
+      return this.errorPrecio;
+    },
+    cerrarModal: function cerrarModal() {
+      this.modal = 0;
+      this.tituloModal = '';
+      this.cantidadprecio = 0;
+    },
+    abrirModal: function abrirModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case "precio":
+          {
+            switch (accion) {
+              case 'registrar':
+                {
+                  this.modal = 1;
+                  this.tituloModal = 'Registrar Precio';
+                  this.cantidadprecio = 0;
+                  this.tipoAccion = 1;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  this.modal = 1;
+                  this.tituloModal = 'Actualizar precio';
+                  this.tipoAccion = 2;
+                  this.precio_id = data['idprecio'];
+                  this.cantidadprecio = data['cantidadprecio'];
+                  break;
+                }
+            }
+          }
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.listarPrecio(1, this.buscar, this.criterio);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************/
->>>>>>> EdwinDiaz93
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5833,19 +6179,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-<<<<<<< HEAD
-      precio_id: 0,
-      cantidadprecio: 0,
-      arrayPrecio: [],
-      modal: 0,
-      tituloModal: '',
-      tipoAccion: 0,
-      errorPrecio: 0,
-      errorMostrarMsjPrecio: [],
-=======
       idreserva: 0,
       cliente_id: 0,
       vuelo_id: 0,
@@ -5860,7 +6205,6 @@ __webpack_require__.r(__webpack_exports__);
       tipoAccion: 0,
       errorReserva: 0,
       errorMostrarMsjReserva: [],
->>>>>>> EdwinDiaz93
       pagination: {
         'total': 0,
         'current_page': 0,
@@ -5871,11 +6215,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       offset: 3,
       criterio: '',
-<<<<<<< HEAD
-      buscar: ""
-=======
       buscar: ''
->>>>>>> EdwinDiaz93
     };
   },
   computed: {
@@ -5910,15 +6250,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-<<<<<<< HEAD
-    listarPrecio: function listarPrecio(page, buscar, criterio) {
-      var me = this;
-      var url = '/precio?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        console.log(respuesta);
-        me.arrayPrecio = respuesta.precios.data;
-=======
     listarReserva: function listarReserva(page, buscar, criterio) {
       var me = this;
       var url = '/reserva?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
@@ -5927,7 +6258,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(respuesta);
         me.arrayReserva = respuesta.reservas.data;
         me.arrayVuelo = respuesta.vuelos.data;
->>>>>>> EdwinDiaz93
         me.pagination = respuesta.pagination;
         me.arrayCliente = respuesta.clientes.data;
       })["catch"](function (error) {
@@ -5939,17 +6269,10 @@ __webpack_require__.r(__webpack_exports__);
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
-<<<<<<< HEAD
-      me.listarPrecio(page, buscar, criterio);
-    },
-    registrarPrecio: function registrarPrecio() {
-      if (this.validarPrecio()) //evalua si el metodo validar categoria retorna 1
-=======
       me.listarReserva(page, buscar, criterio);
     },
     registrarReserva: function registrarReserva() {
       if (this.validarReserva()) //evalua si el metodo validar categoria retorna 1
->>>>>>> EdwinDiaz93
         {
           // y no realiza nada
           return;
@@ -5957,41 +6280,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
       var me = this;
-<<<<<<< HEAD
-      axios.post('/precio/registrar', {
-        "cantidadprecio": this.cantidadprecio
-      }).then(function (response) {
-        me.cerrarModal();
-        me.listarPrecio(1, '', 'cantidadprecio');
-=======
       axios.post('/reserva/registrar', {
         'cliente_id': this.cliente_id,
         'vuelo_id': this.vuelo_id
       }).then(function (response) {
         me.cerrarModal();
         me.listarReserva(1, '', 'cliente_id');
->>>>>>> EdwinDiaz93
       })["catch"](function (error) {
         console.log(error);
       });
     },
-<<<<<<< HEAD
-    actualizarPrecio: function actualizarPrecio() {
-      if (this.validarPrecio()) //evalua si el metodo validar categoria retorna 1
-        {
-          // y no realiza nada
-          return;
-        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
-
-
-      var me = this;
-      axios.put('/precio/actualizar', {
-        'precio_id': this.precio_id,
-        "cantidadprecio": this.cantidadprecio
-      }).then(function (response) {
-        me.cerrarModal();
-        me.listarPrecio(1, '', 'cantidadprecio');
-=======
     Pagar: function Pagar() {
       if (this.validarPago()) {
         return;
@@ -6006,71 +6304,10 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         me.cerrarModal();
         me.listarReserva(1, '', 'cliente_id');
->>>>>>> EdwinDiaz93
       })["catch"](function (error) {
         console.log(error);
       });
     },
-<<<<<<< HEAD
-    desactivarPrecio: function desactivarPrecio(id) {
-      var _swal,
-          _this = this;
-
-      swal((_swal = {
-        title: '¿Estas seguro de desactivar este precio?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
-        confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
-        if (result.value) {
-          var me = _this;
-          axios.put('/precio/desactivar', {
-            'id': id
-          }).then(function (response) {
-            me.listarPrecio(1, '', 'cantidadprecio');
-            swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        } else if ( //Read more about handling dismissals
-        result.dismiss === swal.DismissReason.cancel) {}
-      });
-    },
-    activarPrecio: function activarPrecio(id) {
-      var _swal2,
-          _this2 = this;
-
-      swal((_swal2 = {
-        title: '¿Estas seguro de activar este precio?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
-        confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
-        if (result.value) {
-          var me = _this2;
-          axios.put('/precio/activar', {
-            'id': id
-          }).then(function (response) {
-            me.listarPrecio(1, '', 'cantidadprecio');
-            swal('Activado!', 'El registro ha sido activado con exito.', 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        } else if ( //Read more about handling dismissals
-        result.dismiss === swal.DismissReason.cancel) {}
-      });
-    },
-    validarPrecio: function validarPrecio() {
-      this.errorPrecio = 0;
-      this.errorMostrarMsjPrecio = [];
-      if (!this.cantidadprecio || this.cantidadprecio <= 0) this.errorMostrarMsjPrecio.push("La cantidad precio no puede estar vacio y debe ser mayor a 0");
-      if (this.errorMostrarMsjPrecio.length) this.errorTipoAvion = 1;
-      return this.errorPrecio;
-=======
     validarReserva: function validarReserva() {
       this.errorReserva = 0;
       this.errorMostrarMsjReserva = [];
@@ -6087,41 +6324,27 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.fechavencimiento) this.errorMostrarMsjReserva.push("Debe seleccionar una fecha");
       if (this.errorMostrarMsjReserva.length) this.errorReserva = 1;
       return this.errorReserva;
->>>>>>> EdwinDiaz93
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
-<<<<<<< HEAD
-      this.cantidadprecio = 0;
-=======
       this.cliente_id = 0;
       this.vuelo_id = 0;
       this.errorReserva = 0;
->>>>>>> EdwinDiaz93
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       switch (modelo) {
-<<<<<<< HEAD
-        case "precio":
-=======
         case "reserva":
->>>>>>> EdwinDiaz93
           {
             switch (accion) {
               case 'registrar':
                 {
                   this.modal = 1;
-<<<<<<< HEAD
-                  this.tituloModal = 'Registrar Precio';
-                  this.cantidadprecio = 0;
-=======
                   this.tituloModal = 'Registrar Reserva';
                   this.cliente_id = 0;
                   this.vuelo_id = 0;
->>>>>>> EdwinDiaz93
                   this.tipoAccion = 1;
                   break;
                 }
@@ -6129,16 +6352,9 @@ __webpack_require__.r(__webpack_exports__);
               case 'pagar':
                 {
                   this.modal = 1;
-<<<<<<< HEAD
-                  this.tituloModal = 'Actualizar precio';
-                  this.tipoAccion = 2;
-                  this.precio_id = data['idprecio'];
-                  this.cantidadprecio = data['cantidadprecio'];
-=======
                   this.tituloModal = 'Realizar Pago';
                   this.tipoAccion = 2;
                   this.idreserva = data['idreserva'];
->>>>>>> EdwinDiaz93
                   break;
                 }
             }
@@ -6147,11 +6363,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-<<<<<<< HEAD
-    this.listarPrecio(1, this.buscar, this.criterio);
-=======
     this.listarReserva(1, this.buscar, this.criterio);
->>>>>>> EdwinDiaz93
   }
 });
 
@@ -7420,478 +7632,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       offset: 3,
       criterio: 'nomDocumento',
       buscar: ''
-<<<<<<< HEAD
-=======
-    };
-  },
-  computed: {
-    isActived: function isActived() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function pagesNumber() {
-      if (!this.pagination.to) {
-        return [];
-      }
-
-      var from = this.pagination.current_page - this.offset;
-
-      if (from < 1) {
-        from = 1;
-      }
-
-      var to = from + this.offset * 2;
-
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-
-      var pagesArray = [];
-
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    }
-  },
-  methods: {
-    listarTipoDocumentos: function listarTipoDocumentos(page, buscar, criterio) {
-      var me = this;
-      var url = '/tipodocumento?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayTipoDocumento = respuesta.tipoDocumentos.data;
-        me.pagination = respuesta.pagination;
-      })["catch"](function (error) {
-        console.log(error);
-      }).then(function () {});
-    },
-    cambiarPagina: function cambiarPagina(page, buscar, criterio) {
-      var me = this; //actualizar pagina actual 
-
-      me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
-
-      me.listarTipoDocumentos(page, buscar, criterio);
-    },
-    registrarTipoDocumentos: function registrarTipoDocumentos() {
-      if (this.validarTipoDocumentos()) //evalua si el metodo validar categoria retorna 1
-        {
-          // y no realiza nada
-          return;
-        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
-
-
-      var me = this;
-      axios.post('/tipodocumento/registrar', {
-        'nombre': this.nombre,
-        'numero': this.numero
-      }).then(function (response) {
-        me.cerrarModal();
-        me.listarTipoDocumentos(1, '', 'nombre');
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    actualizarTipoDocumentos: function actualizarTipoDocumentos() {
-      if (this.validarTipoDocumentos()) //evalua si el metodo validar categoria retorna 1
-        {
-          // y no realiza nada
-          return;
-        } // en caso que validar categoria retorne diferente de 1 realizar lo siguiente
-
-
-      var me = this;
-      axios.put('/tipodocumento/actualizar', {
-        'nombre': this.nombre,
-        'numero': this.numero,
-        'tipoDocumento_id': this.tipoDocumento_id
-      }).then(function (response) {
-        me.cerrarModal();
-        me.listarTipoDocumentos(1, '', 'nombre');
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    desactivarTipoDocumento: function desactivarTipoDocumento(id) {
-      var _swal,
-          _this = this;
-
-      swal((_swal = {
-        title: '¿Estas seguro de desactivar este tipo de documento?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
-        confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
-        if (result.value) {
-          var me = _this;
-          axios.put('/tipodocumento/desactivar', {
-            'id': id
-          }).then(function (response) {
-            me.listarTipoDocumentos(1, '', 'nombre');
-            swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        } else if ( //Read more about handling dismissals
-        result.dismiss === swal.DismissReason.cancel) {}
-      });
-    },
-    activarTipoDocumento: function activarTipoDocumento(id) {
-      var _swal2,
-          _this2 = this;
-
-      swal((_swal2 = {
-        title: '¿Estas seguro de activar este tipo de documento?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: '#d33',
-        confirmButtonText: 'Aceptar!'
-      }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
-        if (result.value) {
-          var me = _this2;
-          axios.put('/tipodocumento/activar', {
-            'id': id
-          }).then(function (response) {
-            me.listarTipoDocumentos(1, '', 'nombre');
-            swal('Activado!', 'El registro ha sido activado con exito.', 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        } else if ( //Read more about handling dismissals
-        result.dismiss === swal.DismissReason.cancel) {}
-      });
-    },
-    validarTipoDocumentos: function validarTipoDocumentos() {
-      this.errorTipoDocumento = 0;
-      this.errorMostrarMsjTipoDocumento = [];
-      if (!this.nombre) this.errorMostrarMsjTipoDocumento.push("El nombre del tipo de documento no puede estar vacio");
-      if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El numero no puede estar vacio");
-      if (this.errorMostrarMsjTipoDocumento.length) this.errorTipoDocumento = 1;
-      return this.errorTipoDocumento;
-    },
-    cerrarModal: function cerrarModal() {
-      this.modal = 0;
-      this.tituloModal = '';
-      this.nombre = '';
-      this.numero = '';
-    },
-    abrirModal: function abrirModal(modelo, accion) {
-      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-
-      switch (modelo) {
-        case "tipoDocumento":
-          {
-            switch (accion) {
-              case 'registrar':
-                {
-                  this.modal = 1;
-                  this.tituloModal = 'Registrar Tipo de Documento';
-                  this.nombre = '';
-                  this.numero = '';
-                  this.tipoAccion = 1;
-                  break;
-                }
-
-              case 'actualizar':
-                {
-                  this.modal = 1;
-                  this.tituloModal = 'Actualizar Tipo de Documento';
-                  this.tipoAccion = 2;
-                  this.tipoDocumento_id = data['idtipodocumento'];
-                  this.nombre = data['nomdocumento'];
-                  this.numero = data['numerodocumento'];
-                  break;
-                }
-            }
-          }
-      }
-    }
-  },
-  mounted: function mounted() {
-    this.listarTipoDocumentos(1, this.buscar, this.criterio);
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Vuelo.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Vuelo.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      idvuelo: 0,
-      aerolinea_cod: '',
-      idprecio: 0,
-      idhorariosalida: 0,
-      idhorarioregreso: 0,
-      codaeropuertoida: '',
-      codaeropuertoregreso: '',
-      idclasevuelo: 0,
-      millasreales: 0,
-      millasotorgadas: 0,
-      idciudadorigen: 0,
-      idciudaddestino: 0,
-      arrayVuelos: [],
-      arrayAerolineas: [],
-      arrayHorarios: [],
-      arrayAeropuertos: [],
-      arrayPrecios: [],
-      arrayClaseVuelo: [],
-      arrayCiudades: [],
-      modal: 0,
-      tituloModal: '',
-      tipoAccion: 0,
-      errorVuelo: 0,
-      errorMostrarMsjVuelo: [],
-      pagination: {
-        'total': 0,
-        'current_page': 0,
-        'per_page': 0,
-        'last_page': 0,
-        'from': 0,
-        'to': 0
-      },
-      offset: 3,
-      criterio: '',
-      buscar: ""
->>>>>>> EdwinDiaz93
     };
   },
   computed: {
@@ -12949,40 +12689,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     } // Private
     ;
 
-<<<<<<< HEAD
     _proto._getConfig = function _getConfig(config) {
       config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
-=======
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-content{\n    width: 100% !important;\n    position: absolute !important;\n}\n.mostrar{\n    display: list-item  !important;\n    opacity: 1 !important;\n    position: absolute i !important;\n    background-color: #3c29297a !important;\n}\n.div-error{\n    display: flex;\n    justify-content: center;\n}\n.text-error{\n    color: red !important;\n    font-weight: bold;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Rol.vue?vue&type=style&index=0&lang=css&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Rol.vue?vue&type=style&index=0&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
->>>>>>> EdwinDiaz93
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $__default['default'](config.target).attr('id');
@@ -13814,6 +13522,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-content{\n    width: 100% !im
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Precio.vue?vue&type=style&index=0&lang=css& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-content{\n    width: 100% !important;\n    position: absolute !important;\n}\n.mostrar{\n    display: list-item  !important;\n    opacity: 1 !important;\n    position: absolute i !important;\n    background-color: #3c29297a !important;\n}\n.div-error{\n    display: flex;\n    justify-content: center;\n}\n.text-error{\n    color: red !important;\n    font-weight: bold;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -43586,7 +43318,6 @@ function arrow(data, options) {
   if (typeof arrowElement === 'string') {
     arrowElement = data.instance.popper.querySelector(arrowElement);
 
-<<<<<<< HEAD
     // if arrowElement is not found, don't run the modifier
     if (!arrowElement) {
       return data;
@@ -43599,54 +43330,6 @@ function arrow(data, options) {
       return data;
     }
   }
-=======
-/***/ "./resources/assets/js/components/Reserva.vue":
-/*!****************************************************!*\
-  !*** ./resources/assets/js/components/Reserva.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reserva.vue?vue&type=template&id=37e5e65e& */ "./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&");
-/* harmony import */ var _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reserva.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&");
-/* harmony import */ var _Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reserva.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-;
-
-
-/* normalize component */
-
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/components/Reserva.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Rol.vue":
-/*!************************************************!*\
-  !*** ./resources/assets/js/components/Rol.vue ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> EdwinDiaz93
 
   var placement = data.placement.split('-')[0];
   var _data$offsets = data.offsets,
@@ -44155,35 +43838,11 @@ function shift(data) {
   var basePlacement = placement.split('-')[0];
   var shiftvariation = placement.split('-')[1];
 
-<<<<<<< HEAD
   // if shift shiftvariation is specified, run the modifier
   if (shiftvariation) {
     var _data$offsets = data.offsets,
         reference = _data$offsets.reference,
         popper = _data$offsets.popper;
-=======
-/***/ "./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Rol.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/assets/js/components/Rol.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> EdwinDiaz93
 
     var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
     var side = isVertical ? 'left' : 'top';
@@ -44781,31 +44440,6 @@ var Popper = function () {
   // We can't use class properties because they don't get listed in the
   // class prototype and break stuff like Sinon stubs
 
-<<<<<<< HEAD
-=======
-/***/ "./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&":
-/*!***********************************************************************************!*\
-  !*** ./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e& ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=template&id=37e5e65e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&");
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Rol.vue?vue&type=template&id=40bb3ee8&":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/components/Rol.vue?vue&type=template&id=40bb3ee8& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> EdwinDiaz93
 
   createClass(Popper, [{
     key: 'update',
@@ -45368,34 +45002,10 @@ component.options.__file = "resources/assets/js/components/Empleado.vue"
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./resources/assets/js/components/ExampleComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/assets/js/components/ExampleComponent.vue ***!
   \*************************************************************/
-=======
-/***/ "./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&":
-/*!*************************************************************************************!*\
-  !*** ./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=style&index=0&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Rol.vue?vue&type=style&index=0&lang=css&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/js/components/Rol.vue?vue&type=style&index=0&lang=css& ***!
-  \*********************************************************************************/
->>>>>>> EdwinDiaz93
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -45509,6 +45119,47 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/assets/js/components/Precio.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Reserva.vue":
+/*!****************************************************!*\
+  !*** ./resources/assets/js/components/Reserva.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reserva.vue?vue&type=template&id=37e5e65e& */ "./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&");
+/* harmony import */ var _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reserva.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reserva.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/Reserva.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -45919,6 +45570,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Rol.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
   !*** ./resources/assets/js/components/Rol.vue?vue&type=script&lang=js& ***!
@@ -46185,6 +45852,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&":
+/*!***********************************************************************************!*\
+  !*** ./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_template_id_37e5e65e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=template&id=37e5e65e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=template&id=37e5e65e&");
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Rol.vue?vue&type=template&id=40bb3ee8&":
 /*!*******************************************************************************!*\
   !*** ./resources/assets/js/components/Rol.vue?vue&type=template&id=40bb3ee8& ***!
@@ -46435,6 +46119,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Precio_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Precio_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Precio_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Precio_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reserva.vue?vue&type=style&index=0&lang=css& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/Reserva.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Reserva_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -54437,105 +54138,471 @@ var render = function() {
                           attrs: { type: "button", "aria-label": "Close" },
                           on: { click: _vm.cerrarModal }
                         },
-<<<<<<< HEAD
-                        [_vm._v("Cantidad Precio")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-9" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.cantidadprecio,
-                              expression: "cantidadprecio"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "number" },
-                          domProps: { value: _vm.cantidadprecio },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.cantidadprecio = $event.target.value
-                            }
-                          }
-                        })
-                      ])
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("×")
+                          ])
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.errorPrecio,
-                            expression: "errorPrecio"
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c(
+                        "form",
+                        {
+                          staticClass: "form-horizontal",
+                          attrs: {
+                            action: "",
+                            method: "post",
+                            enctype: "multipart/form-data"
                           }
-                        ],
-                        staticClass: "form-group row div-error"
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "text-center text-error" },
-                          _vm._l(_vm.errorMostrarMsjPrecio, function(error) {
-                            return _c("div", {
-                              key: error,
-                              domProps: { textContent: _vm._s(error) }
-                            })
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.cerrarModal }
-                  },
-                  [_vm._v("Cerrar")]
-                ),
-                _vm._v(" "),
-                _vm.tipoAccion == 1
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
-                        on: { click: _vm.registrarPrecio }
-                      },
-                      [_vm._v("Guardar")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.tipoAccion == 2
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
-                        on: { click: _vm.actualizarPrecio }
-                      },
-                      [_vm._v("Actualizar")]
-                    )
-                  : _vm._e()
-              ])
-            ])
-          ]
-        )
-      ]
+                        },
+                        [
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-3 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Cliente")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-9" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.cliente_id,
+                                      expression: "cliente_id"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.cliente_id = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "0", disabled: "" } },
+                                    [_vm._v("Seleccione o agregue  cliente")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.arrayCliente, function(cliente) {
+                                    return _c("option", {
+                                      key: cliente.idcliente,
+                                      domProps: {
+                                        value: cliente.idcliente,
+                                        textContent: _vm._s(cliente.nomcontacto)
+                                      }
+                                    })
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-3 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Vuelo")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-9" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.vuelo_id,
+                                      expression: "vuelo_id"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.vuelo_id = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "0", disabled: "" } },
+                                    [_vm._v("Seleccione o agregue  vuelo")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.arrayVuelo, function(vuelo) {
+                                    return _c("option", {
+                                      key: vuelo.idvuelo,
+                                      domProps: {
+                                        value: vuelo.idvuelo,
+                                        textContent: _vm._s(vuelo.aerolinea_cod)
+                                      }
+                                    })
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.errorReserva,
+                                  expression: "errorReserva"
+                                }
+                              ],
+                              staticClass: "form-group row div-error"
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "text-center text-error" },
+                                _vm._l(_vm.errorMostrarMsjReserva, function(
+                                  error
+                                ) {
+                                  return _c("div", {
+                                    key: error,
+                                    domProps: { textContent: _vm._s(error) }
+                                  })
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.cerrarModal }
+                        },
+                        [_vm._v("Cerrar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.registrarReserva }
+                        },
+                        [_vm._v("Guardar")]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.tipoAccion == 2
+          ? [
+              _c(
+                "div",
+                {
+                  staticClass: "modal-dialog modal-primary modal-lg",
+                  attrs: { role: "document" }
+                },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", {
+                        staticClass: "modal-title",
+                        domProps: { textContent: _vm._s(_vm.tituloModal) }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: { type: "button", "aria-label": "Close" },
+                          on: { click: _vm.cerrarModal }
+                        },
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("×")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c(
+                        "form",
+                        {
+                          staticClass: "form-horizontal",
+                          attrs: {
+                            action: "",
+                            method: "post",
+                            enctype: "multipart/form-data"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-2 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Id Reserva")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.idreserva,
+                                    expression: "idreserva"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  disabled: "",
+                                  type: "text",
+                                  placeholder: "nombre oficial"
+                                },
+                                domProps: { value: _vm.idreserva },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.idreserva = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-2 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Numero Tarjeta")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.numerotarjeta,
+                                    expression: "numerotarjeta"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "numero tarjeta "
+                                },
+                                domProps: { value: _vm.numerotarjeta },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.numerotarjeta = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-2 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Codigo  Seguridad")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.codigoseguridad,
+                                    expression: "codigoseguridad"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "codigo seguridad"
+                                },
+                                domProps: { value: _vm.codigoseguridad },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.codigoseguridad = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-md-2 form-control-label",
+                                attrs: { for: "text-input" }
+                              },
+                              [_vm._v("Fecha Vencimiento")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.fechavencimiento,
+                                    expression: "fechavencimiento"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "date",
+                                  placeholder: "codigo seguridad"
+                                },
+                                domProps: { value: _vm.fechavencimiento },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.fechavencimiento = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.errorReserva,
+                                  expression: "errorReserva"
+                                }
+                              ],
+                              staticClass: "form-group row div-error"
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "text-center text-error" },
+                                _vm._l(_vm.errorMostrarMsjReserva, function(
+                                  error
+                                ) {
+                                  return _c("div", {
+                                    key: error,
+                                    domProps: { textContent: _vm._s(error) }
+                                  })
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.cerrarModal }
+                        },
+                        [_vm._v("Cerrar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.Pagar }
+                        },
+                        [_vm._v("Pagar")]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]
+          : _vm._e()
+      ],
+      2
     )
   ])
 }
@@ -54558,7 +54625,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cantidad Precio")]),
+        _c("th", [_vm._v("Cliente")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vuelo")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])
@@ -55079,473 +55148,6 @@ var render = function() {
           ]
         )
       ]
-=======
-                        [
-                          _c("span", { attrs: { "aria-hidden": "true" } }, [
-                            _vm._v("×")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c(
-                        "form",
-                        {
-                          staticClass: "form-horizontal",
-                          attrs: {
-                            action: "",
-                            method: "post",
-                            enctype: "multipart/form-data"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-3 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Cliente")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.cliente_id,
-                                      expression: "cliente_id"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.cliente_id = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "0", disabled: "" } },
-                                    [_vm._v("Seleccione o agregue  cliente")]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.arrayCliente, function(cliente) {
-                                    return _c("option", {
-                                      key: cliente.idcliente,
-                                      domProps: {
-                                        value: cliente.idcliente,
-                                        textContent: _vm._s(cliente.nomcontacto)
-                                      }
-                                    })
-                                  })
-                                ],
-                                2
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-3 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Vuelo")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.vuelo_id,
-                                      expression: "vuelo_id"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.vuelo_id = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "0", disabled: "" } },
-                                    [_vm._v("Seleccione o agregue  vuelo")]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.arrayVuelo, function(vuelo) {
-                                    return _c("option", {
-                                      key: vuelo.idvuelo,
-                                      domProps: {
-                                        value: vuelo.idvuelo,
-                                        textContent: _vm._s(vuelo.aerolinea_cod)
-                                      }
-                                    })
-                                  })
-                                ],
-                                2
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errorReserva,
-                                  expression: "errorReserva"
-                                }
-                              ],
-                              staticClass: "form-group row div-error"
-                            },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "text-center text-error" },
-                                _vm._l(_vm.errorMostrarMsjReserva, function(
-                                  error
-                                ) {
-                                  return _c("div", {
-                                    key: error,
-                                    domProps: { textContent: _vm._s(error) }
-                                  })
-                                }),
-                                0
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-footer" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secondary",
-                          attrs: { type: "button" },
-                          on: { click: _vm.cerrarModal }
-                        },
-                        [_vm._v("Cerrar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button" },
-                          on: { click: _vm.registrarReserva }
-                        },
-                        [_vm._v("Guardar")]
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ]
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.tipoAccion == 2
-          ? [
-              _c(
-                "div",
-                {
-                  staticClass: "modal-dialog modal-primary modal-lg",
-                  attrs: { role: "document" }
-                },
-                [
-                  _c("div", { staticClass: "modal-content" }, [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _c("h4", {
-                        staticClass: "modal-title",
-                        domProps: { textContent: _vm._s(_vm.tituloModal) }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "close",
-                          attrs: { type: "button", "aria-label": "Close" },
-                          on: { click: _vm.cerrarModal }
-                        },
-                        [
-                          _c("span", { attrs: { "aria-hidden": "true" } }, [
-                            _vm._v("×")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c(
-                        "form",
-                        {
-                          staticClass: "form-horizontal",
-                          attrs: {
-                            action: "",
-                            method: "post",
-                            enctype: "multipart/form-data"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-2 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Id Reserva")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-4" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.idreserva,
-                                    expression: "idreserva"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  disabled: "",
-                                  type: "text",
-                                  placeholder: "nombre oficial"
-                                },
-                                domProps: { value: _vm.idreserva },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.idreserva = $event.target.value
-                                  }
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-2 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Numero Tarjeta")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-4" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.numerotarjeta,
-                                    expression: "numerotarjeta"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "numero tarjeta "
-                                },
-                                domProps: { value: _vm.numerotarjeta },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.numerotarjeta = $event.target.value
-                                  }
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-2 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Codigo  Seguridad")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-4" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.codigoseguridad,
-                                    expression: "codigoseguridad"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "codigo seguridad"
-                                },
-                                domProps: { value: _vm.codigoseguridad },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.codigoseguridad = $event.target.value
-                                  }
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-md-2 form-control-label",
-                                attrs: { for: "text-input" }
-                              },
-                              [_vm._v("Fecha Vencimiento")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-4" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.fechavencimiento,
-                                    expression: "fechavencimiento"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "date",
-                                  placeholder: "codigo seguridad"
-                                },
-                                domProps: { value: _vm.fechavencimiento },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.fechavencimiento = $event.target.value
-                                  }
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errorReserva,
-                                  expression: "errorReserva"
-                                }
-                              ],
-                              staticClass: "form-group row div-error"
-                            },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "text-center text-error" },
-                                _vm._l(_vm.errorMostrarMsjReserva, function(
-                                  error
-                                ) {
-                                  return _c("div", {
-                                    key: error,
-                                    domProps: { textContent: _vm._s(error) }
-                                  })
-                                }),
-                                0
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-footer" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secondary",
-                          attrs: { type: "button" },
-                          on: { click: _vm.cerrarModal }
-                        },
-                        [_vm._v("Cerrar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button" },
-                          on: { click: _vm.Pagar }
-                        },
-                        [_vm._v("Pagar")]
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ]
-          : _vm._e()
-      ],
-      2
->>>>>>> EdwinDiaz93
     )
   ])
 }
@@ -55568,15 +55170,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-<<<<<<< HEAD
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),
-=======
-        _c("th", [_vm._v("Cliente")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Vuelo")]),
->>>>>>> EdwinDiaz93
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])
@@ -72063,15 +71659,9 @@ Vue.component("aeropuerto", __webpack_require__(/*! ./components/Aeropuerto.vue 
 Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
 Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
 Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
-Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
-Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
-Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
-<<<<<<< HEAD
 Vue.component('empleado', __webpack_require__(/*! ./components/Empleado.vue */ "./resources/assets/js/components/Empleado.vue").default);
 Vue.component('user', __webpack_require__(/*! ./components/User.vue */ "./resources/assets/js/components/User.vue").default);
-=======
 Vue.component("reserva", __webpack_require__(/*! ./components/Reserva.vue */ "./resources/assets/js/components/Reserva.vue").default);
->>>>>>> EdwinDiaz93
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
