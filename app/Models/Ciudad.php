@@ -19,7 +19,7 @@ class Ciudad extends Model
     }
     //relacion uno a muchos a pais inversa
     public function pais(){
-        return $this->belongsTo(Pais::class);
+        return $this->belongsTo(Pais::class,"pais_id");
     }
     
 }

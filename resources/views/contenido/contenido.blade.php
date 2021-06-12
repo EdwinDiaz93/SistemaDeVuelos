@@ -56,14 +56,8 @@
         <cliente></cliente>
 
         </template>
-    <template v-if="menu==17">
-        <vuelo></vuelo>
-
-
-    </template>   
     
     <template v-if="menu==17">
         <vuelo></vuelo>
-
     </template>
 @endsection

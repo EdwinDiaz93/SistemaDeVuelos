@@ -15,5 +15,9 @@ class Pais extends Model
     //relacion uno a muchos a aeropuerto
     public function aeropuerto(){
         return $this->hasMany(Aeropuerto::class);
-}
+    }
+
+    public function ciudades(){
+        return $this->hasMany(Ciudad::class);
+    }
 }
