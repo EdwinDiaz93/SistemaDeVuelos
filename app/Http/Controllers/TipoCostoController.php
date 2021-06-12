@@ -48,6 +48,7 @@ class TipoCostoController extends Controller
     {
         if(!$request->ajax()) return redirect('/main');
         $tipoCosto = new TipoCosto();
+          //$rol = Rol::select( "call ps_inser_tcosto('?','?')");
         $tipoCosto->nomtipocosto = $request->nombre; // 'nombre' es lo que recibimos de la vista
         $tipoCosto->estado = '1';
         $tipoCosto->save();
