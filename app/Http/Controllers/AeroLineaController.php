@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AeroLinea;
-use App\Models\RedSocial;
+use App\Models\Ciudad;
 use Illuminate\Http\Request;
 
 class AeroLineaController extends Controller
@@ -15,7 +15,8 @@ class AeroLineaController extends Controller
           $buscar = $request->buscar;
           $criterio = $request->criterio;
   
-        if($buscar==''){          
+        if($buscar==''){                
+            $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
             $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
         }
         else{          
@@ -32,7 +33,8 @@ class AeroLineaController extends Controller
                 'last_page'    =>  $aerolineas->lastPage(),
                 'from'         =>  $aerolineas->firstItem(),
                 'to'           =>  $aerolineas->lastItem(),
-            ],
+            ],            
+            'ciudades'=>$ciudades,            
             'aerolineas'=>$aerolineas,            
         ];
     }
@@ -50,7 +52,8 @@ class AeroLineaController extends Controller
         $aerolinea->twitter= $request->twitter;
         $aerolinea->instagram= $request->instagram;
         $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
-        $aerolinea->fechafundacion = $request->fechafundacion;         
+        $aerolinea->idciudad=$request->idciudad;
+        $aerolinea->fechafundacion = $request->fechafundacion;
         $aerolinea->estado = '1';         
         $aerolinea->save();
     }
@@ -66,7 +69,8 @@ class AeroLineaController extends Controller
         $aerolinea->twitter= $request->twitter;
         $aerolinea->instagram= $request->instagram;     
         $aerolinea->nombrerepresentante = $request->nombrerepresentante;         
-        $aerolinea->fechafundacion = $request->fechafundacion;         
+        $aerolinea->idciudad=$request->idciudad;  
+        $aerolinea->fechafundacion = $request->fechafundacion;       
         $aerolinea->estado = '1'; 
         $aerolinea->save();
     }

@@ -2026,6 +2026,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2038,7 +2048,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       facebook: '',
       twitter: '',
       instagram: '',
+      idciudad: 0,
       arrayAerolineas: [],
+      arrayCiudades: [],
       modal: 0,
       tituloModal: '',
       tipoAccion: 0,
@@ -2094,7 +2106,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = '/aerolinea?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
+        console.log(respuesta);
         me.arrayAerolineas = respuesta.aerolineas.data;
+        me.arrayCiudades = respuesta.ciudades.data;
         me.pagination = respuesta.pagination;
       })["catch"](function (error) {
         console.log(error);
@@ -2124,6 +2138,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "facebook": this.facebook,
         "twitter": this.twitter,
         "instagram": this.instagram,
+        "idciudad": this.idciudad,
         "nombrerepresentante": this.nombrerepresentante,
         "fechafundacion": this.fechafundacion
       }).then(function (response) {
@@ -2150,6 +2165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "facebook": this.facebook,
         "twitter": this.twitter,
         "instagram": this.instagram,
+        "idciudad": this.idciudad,
         "nombrerepresentante": this.nombrerepresentante,
         "fechafundacion": this.fechafundacion
       }).then(function (response) {
@@ -2222,6 +2238,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.facebook) this.errorMostrarMsjAerolinea.push("El url de facebook es obligatorio");
       if (!this.twitter) this.errorMostrarMsjAerolinea.push("El url de twitter es obligatorio");
       if (!this.instagram) this.errorMostrarMsjAerolinea.push("El url de instagram es obligatorio");
+      if (!this.idciudad) this.errorMostrarMsjAerolinea.push("La ciudad de origen es obligatoria");
       if (!this.fechafundacion) this.errorMostrarMsjAerolinea.push("La fecha no puede estar vacia");
       if (this.errorMostrarMsjAerolinea.length) this.errorAerolinea = 1;
       return this.errorAerolinea;
@@ -2236,6 +2253,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.facebook = '';
       this.twitter = '';
       this.instagram = '';
+      this.idciudad = 0;
       this.nombrerepresentante = '';
       this.fechafundacion = '';
     },
@@ -2258,6 +2276,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.facebook = '';
                   this.twitter = '';
                   this.instagram = '';
+                  this.idciudad = 0;
                   this.nombrerepresentante = '';
                   this.fechafundacion = '';
                   break;
@@ -2275,6 +2294,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.facebook = data["facebook"];
                   this.twitter = data["twitter"];
                   this.instagram = data["instagram"];
+                  this.idciudad = data["idciudad"];
                   this.nombrerepresentante = data['nombrerepresentante'];
                   this.fechafundacion = data['fechafundacion'];
                   break;
@@ -7202,6 +7222,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+<<<<<<< HEAD
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -7209,6 +7230,115 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       nombre: '',
       numero: '',
       arrayTipoDocumento: [],
+=======
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      idvuelo: 0,
+      aerolinea_cod: '',
+      idprecio: 0,
+      idhorariosalida: 0,
+      idhorarioregreso: 0,
+      codaeropuertoida: '',
+      codaeropuertoregreso: '',
+      idclasevuelo: 0,
+      millasreales: 0,
+      millasotorgadas: 0,
+      idciudadorigen: 0,
+      idciudaddestino: 0,
+      arrayVuelos: [],
+      arrayAerolineas: [],
+      arrayHorarios: [],
+      arrayAeropuertos: [],
+      arrayPrecios: [],
+      arrayClaseVuelo: [],
+      arrayCiudades: [],
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
       modal: 0,
       tituloModal: '',
       tipoAccion: 0,
@@ -7264,7 +7394,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = '/tipodocumento?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
+<<<<<<< HEAD
         me.arrayTipoDocumento = respuesta.tipoDocumentos.data;
+=======
+        console.log(respuesta);
+        me.arrayVuelos = respuesta.vuelos.data;
+        me.arrayAerolineas = respuesta.aerolineas.data;
+        me.arrayPrecios = respuesta.precios.data;
+        me.arrayHorarios = respuesta.horarios.data;
+        me.arrayAeropuertos = respuesta.aeropuertos.data;
+        me.arrayClaseVuelo = respuesta.clasevuelos.data;
+        me.arrayCiudades = respuesta.ciudades.data;
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
         me.pagination = respuesta.pagination;
       })["catch"](function (error) {
         console.log(error);
@@ -7286,9 +7427,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var me = this;
+<<<<<<< HEAD
       axios.post('/tipodocumento/registrar', {
         'nombre': this.nombre,
         'numero': this.numero
+=======
+      axios.post('/vuelo/registrar', {
+        'aerolinea_cod': this.aerolinea_cod,
+        "idprecio": this.idprecio,
+        "idhorariosalida": this.idhorariosalida,
+        "idhorarioregreso": this.idhorarioregreso,
+        "codaeropuertoida": this.codaeropuertoida,
+        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idciudadorigen": this.idciudadorigen,
+        "idciudaddestino": this.idciudaddestino,
+        "idclasevuelo": this.idclasevuelo,
+        "millasreales": this.millasreales,
+        "millasotorgadas": this.millasotorgadas
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
       }).then(function (response) {
         me.cerrarModal();
         me.listarTipoDocumentos(1, '', 'nombre');
@@ -7305,10 +7461,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var me = this;
+<<<<<<< HEAD
       axios.put('/tipodocumento/actualizar', {
         'nombre': this.nombre,
         'numero': this.numero,
         'tipoDocumento_id': this.tipoDocumento_id
+=======
+      axios.put('/vuelo/actualizar', {
+        "idvuelo": this.idvuelo,
+        'aerolinea_cod': this.aerolinea_cod,
+        "idprecio": this.idprecio,
+        "idhorariosalida": this.idhorariosalida,
+        "idhorarioregreso": this.idhorarioregreso,
+        "codaeropuertoida": this.codaeropuertoida,
+        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idciudadorigen": this.idciudadorigen,
+        "idciudaddestino": this.idciudaddestino,
+        "idclasevuelo": this.idclasevuelo,
+        "millasreales": this.millasreales,
+        "millasotorgadas": this.millasotorgadas
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
       }).then(function (response) {
         me.cerrarModal();
         me.listarTipoDocumentos(1, '', 'nombre');
@@ -7368,6 +7540,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+<<<<<<< HEAD
     validarTipoDocumentos: function validarTipoDocumentos() {
       this.errorTipoDocumento = 0;
       this.errorMostrarMsjTipoDocumento = [];
@@ -7375,12 +7548,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.numero) this.errorMostrarMsjTipoDocumento.push("El numero no puede estar vacio");
       if (this.errorMostrarMsjTipoDocumento.length) this.errorTipoDocumento = 1;
       return this.errorTipoDocumento;
+=======
+    validarVuelo: function validarVuelo() {
+      this.errorVuelo = 0;
+      this.errorMostrarMsjVuelo = [];
+      if (!this.aerolinea_cod) this.errorMostrarMsjVuelo.push("El codigo de la aerolina es obligatorio");
+      if (!this.idprecio || this.precio < 0) this.errorMostrarMsjVuelo.push("El precio es obligatorio y no puede ser negativo");
+      if (!this.idhorariosalida) this.errorMostrarMsjVuelo.push("El horario de salida es obligatorio");
+      if (!this.idhorarioregreso) this.errorMostrarMsjVuelo.push("El horario de regreso es obligatorio");
+      if (this.idhorariosalida === this.idhorarioregreso) this.errorMostrarMsjVuelo.push("Los horarios no pueden ser los mismos");
+      if (!this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de ida es obligatorio");
+      if (!this.codaeropuertoregreso) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de llegada es obligatorio");
+      if (!this.idciudadorigen) this.errorMostrarMsjVuelo.push("La ciudad de origen es obligatoria");
+      if (!this.idciudaddestino) this.errorMostrarMsjVuelo.push("La ciudad de destino es obligatoria");
+      if (this.idciudaddestino === this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
+      if (this.codaeropuertoregreso === this.codaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
+      if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
+      if (!this.millasreales || this.millasreales < 0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
+      if (!this.millasotorgadas || this.millasotorgadas < 0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
+      if (this.errorMostrarMsjVuelo.length) this.errorVuelo = 1;
+      return this.errorVuelo;
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
+<<<<<<< HEAD
       this.nombre = '';
       this.numero = '';
+=======
+      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -7396,6 +7594,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.nombre = '';
                   this.numero = '';
                   this.tipoAccion = 1;
+<<<<<<< HEAD
+=======
+                  this.tituloModal = 'Registrar Vuelo';
+                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
                   break;
                 }
 
@@ -7404,9 +7607,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.modal = 1;
                   this.tituloModal = 'Actualizar Tipo de Documento';
                   this.tipoAccion = 2;
+<<<<<<< HEAD
                   this.tipoDocumento_id = data['idtipodocumento'];
                   this.nombre = data['nomdocumento'];
                   this.numero = data['numerodocumento'];
+=======
+                  this.tituloModal = 'Actualizar Vuelo';
+                  this.idvuelo = data['idvuelo'];
+                  this.aerolinea_cod = data['aerolinea_cod'];
+                  this.idprecio = data['idprecio'];
+                  this.idhorariosalida = data['idhorariosalida'];
+                  this.idhorarioregreso = data['idhorarioregreso'];
+                  this.codaeropuertoida = data["codaeropuertoida"];
+                  this.codaeropuertoregreso = data["codaeropuertoregreso"];
+                  this.idciudadorigen = data["idciudadorigen"], this.idciudaddestino = data["idciudaddestino"], this.idclasevuelo = data["idclasevuelo"];
+                  this.millasreales = data['millasreales'];
+                  this.millasotorgadas = data['millasotorgadas'];
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
                   break;
                 }
             }
@@ -47909,7 +48126,77 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "email-input" }
                         },
+<<<<<<< HEAD
                         [_vm._v("Modelo Avion")]
+=======
+                        [_vm._v("Origen")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idciudad,
+                                expression: "idciudad"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idciudad = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione o agregue  un origen")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayCiudades, function(ciudad) {
+                              return _c(
+                                "option",
+                                {
+                                  key: ciudad.idciudad,
+                                  domProps: { value: ciudad.idciudad }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(ciudad.pais.nompais) +
+                                      "-" +
+                                      _vm._s(ciudad.nomciudad)
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-2 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Facebook URL")]
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -47975,10 +48262,8 @@ var render = function() {
                             }
                           }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "label",
                         {
@@ -56737,6 +57022,141 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
+                        [_vm._v("Pais de origen")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idciudadorigen,
+                                expression: "idciudadorigen"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idciudadorigen = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione un origen")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayCiudades, function(ciudad) {
+                              return _c(
+                                "option",
+                                {
+                                  key: ciudad.idciudad,
+                                  domProps: { value: ciudad.idciudad }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(ciudad.pais.nompais) +
+                                      " - " +
+                                      _vm._s(ciudad.nomciudad)
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-2 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Pais Destino")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idciudaddestino,
+                                expression: "idciudaddestino"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.idciudaddestino = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione  un destino")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayCiudades, function(ciudad) {
+                              return _c(
+                                "option",
+                                {
+                                  key: ciudad.idciudad,
+                                  domProps: { value: ciudad.idciudad }
+                                },
+                                [
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(ciudad.pais.nompais) +
+                                      " - " +
+                                      _vm._s(ciudad.nomciudad)
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-2 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
                         [_vm._v("Horario de salida")]
                       ),
                       _vm._v(" "),
@@ -56839,7 +57259,7 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "1", disabled: "" } },
+                              { attrs: { value: "0", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un horario")]
                             ),
                             _vm._v(" "),
@@ -70069,8 +70489,11 @@ Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./reso
 Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
 Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
 Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
+<<<<<<< HEAD
 Vue.component('empleado', __webpack_require__(/*! ./components/Empleado.vue */ "./resources/assets/js/components/Empleado.vue").default);
 Vue.component('user', __webpack_require__(/*! ./components/User.vue */ "./resources/assets/js/components/User.vue").default);
+=======
+>>>>>>> d612e5a0d1f04fb45227d17ffb521da02978a9b0
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
