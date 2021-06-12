@@ -9,6 +9,7 @@ use App\Models\Horario;
 use App\Models\Aeropuerto;
 use App\Models\Precio;
 use App\Models\ClaseVuelo;
+use App\Models\Ciudad;
 
 
 class VueloController extends Controller
@@ -27,6 +28,7 @@ class VueloController extends Controller
             $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
             $precios=Precio::orderBy('idprecio', 'desc')->paginate(3);
             $clasevuelos=ClaseVuelo::orderBy('idclasevuelo', 'desc')->paginate(3);
+            $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
         }
         else{          
             $vuelos = Vuelo::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idvuelo', 'desc')->paginate(3);          
@@ -49,6 +51,7 @@ class VueloController extends Controller
             'aeropuertos'=>$aeropuertos,            
             'precios'=>$precios,            
             'clasevuelos'=>$clasevuelos,            
+            'ciudades'=>$ciudades,            
         ];
     }
 
@@ -63,6 +66,8 @@ class VueloController extends Controller
         $vuelo->idhorarioregreso = $request->idhorarioregreso;         
         $vuelo->codaeropuertoida= $request->codaeropuertoida;
         $vuelo->codaeropuertoregreso= $request->codaeropuertoregreso;
+        $vuelo->idciudadorigen= $request->idciudadorigen;
+        $vuelo->idciudaddestino= $request->idciudaddestino;
         $vuelo->idclasevuelo= $request->idclasevuelo;
         $vuelo->millasreales = $request->millasreales;         
         $vuelo->millasotorgadas = $request->millasotorgadas;         
@@ -80,6 +85,8 @@ class VueloController extends Controller
         $vuelo->idhorarioregreso = $request->idhorarioregreso;         
         $vuelo->codaeropuertoida= $request->codaeropuertoida;
         $vuelo->codaeropuertoregreso= $request->codaeropuertoregreso;
+        $vuelo->idciudadorigen= $request->idciudadorigen;
+        $vuelo->idciudaddestino= $request->idciudaddestino;
         $vuelo->idclasevuelo= $request->idclasevuelo;
         $vuelo->millasreales = $request->millasreales;         
         $vuelo->millasotorgadas = $request->millasotorgadas;         

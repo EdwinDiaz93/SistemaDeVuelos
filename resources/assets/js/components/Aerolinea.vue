@@ -135,16 +135,26 @@
                             </div>                           
 
                             <div class="form-group row">
+                                <label class="col-md-2 form-control-label" for="text-input">Origen</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" v-model="idciudad">
+                                            <option value="0" disabled >Seleccione o agregue  un origen</option>
+                                            <option v-for="ciudad in arrayCiudades" :key="ciudad.idciudad" :value="ciudad.idciudad" 
+                                            >{{ciudad.pais.nompais}}-{{ciudad.nomciudad}}</option>
+                                    </select>
+                                </div>
+
                                 <label class="col-md-2 form-control-label" for="text-input">Facebook URL</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="facebook" class="form-control" >
                                 </div>
+                                
+                            </div>                            
+                            <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Twitter URL</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="twitter" class="form-control" >
                                 </div>
-                            </div>                            
-                            <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Instagram URL</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="instagram" class="form-control" >
@@ -190,7 +200,9 @@
                 facebook:'',
                 twitter:'',
                 instagram:'',
-                arrayAerolineas : [],
+                idciudad:0,
+                arrayAerolineas : [],                
+                arrayCiudades : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
@@ -248,8 +260,10 @@
                 let me=this;
                 var url = '/aerolinea?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
                 axios.get(url).then(function (response) {                    
-                    var respuesta = response.data;                                        
-                    me.arrayAerolineas = respuesta.aerolineas.data;
+                    var respuesta = response.data;     
+                    console.log(respuesta);                                   
+                    me.arrayAerolineas = respuesta.aerolineas.data;                    
+                    me.arrayCiudades = respuesta.ciudades.data;
                     me.pagination = respuesta.pagination;
                     
                 })
@@ -284,6 +298,7 @@
                     "facebook":this.facebook,
                     "twitter":this.twitter,
                     "instagram":this.instagram,
+                    "idciudad":this.idciudad,
                     "nombrerepresentante":this.nombrerepresentante,
                     "fechafundacion":this.fechafundacion,
                 }).then(function (response) {
@@ -311,6 +326,7 @@
                     "facebook":this.facebook,
                     "twitter":this.twitter,
                     "instagram":this.instagram,
+                    "idciudad":this.idciudad,
                     "nombrerepresentante":this.nombrerepresentante,
                     "fechafundacion":this.fechafundacion,                    
                 }).then(function (response) {
@@ -416,6 +432,7 @@
                 if (!this.facebook) this.errorMostrarMsjAerolinea.push("El url de facebook es obligatorio");
                 if (!this.twitter) this.errorMostrarMsjAerolinea.push("El url de twitter es obligatorio");
                 if (!this.instagram) this.errorMostrarMsjAerolinea.push("El url de instagram es obligatorio");
+                if (!this.idciudad) this.errorMostrarMsjAerolinea.push("La ciudad de origen es obligatoria");
                 if (!this.fechafundacion) this.errorMostrarMsjAerolinea.push("La fecha no puede estar vacia");
 
                 if (this.errorMostrarMsjAerolinea.length) this.errorAerolinea = 1;
@@ -434,6 +451,7 @@
                 this.facebook='';
                 this.twitter='';
                 this.instagram='';
+                this.idciudad=0;
                 this.nombrerepresentante='';
                 this.fechafundacion='';
            },
@@ -458,6 +476,7 @@
                                 this.facebook='';
                                 this.twitter='';
                                 this.instagram='';
+                                this.idciudad=0;
                                 this.nombrerepresentante='';
                                 this.fechafundacion=''                                
                                break;
@@ -474,6 +493,7 @@
                                 this.facebook=data["facebook"];
                                 this.twitter=data["twitter"];
                                 this.instagram=data["instagram"];
+                                this.idciudad=data["idciudad"];
                                 this.nombrerepresentante=data['nombrerepresentante'];
                                 this.fechafundacion=data['fechafundacion'];
                                break;

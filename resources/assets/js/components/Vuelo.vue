@@ -119,6 +119,24 @@
                                 </div>
                             </div>                            
                             <div class="form-group row">
+                                <label class="col-md-2 form-control-label" for="text-input">Pais de origen</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" v-model="idciudadorigen">
+                                        <option value="0" disabled>Seleccione un origen</option>
+                                        <option v-for="ciudad in arrayCiudades" :key="ciudad.idciudad" :value="ciudad.idciudad" 
+                                        >{{ciudad.pais.nompais}} - {{ciudad.nomciudad}}</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 form-control-label" for="text-input">Pais Destino</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" v-model="idciudaddestino">
+                                        <option value="0" disabled>Seleccione  un destino</option>
+                                        <option v-for="ciudad in arrayCiudades" :key="ciudad.idciudad" :value="ciudad.idciudad" 
+                                        > {{ciudad.pais.nompais}} - {{ciudad.nomciudad}}</option>
+                                    </select>
+                                </div>
+                            </div>                            
+                            <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Horario de salida</label>
                                 <div class="col-md-4">
                                     <select class="form-control" v-model="idhorariosalida">
@@ -130,7 +148,7 @@
                                 <label class="col-md-2 form-control-label" for="text-input">Horario Regreso</label>
                                 <div class="col-md-4">
                                     <select class="form-control" v-model="idhorarioregreso">
-                                        <option value="1" disabled>Seleccione o agregue  un horario</option>
+                                        <option value="0" disabled>Seleccione o agregue  un horario</option>
                                         <option v-for="horario in arrayHorarios" :key="horario.idhorario" :value="horario.idhorario" 
                                         > Fecha: {{horario.fecha}} Hora:{{horario.hora}}</option>
                                     </select>
@@ -216,12 +234,15 @@
                 idclasevuelo:0,
                 millasreales:0,
                 millasotorgadas:0,
+                idciudadorigen:0,
+                idciudaddestino:0,
                 arrayVuelos : [],
                 arrayAerolineas : [],
                 arrayHorarios : [],
                 arrayAeropuertos : [],
                 arrayPrecios : [],
                 arrayClaseVuelo : [],
+                arrayCiudades : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
@@ -287,6 +308,7 @@
                     me.arrayHorarios = respuesta.horarios.data;
                     me.arrayAeropuertos = respuesta.aeropuertos.data;
                     me.arrayClaseVuelo = respuesta.clasevuelos.data;
+                    me.arrayCiudades = respuesta.ciudades.data;
                     me.pagination = respuesta.pagination;
                     
                 })
@@ -320,6 +342,8 @@
                     "idhorarioregreso":this.idhorarioregreso,
                     "codaeropuertoida":this.codaeropuertoida,
                     "codaeropuertoregreso":this.codaeropuertoregreso,
+                    "idciudadorigen":this.idciudadorigen,
+                    "idciudaddestino":this.idciudaddestino,
                     "idclasevuelo":this.idclasevuelo,
                     "millasreales":this.millasreales,
                     "millasotorgadas":this.millasotorgadas,                    
@@ -348,6 +372,8 @@
                     "idhorarioregreso":this.idhorarioregreso,
                     "codaeropuertoida":this.codaeropuertoida,
                     "codaeropuertoregreso":this.codaeropuertoregreso,
+                    "idciudadorigen":this.idciudadorigen,
+                    "idciudaddestino":this.idciudaddestino,
                     "idclasevuelo":this.idclasevuelo,
                     "millasreales":this.millasreales,
                     "millasotorgadas":this.millasotorgadas,                    
@@ -443,8 +469,8 @@
 
             validarVuelo()
             {
-                this.errorAerolinea=0;
-                this.errorMostrarMsjAerolinea=[];
+                this.errorVuelo=0;
+                this.errorMostrarMsjVuelo=[];
 
                 if (!this.aerolinea_cod) this.errorMostrarMsjVuelo.push("El codigo de la aerolina es obligatorio");
                 if (!this.idprecio || this.precio<0) this.errorMostrarMsjVuelo.push("El precio es obligatorio y no puede ser negativo");
@@ -453,7 +479,10 @@
                 if (this.idhorariosalida===this.idhorarioregreso) this.errorMostrarMsjVuelo.push("Los horarios no pueden ser los mismos");
                 if (!this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de ida es obligatorio");
                 if (!this.codaeropuertoregreso) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de llegada es obligatorio");
-                if (this.codaeropuertoregreso===this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de los aeropuerto no pueden ser iguales");
+                if (!this.idciudadorigen) this.errorMostrarMsjVuelo.push("La ciudad de origen es obligatoria");
+                if (!this.idciudaddestino) this.errorMostrarMsjVuelo.push("La ciudad de destino es obligatoria");
+                if (this.idciudaddestino===this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
+                if (this.codaeropuertoregreso===this.codaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
                 if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
                 if (!this.millasreales || this.millasreales<0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
                 if (!this.millasotorgadas || this.millasotorgadas<0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
@@ -473,6 +502,8 @@
                 this.idhorarioregreso =0,
                 this.codaeropuertoida = '',
                 this.codaeropuertoregreso = '',
+                this.idciudadorigen=0,
+                this.idciudaddestino=0,
                 this.idclasevuelo=0,
                 this.millasreales=0,
                 this.millasotorgadas=0
@@ -497,6 +528,8 @@
                                 this.idhorarioregreso =0,
                                 this.codaeropuertoida = '',
                                 this.codaeropuertoregreso = '',
+                                this.idciudadorigen=0,
+                                this.idciudaddestino=0,
                                 this.idclasevuelo=0,
                                 this.millasreales=0,
                                 this.millasotorgadas=0
@@ -514,6 +547,8 @@
                                 this.idhorarioregreso=data['idhorarioregreso'];
                                 this.codaeropuertoida=data["codaeropuertoida"];
                                 this.codaeropuertoregreso=data["codaeropuertoregreso"];
+                                this.idciudadorigen=data["idciudadorigen"],
+                                this.idciudaddestino=data["idciudaddestino"],
                                 this.idclasevuelo=data["idclasevuelo"];
                                 this.millasreales=data['millasreales'];
                                 this.millasotorgadas=data['millasotorgadas'];
