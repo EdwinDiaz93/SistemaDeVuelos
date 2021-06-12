@@ -11,6 +11,10 @@ class Vuelo extends Model
     protected $primaryKey = 'idvuelo';
     protected $guarded=[];
 
+    public function reserva(){
+        return $this->belongsTo(Reserva::class);
+    }
+
 
     public function aerolineas(){
         return $this->hasMany(Aerolinea::class);

@@ -52,8 +52,13 @@
         <aeropuerto></aeropuerto>
     </template>
 
+    <template v-if="menu==14">
+        <reserva></reserva>
+    </template>
+
     <template v-if="menu==20">
         <cliente></cliente>
+<<<<<<< HEAD
         </template>
 <<<<<<< HEAD
         
@@ -65,6 +70,9 @@
         <empleado></empleado>
 
 =======
+=======
+    </template>
+>>>>>>> EdwinDiaz93
     
     <template v-if="menu==17">
         <vuelo></vuelo>

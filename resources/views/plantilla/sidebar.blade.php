@@ -20,6 +20,9 @@
                     <li @click="menu=17" class="nav-item">                        
                         <a class="nav-link" href="#"><i class="icon-bag"></i> Registrar vuelo</a>
                     </li>
+                    <li @click="menu=14" class="nav-item">                        
+                        <a class="nav-link" href="#"><i class="icon-bag"></i> Reserva</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-dropdown">
