@@ -36,6 +36,7 @@ Vue.component("vuelo",require("./components/Vuelo.vue").default);
 Vue.component("cliente",require("./components/Cliente.vue").default);
 Vue.component("precio",require("./components/Precio.vue").default);
 Vue.component("vuelo",require("./components/Vuelo.vue").default);
+Vue.component("reserva",require("./components/Reserva.vue").default);
 
 
 

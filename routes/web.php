@@ -21,6 +21,10 @@ Route::group(['middleware'=>['guest']],function(){
 
 });
 
+// rutas Reserva
+Route::get('/reserva', 'App\Http\Controllers\ReservaController@index');
+Route::post('/reserva/registrar', 'App\Http\Controllers\ReservaController@store');
+Route::put('/reserva/pagar', 'App\Http\Controllers\ReservaController@pay');
 
 // Rutas de precio
 Route::get('/vuelo', 'App\Http\Controllers\VueloController@index');

@@ -52,10 +52,13 @@
         <aeropuerto></aeropuerto>
     </template>
 
+    <template v-if="menu==14">
+        <reserva></reserva>
+    </template>
+
     <template v-if="menu==20">
         <cliente></cliente>
-
-        </template>
+    </template>
     
     <template v-if="menu==17">
         <vuelo></vuelo>
