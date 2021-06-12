@@ -136,7 +136,7 @@
                                 <div class="col-md-4">
                                     <input type="text" v-model="papellido" class="form-control"  placeholder="1er Apellido persona">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Estado Civil</label>
+                                <label class="col-md-2 form-control-label" for="text-input">Puesto</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="puesto" class="form-control" placeholder="Puesto">
                                 </div>
@@ -146,7 +146,7 @@
                                 <div class="col-md-4">
                                     <input type="text" v-model="sapellido" class="form-control" placeholder="2do Apellido persona">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Genero</label>
+                                <label class="col-md-2 form-control-label" for="text-input">Salario</label>
                                 <div class="col-md-4">
                                     <input type="number" v-model="salario" class="form-control" placeholder="Salario">
                                 </div>
@@ -400,7 +400,7 @@
                     'movil': this.movil,
                     'puesto': this.puesto,
                     'salario': this.salario, 
-                    'idempleado': this.empleado_id    
+                    'idpersona': this.persona_id    
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarEmpleado(1,'','pnombre');
@@ -572,6 +572,7 @@
                                this.sapellido = data['sapellido'];
                                this.dui = data['dui'];
                                this.nit = data['nit'];
+                               this.pasaporte = data['pasaporte'];
                                 this.fechanaci = data['fechanaci'];
                                this.direccion = data['direccion'];
                                 this.telefono = data['telefono'];

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -30,6 +32,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             
         });
+
+       // DB::table('users')->insert(array('idpersona'=>'1', 'nomusuario'=>'grupo16', 
+        //'password'=>Hash::make(hash('sha256', 's1234')),'email'=>'correo@gmail.com','idrol'=>'1'));
     }
 
     /**

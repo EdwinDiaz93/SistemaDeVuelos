@@ -13,9 +13,9 @@ class Empleado extends Model
         'idpersona',
         'puesto',
         'salario',
-         'condicion'];
+        'condicion'];
 
-    public function tipoCosto(){
+    public function persona(){
 
         return $this->belongsTo(Persona::class);
     }

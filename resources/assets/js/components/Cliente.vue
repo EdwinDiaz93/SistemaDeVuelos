@@ -350,8 +350,8 @@
                     'telefono': this.telefono,
                     'movil': this.movil,
 
-                    'estadocivil': this.estadocivil,
-                    'genero': this.genero,
+                    'puesto': this.estadocivil,
+                    'salario': this.genero,
                     'nomcontacto': this.nomcontacto,
                     'numfrecuente': this.numfrecuente,
 

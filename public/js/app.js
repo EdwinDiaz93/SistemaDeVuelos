@@ -3906,8 +3906,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'direccion': this.direccion,
         'telefono': this.telefono,
         'movil': this.movil,
-        'estadocivil': this.estadocivil,
-        'genero': this.genero,
+        'puesto': this.estadocivil,
+        'salario': this.genero,
         'nomcontacto': this.nomcontacto,
         'numfrecuente': this.numfrecuente,
         'nomusuario': this.nomusuario,
@@ -4863,7 +4863,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'movil': this.movil,
         'puesto': this.puesto,
         'salario': this.salario,
-        'idempleado': this.empleado_id
+        'idpersona': this.persona_id
       }).then(function (response) {
         me.cerrarModal();
         me.listarEmpleado(1, '', 'pnombre');
@@ -4991,6 +4991,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.sapellido = data['sapellido'];
                   this.dui = data['dui'];
                   this.nit = data['nit'];
+                  this.pasaporte = data['pasaporte'];
                   this.fechanaci = data['fechanaci'];
                   this.direccion = data['direccion'];
                   this.telefono = data['telefono'];
@@ -50992,7 +50993,7 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Estado Civil")]
+                        [_vm._v("Puesto")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
@@ -51063,7 +51064,7 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Genero")]
+                        [_vm._v("Salario")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
