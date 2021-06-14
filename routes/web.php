@@ -129,6 +129,7 @@ Route::put('/costos/activar', 'App\Http\Controllers\CostosController@activar');
 
 Route::get('/cliente', 'App\Http\Controllers\ClienteController@index');
 Route::post('/cliente/registrar', 'App\Http\Controllers\ClienteController@store');
+Route::put('/cliente/actualizar', 'App\Http\Controllers\ClienteController@update');
 
 
 

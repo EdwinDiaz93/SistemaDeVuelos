@@ -19,8 +19,8 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                <option value="nomtipocosto">Tipo de costo</option> 
-                                  <option value="descripcion">Descripción</option>
+                                <option value="pnombre">Nombre</option> 
+                                  <option value="papellido">Apellido</option>
                                 </select>
                                 <input type="text" v-model="buscar" @keyup.enter="listarCliente(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
                                 <button type="submit" @click="listarCliente(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -31,10 +31,10 @@
                         <thead>
                             <tr>
                                 <th>Opciones</th>
-                                <th>P Nom</th>
-                                <th>S Nom</th>
-                                <th>P Ape</th>
-                                <th>S Ape</th>
+                                <th>Primer Nombre</th>
+                                <th>Segundo Nombre</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
                                 <th>DUI</th>
                                 <th>NIT</th>
                                 <th>Pasaporte</th>
@@ -214,7 +214,7 @@
         data(){
             return{
 
-                persona_id : 0,               
+                idpersona : 0,               
                 pnombre : '',                
                 snombre : '',                
                 papellido : '',                
@@ -227,12 +227,13 @@
                 telefono : '',                
                 movil : '',  
                 //variables para cliente
-                cliente_id : 0,
+                idcliente : 0,
                 estadocivil : '',                
                 genero : '',                
                 nomcontacto : '',                
                 numfrecuente : '',
                 //variables para usuario
+                idusuario : 0,
                 idrol: 0,
                 nomusuario:'',
                 password:'',
@@ -252,7 +253,7 @@
                     'to': 0,
                 },
                 offset : 3,
-                criterio : 'nomtipocosto', 
+                criterio : 'pnombre', 
                 buscar : '',
                 arrayRol : []   //almacena el listado de los roles 
 
@@ -372,20 +373,42 @@
 
             actualizarCliente()
            {
-               if (this.validarCosto())   
+               if (this.validarCliente())   
                 {                              
                     return;
                 }
 
                 let me=this;
-                axios.put('/costos/actualizar', {
-                    'idtipocosto': this.idtipocosto,
-                    'cantidad': this.cantidad,
-                    'descripcion': this.descripcion, 
-                    'id': this.costo_id    
+                axios.put('/cliente/actualizar', {
+
+                    'pnombre': this.pnombre,
+                    'snombre': this.snombre,
+                    'papellido': this.papellido,
+                    'sapellido': this.sapellido,
+                    'dui': this.dui,
+                    'nit': this.nit,
+                    'pasaporte': this.pasaporte,
+                    'fechanaci': this.fechanaci,
+                    'direccion': this.direccion,
+                    'telefono': this.telefono,
+                    'movil': this.movil,
+                    'idpersona': this.idpersona,
+                    
+                    'estadocivil': this.estadocivil,
+                    'genero': this.genero,
+                    'nomcontacto': this.nomcontacto,
+                    'numfrecuente': this.numfrecuente,
+                    'idcliente': this.idcliente,
+
+                    'nomusuario': this.nomusuario,
+                    'password': this.password,
+                    'email': this.email,
+                    'idrol': this.idrol,
+                    'idusuario': this.idusuario
+
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCostos(1,'','descripcion');
+                    me.listarCliente(1,'','pnombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -478,10 +501,18 @@
                 this.errorCliente=0;
                 this.errorMostrarMsjCliente=[];
 
-                if (this.idrol==0) this.errorMostrarMsjCliente.push("Seleccione un roll");
-                if (!this.pnombre) this.errorMostrarMsjCliente.push("El primer nombre no puede estar vacio");
+                //validaciones de usuario
+                if (this.idrol==0) this.errorMostrarMsjCliente.push("Seleccione un rol");
+                if (!this.email) this.errorMostrarMsjCliente.push("El campo email no puede estar vacio");
+                if (!this.password) this.errorMostrarMsjCliente.push("El campo password no puede estar vacio");
+                if (!this.nomusuario) this.errorMostrarMsjCliente.push("El campo usuario no puede estar vacio");
 
-            
+                //validaciones de persona
+                if (!this.pnombre) this.errorMostrarMsjCliente.push("El campo primer nombre no puede estar vacio");
+                if (!this.nit) this.errorMostrarMsjCliente.push("El campo nit no puede estar vacio");
+                if (!this.fechanaci) this.errorMostrarMsjCliente.push("El campo fecha de nacimiento/Fecha de Fundacion no puede estar vacio");
+                if (!this.telefono) this.errorMostrarMsjCliente.push("El campo telefono no puede estar vacio");
+                if (!this.movil) this.errorMostrarMsjCliente.push("El campo movil no puede estar vacio");
 
                 if (this.errorMostrarMsjCliente.length) this.errorCliente = 1;
 
@@ -541,10 +572,31 @@
                                this.modal = 1;
                                this.tituloModal = 'Actualizar Cliente';
                                this.tipoAccion = 2;
-                               this.costo_id = data['idcosto'];
-                               this.idtipocosto = data['idtipocosto'];
-                               this.cantidad = data['cantidad'];
-                               this.descripcion = data['descripcion'];
+                               
+                                this.idpersona = data['idpersona'];
+                                this.pnombre = data['pnombre'];
+                                this.snombre = data['snombre'];
+                                this.papellido = data['papellido'];
+                                this.sapellido = data['sapellido'];
+                                this.dui = data['dui'];
+                                this.nit = data['nit'];
+                                this.pasaporte = data['pasaporte'];
+                                this.fechanaci = data['fechanaci'];
+                                this.direccion = data['direccion'];
+                                this.telefono = data['telefono'];
+                                this.movil = data['movil'];
+
+                                this.idcliente = data['idcliente'];
+                                this.estadocivil = data['estadocivil'];
+                                this.genero = data['genero'];
+                                this.nomcontacto = data['nomcontacto'];
+                                this.numfrecuente = data['numfrecuente'];
+
+                                this.idusuario = data['idusuario'];
+                                this.nomusuario = data['nomusuario'];
+                                this.email = data['email'];
+                                this.idrol = data['idrol'];
+                               
                                break;
                            }    
                         }
