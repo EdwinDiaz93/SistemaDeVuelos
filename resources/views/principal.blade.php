@@ -27,10 +27,10 @@
             </button>
             <ul class="nav navbar-nav d-md-down-none">
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Escritorio</a>
+                    <a class="nav-link" href="#">Reservas</a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Configuraciones</a>
+                    <a class="nav-link" href="#">Vuelos</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
@@ -56,7 +56,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                        <span class="d-md-down-none">admin </span>
+                        <span class="d-md-down-none">usuario </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">
@@ -80,8 +80,8 @@
     
 
     <footer class="app-footer">
-        <span><a href="http://www.incanatoit.com/">IncanatoIT</a> &copy; 2017</span>
-        <span class="ml-auto">Desarrollado por <a href="http://www.incanatoit.com/">IncanatoIT</a></span>
+        <span><a href="{{ route('logout') }}">Sistema De Vuelos</a> &copy; 2021</span>
+        <span class="ml-auto"> <a href="http://127.0.0.1:8000/">Cerrar Sesión</a></span>
     </footer>
 
     <script src="js/app.js"></script>

@@ -10,10 +10,10 @@
               <div class="card-body">
               <h1>Acceder</h1>
               <p class="text-muted">Control de acceso al sistema</p>
-              <div class="form-group mb-3{{$errors->has('usuario' ? 'is-invalid' : '')}}">
+              <div class="form-group mb-3{{$errors->has('nomusuario' ? 'is-invalid' : '')}}">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" value="{{old('usuario')}}" name="usuario" id="usuario" class="form-control" placeholder="Usuario">
-                {!!$errors->first('usuario','<span class="invalid-feedback">:message</span>')!!}
+                <input type="text" value="{{old('nomusuario')}}" name="nomusuario" id="nomusuario" class="form-control" placeholder="Usuario">
+                {!!$errors->first('nomusuario','<span class="invalid-feedback">:message</span>')!!}
               </div>
               <div class="form-group mb-4{{$errors->has('password' ? 'is-invalid' : '')}}">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>

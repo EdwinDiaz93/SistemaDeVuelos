@@ -9,8 +9,8 @@
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Clientes
-                    <button type="button" @click="abrirModal('cliente', 'registrar')" class="btn btn-secondary">
+                    <i class="fa fa-align-justify"></i> Empleado
+                    <button type="button" @click="abrirModal('empleado', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
                 </div>
@@ -19,41 +19,66 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                <option value="nomtipocosto">Tipo de costo</option> 
-                                  <option value="descripcion">Descripción</option>
+                                     <option value="pnombre">Nombre</option>
+                                     <!-- <option value="snombre">Nombre</option>-->
+                                      <!-- <option value="sapellido">apellido</option> -->
+                                      <option value="fechanaci">fecha</option>
+                                       <option value="direccion">direccion</option>
+                                     <!-- <option value="telefono">telefono</option>-->
+                                       <option value="movil">movil</option>
                                 </select>
-                                <input type="text" v-model="buscar" @keyup.enter="listarCliente(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
-                                <button type="submit" @click="listarCliente(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <input type="text" v-model="buscar" @keyup.enter="listarEmpleado(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
+                                <button type="submit" @click="listarEmpleado(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                             </div>
                         </div>
                     </div>
                     <table class="table table-bordered table-striped table-sm">
                         <thead>
                             <tr>
-                                <th>Opciones</th>
-                                <th>P Nom</th>
-                                <th>S Nom</th>
-                                <th>P Ape</th>
-                                <th>S Ape</th>
-                                <th>DUI</th>
-                                <th>NIT</th>
-                                <th>Pasaporte</th>
+                                  <th>Opciones</th>
+                                    <th>1° Nombre</th>
+                                    <th>2° Nombre</th>
+                                    <th>1° Apellido</th>
+                                    <th>2° Apellido</th>
+                                     <th>Dui</th>
+                                    <th>Nit</th>
+                                    <th>pasaporte</th>
+                                    <th>fecha</th>
+                                    <th>Direccion</th>
+                                    <th>Telefono</th>
+                                    <th>Movil</th>
+                                    <th>Puesto</th>
+                                    <th>Salario</th>
+                                    <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="cliente in arrayCliente" :key="cliente.idcliente">
+                            <tr v-for="empleado in arrayEmpleado" :key="empleado.idempleado">
                                 <td>
-                                    <button type="button" @click="abrirModal('cliente', 'actualizar', cliente)" class="btn btn-warning btn-sm">
+                                    <button type="button" @click="abrirModal('empleado', 'actualizar', empleado)" class="btn btn-warning btn-sm">
                                       <i class="icon-pencil"></i>
                                     </button> &nbsp;
                                 </td>
-                                <td v-text="cliente.pnombre"></td>
-                                <td v-text="cliente.snombre"></td> 
-                                <td v-text="cliente.papellido"></td> 
-                                <td v-text="cliente.sapellido"></td> 
-                                <td v-text="cliente.dui"></td> 
-                                <td v-text="cliente.nit"></td> 
-                                <td v-text="cliente.pasaporte"></td>         
+                                <td v-text="empleado.pnombre"></td>
+                                <td v-text="empleado.snombre"></td> 
+                                <td v-text="empleado.papellido"></td> 
+                                <td v-text="empleado.sapellido"></td> 
+                                <td v-text="empleado.dui"></td> 
+                                <td v-text="empleado.nit"></td> 
+                                <td v-text="empleado.pasaporte"></td> 
+                                <td v-text="empleado.fechanaci"></td> 
+                                <td v-text="empleado.direccion"></td> 
+                                <td v-text="empleado.telefono"></td> 
+                                <td v-text="empleado.movil"></td>  
+                                <td v-text="empleado.puesto"></td> 
+                                <td v-text="empleado.salario"></td> 
+                               <td><div v-if="empleado.condicion == '1'">
+                                        <span class="badge badge-success">Activo</span>
+                                    </div>
+                                    <div v-else>
+                                        <span class="badge badge-danger">Desactivo</span>
+                                    </div>  
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -111,9 +136,9 @@
                                 <div class="col-md-4">
                                     <input type="text" v-model="papellido" class="form-control"  placeholder="1er Apellido persona">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Estado Civil</label>
+                                <label class="col-md-2 form-control-label" for="text-input">Puesto</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="estadocivil" class="form-control" placeholder="Estado civil persona">
+                                    <input type="text" v-model="puesto" class="form-control" placeholder="Puesto">
                                 </div>
                             </div>                           
                             <div class="form-group row">
@@ -121,9 +146,9 @@
                                 <div class="col-md-4">
                                     <input type="text" v-model="sapellido" class="form-control" placeholder="2do Apellido persona">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Genero</label>
+                                <label class="col-md-2 form-control-label" for="text-input">Salario</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="genero" class="form-control" placeholder="Genero de la persona">
+                                    <input type="number" v-model="salario" class="form-control" placeholder="Salario">
                                 </div>
                             </div>     
                             <div class="form-group row">
@@ -131,21 +156,11 @@
                                 <div class="col-md-4">
                                     <input type="text" v-model="dui" class="form-control" placeholder="DUI persona">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Nombre Contacto</label>
-                                <div class="col-md-4">
-                                    <input type="text" v-model="nomcontacto" class="form-control" placeholder="Nombre contacto empresas">
-                                </div>
-                            </div>    
-                            <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">NIT</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="nit" class="form-control" placeholder="NIT persona/empresa">
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">No. Cliente Frecuente</label>
-                                <div class="col-md-4">
-                                    <input type="text" v-model="numfrecuente" class="form-control" placeholder="No. frecuente persona/empresa">
-                                </div>
-                            </div>  
+                            </div>     
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Pasaporte</label>
                                 <div class="col-md-4">
@@ -185,9 +200,9 @@
                                     <input type="text" v-model="email" class="form-control" placeholder="email persona/empresa">
                                 </div>
                             </div>                     
-                            <div v-show="errorCliente" class="form-group row div-error">
+                            <div v-show="errorEmpleado" class="form-group row div-error">
                                 <div class="text-center text-error">
-                                    <div v-for="error in errorMostrarMsjCliente" :key=error v-text="error">
+                                    <div v-for="error in errorMostrarMsjEmpleado" :key=error v-text="error">
                                     </div>
                                 </div>        
                             </div>
@@ -195,8 +210,8 @@
                     </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal">Cerrar</button>
-                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarCliente">Guardar</button>
-                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarCliente">Actualizar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarEmpleado">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarEmpleado">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -227,22 +242,20 @@
                 telefono : '',                
                 movil : '',  
                 //variables para cliente
-                cliente_id : 0,
-                estadocivil : '',                
-                genero : '',                
-                nomcontacto : '',                
-                numfrecuente : '',
+                empleado_id : 0,
+                puesto : '',                
+                salario : '',                
                 //variables para usuario
                 idrol: 0,
                 nomusuario:'',
                 password:'',
                 email:'',
-                arrayCliente : [],
+                arrayEmpleado : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
-                errorCliente : 0,
-                errorMostrarMsjCliente: [],
+                errorEmpleado : 0,
+                errorMostrarMsjEmpleado: [],
                 pagination : {
                     'total': 0,
                     'current_page': 0,
@@ -252,7 +265,7 @@
                     'to': 0,
                 },
                 offset : 3,
-                criterio : 'nomtipocosto', 
+                criterio : 'pnombre', 
                 buscar : '',
                 arrayRol : []   //almacena el listado de los roles 
 
@@ -290,12 +303,12 @@
         },
 
         methods: {
-            listarCliente(page,buscar,criterio){
+            listarEmpleado(page,buscar,criterio){
                 let me=this;
-                var url = '/cliente?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
+                var url = '/empleado?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio; 
                 axios.get(url).then(function (response) {
                     var respuesta = response.data;
-                    me.arrayCliente = respuesta.clientes.data;
+                    me.arrayEmpleado = respuesta.empleados.data;
                     me.pagination = respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -325,18 +338,18 @@
                 //actualizar pagina actual 
                 me.pagination.current_page = page;
                 //enviar peticion para visualizar la data  de esa pagina
-                me.listarCliente(page,buscar,criterio); 
+                me.listarEmpleado(page,buscar,criterio); 
             },
 
-           registrarCliente()
+           registrarEmpleado()
            {
-                if (this.validarCliente())   //evalua si el metodo validar categoria retorna 1
+                if (this.validarEmpleado())   //evalua si el metodo validar categoria retorna 1
                 {                              // y no realiza nada
                     return;
                 }
                 // en caso que validar cliente retorne diferente de 1 realizar lo siguiente
                 let me=this;
-                axios.post('/cliente/registrar', {
+                axios.post('/empleado/registrar', {
 
                     'pnombre': this.pnombre,
                     'snombre': this.snombre,
@@ -350,11 +363,9 @@
                     'telefono': this.telefono,
                     'movil': this.movil,
 
-                    'puesto': this.estadocivil,
-                    'salario': this.genero,
-                    'nomcontacto': this.nomcontacto,
-                    'numfrecuente': this.numfrecuente,
-
+                    'puesto': this.puesto,
+                    'salario': this.salario,
+                   
                     'nomusuario': this.nomusuario,
                     'password': this.password,
                     'email': this.email,
@@ -363,35 +374,42 @@
 
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCliente(1,'','estadocivil');
+                    me.listarEmpleado(1,'','pnombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
 
            },
 
-            actualizarCliente()
+            actualizarEmpleado()
            {
-               if (this.validarCosto())   
+               if (this.validarEmpleado())   
                 {                              
                     return;
                 }
 
                 let me=this;
-                axios.put('/costos/actualizar', {
-                    'idtipocosto': this.idtipocosto,
-                    'cantidad': this.cantidad,
-                    'descripcion': this.descripcion, 
-                    'id': this.costo_id    
+                axios.put('/empleado/actualizar', {
+                     'pnombre': this.pnombre,
+                    'snombre': this.snombre,
+                    'papellido': this.papellido,
+                    'sapellido': this.sapellido,
+                    'fechanaci': this.fechanaci,
+                    'direccion': this.direccion,
+                    'telefono': this.telefono,
+                    'movil': this.movil,
+                    'puesto': this.puesto,
+                    'salario': this.salario, 
+                    'idpersona': this.persona_id    
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCostos(1,'','descripcion');
+                    me.listarEmpleado(1,'','pnombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
            },
 
-            desactivarCosto(id)
+            desactivarEmpleado(id)
             {
 
                 swal({
@@ -410,10 +428,10 @@
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/costos/desactivar', {
+                    axios.put('/empleado/desactivar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarCostos(1,'','descripcion');
+                        me.listarEmpleado(1,'','pnombre');
                         swal(
                             'Desactivado!',
                             'El registro ha sido desactivado con exito.',
@@ -432,7 +450,7 @@
                 })
             },
 
-            activarCosto(id)
+            activarEmpleado(id)
             {
 
                 swal({
@@ -451,10 +469,10 @@
                 if (result.value) {
                     
                     let me=this;
-                    axios.put('/costos/activar', {
+                    axios.put('/empleado/activar', {
                         'id': id    
                     }).then(function (response) {
-                        me.listarCostos(1,'','descripcion');
+                        me.listarEmpleado(1,'','pnombre');
                         swal(
                             'Activado!',
                             'El registro ha sido activado con exito.',
@@ -473,37 +491,45 @@
                 })
             },
 
-            validarCliente()
+            validarEmpleado()
             {
-                this.errorCliente=0;
-                this.errorMostrarMsjCliente=[];
+                this.errorEmpelado=0;
+                this.errorMostrarMsjEmpleado=[];
 
-                if (this.idrol==0) this.errorMostrarMsjCliente.push("Seleccione un roll");
-                if (!this.pnombre) this.errorMostrarMsjCliente.push("El primer nombre no puede estar vacio");
+                if (this.idrol==0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
+                if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El primer nombre no puede estar vacio");
 
             
 
-                if (this.errorMostrarMsjCliente.length) this.errorCliente = 1;
+                if (this.errorMostrarMsjEmpleado.length) this.errorEmpleado = 1;
 
-                return this.errorCliente;
+                return this.errorEmpleado;
             },
 
            cerrarModal()
            {
               this.modal = 0;
-              this.tituloModal = '';
-              this.idtipocosto= 0;
-              this.nombre_tipocosto = '';
-              this.cantidad = 0;
-              this.descripcion='';
-              this.errorCosto = 0;
+                                this.tituloModal = '';
+                                this.pnombre = '';
+                                this.snombre = '';
+                                this.papellido = '';
+                                this.sapellido = '';
+                                this.dui = '';
+                                this.nit = '';
+                                this.pasaporte = '';
+                                this.fechanaci = '';
+                                this.direccion = '';
+                                this.telefono = '';
+                                this.movil = '';
+                                this.errorEmpleado=0;
+                                
            },
 
            abrirModal(modelo, accion, data = [])
            {
                switch(modelo)
                {
-                   case "cliente":
+                   case "empleado":
                    {
                        switch(accion)
                        {
@@ -524,10 +550,8 @@
                                 this.telefono = '';
                                 this.movil = '';
 
-                                this.estadocivil = '';
-                                this.genero = '';
-                                this.nomcontacto = '';
-                                this.numfrecuente = '';
+                                this.puesto = '';
+                                this.salario= '';
 
                                 this.nomusuario = '';
                                 this.cantidad = '';
@@ -538,13 +562,23 @@
                            } 
                            case 'actualizar':
                            {
-                               this.modal = 1;
-                               this.tituloModal = 'Actualizar Cliente';
-                               this.tipoAccion = 2;
-                               this.costo_id = data['idcosto'];
-                               this.idtipocosto = data['idtipocosto'];
-                               this.cantidad = data['cantidad'];
-                               this.descripcion = data['descripcion'];
+                               this.modal=1;
+                                this.tituloModal='Actualizar Empleado';
+                                this.tipoAccion=2;
+                                this.persona_id = data['idpersona'];
+                               this.pnombre = data['pnombre'];
+                               this.snombre = data['snombre'];
+                                this.papellido = data['papellido'];
+                               this.sapellido = data['sapellido'];
+                               this.dui = data['dui'];
+                               this.nit = data['nit'];
+                               this.pasaporte = data['pasaporte'];
+                                this.fechanaci = data['fechanaci'];
+                               this.direccion = data['direccion'];
+                                this.telefono = data['telefono'];
+                               this.movil = data['movil'];
+                                this.puesto = data['puesto'];
+                               this.salario = data['salario'];
                                break;
                            }    
                         }
@@ -554,7 +588,7 @@
            }
         },
         mounted() {
-            this.listarCliente(1,this.buscar,this.criterio);
+            this.listarEmpleado(1,this.buscar,this.criterio);
         }
     }
 </script>

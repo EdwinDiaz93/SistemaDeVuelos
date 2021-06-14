@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCiudadTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateCiudadTable extends Migration
      */
     public function up()
     {
-        Schema::create('ciudad', function (Blueprint $table) {
-            $table->bigIncrements('idciudad');
-            $table->integer('pais_id');
-            $table->String('nomciudad',25);
-            $table->boolean('estado')->default(1);
+        Schema::create('pagos', function (Blueprint $table) {
+            $table->bigIncrements("idpago");
+            $table->string("numerotarjeta");
+            $table->string("codigoseguridad");
+            $table->date("fechavencimiento");
             $table->timestamps();
-
-            $table->foreign('pais_id')->references('idpais')->on('pais');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateCiudadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ciudad');
+        Schema::dropIfExists('pagos');
     }
 }

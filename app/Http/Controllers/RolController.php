@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Rol;
+use Illuminate\Support\Facades\DB;
+
 
 class RolController extends Controller
 {
@@ -48,10 +49,12 @@ class RolController extends Controller
     {
         if(!$request->ajax()) return redirect('/main');
         $rol = new Rol();
+        //$rol = Rol::select( "call ps_inser_rol('?','?')");
         $rol->nomrol = $request->nombre;
         $rol->descripcion = $request->descripcion;
         $rol->estado = '1';
         $rol->save();
+       
     }
 
     public function update(Request $request)

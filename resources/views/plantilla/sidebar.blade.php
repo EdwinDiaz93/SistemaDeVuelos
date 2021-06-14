@@ -20,6 +20,9 @@
                     <li @click="menu=17" class="nav-item">                        
                         <a class="nav-link" href="#"><i class="icon-bag"></i> Registrar vuelo</a>
                     </li>
+                    <li @click="menu=14" class="nav-item">                        
+                        <a class="nav-link" href="#"><i class="icon-bag"></i> Reserva</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-dropdown">
@@ -87,6 +90,15 @@
                 <ul class="nav-dropdown-items">
                     <li @click="menu=20" class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-plane"></i> Listado de clietes</a>
+                    </li>   
+                </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Empleados </a>
+                <ul class="nav-dropdown-items">
+                    <li @click="menu=21" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-plane"></i> Listado de Empleados</a>
                     </li>   
                 </ul>
             </li>

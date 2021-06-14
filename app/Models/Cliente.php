@@ -21,4 +21,8 @@ class Cliente extends Model
 
         return $this->belongsTo(Persona::class);
     }
+
+    public function reserva(){
+        return $this->belongsTo(Reserva::class);
+    }
 }
