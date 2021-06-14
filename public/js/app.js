@@ -71704,15 +71704,9 @@ Vue.component("aeropuerto", __webpack_require__(/*! ./components/Aeropuerto.vue 
 Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
 Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
 Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
-<<<<<<< HEAD
-Vue.component("cliente", __webpack_require__(/*! ./components/Cliente.vue */ "./resources/assets/js/components/Cliente.vue").default);
-Vue.component("precio", __webpack_require__(/*! ./components/Precio.vue */ "./resources/assets/js/components/Precio.vue").default);
-Vue.component("vuelo", __webpack_require__(/*! ./components/Vuelo.vue */ "./resources/assets/js/components/Vuelo.vue").default);
-=======
 Vue.component('empleado', __webpack_require__(/*! ./components/Empleado.vue */ "./resources/assets/js/components/Empleado.vue").default);
 Vue.component('user', __webpack_require__(/*! ./components/User.vue */ "./resources/assets/js/components/User.vue").default);
 Vue.component("reserva", __webpack_require__(/*! ./components/Reserva.vue */ "./resources/assets/js/components/Reserva.vue").default);
->>>>>>> e91bc19c32e2f8869494c0d0dcfbb1a043f7e245
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
