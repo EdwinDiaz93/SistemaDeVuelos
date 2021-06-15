@@ -21,11 +21,11 @@ class EmpleadoController extends Controller
             $empleados = Empleado::join('personas','personas.idpersona','=','empleados.idpersona')
             ->join('users','users.idpersona','=','personas.idpersona')
             ->join('rol','rol.idrol','=','users.idrol')
-            ->select('personas.pnombre','personas.snombre','personas.papellido','personas.sapellido','personas.dui','personas.nit',
+            ->select('personas.idpersona','personas.pnombre','personas.snombre','personas.papellido','personas.sapellido','personas.dui','personas.nit',
                      'personas.pasaporte','personas.fechanaci','personas.direccion', 'personas.telefono', 'personas.movil',
-                     'empleados.puesto','empleados.salario','empleados.condicion', 
-                     'rol.nomrol as nombre_rol',
-                     'users.nomusuario', 'users.password', 'users.email', 'users.estado')
+                     'empleados.idempleado','empleados.puesto','empleados.salario',
+                     'rol.idrol','rol.nomrol as nombre_rol',
+                     'users.idusuario','users.nomusuario', 'users.password', 'users.email', 'users.estado')
             ->orderBy('personas.idpersona', 'desc')->paginate(3);
         }
         
@@ -34,14 +34,15 @@ class EmpleadoController extends Controller
             $empleados = Empleado::join('personas','personas.idpersona','=','empleados.idpersona')
             ->join('users','users.idpersona','=','personas.idpersona')
             ->join('rol','rol.idrol','=','users.idrol')
-            ->select('personas.pnombre','personas.snombre','personas.papellido','personas.sapellido','personas.dui','personas.nit',
+            ->select('personas.idpersona','personas.pnombre','personas.snombre','personas.papellido','personas.sapellido','personas.dui','personas.nit',
                      'personas.pasaporte','personas.fechanaci','personas.direccion', 'personas.telefono', 'personas.movil',
-                     'empleados.puesto','empleados.salario','empleados.condicion', 
-                     'rol.nomrol as nombre_rol',
-                     'users.nomusuario', 'users.password', 'users.email', 'users.estado')
+                     'empleados.idempleado','empleados.puesto','empleados.salario',
+                     'rol.idrol','rol.nomrol as nombre_rol',
+                     'users.idusuario','users.nomusuario', 'users.password', 'users.email', 'users.estado')
             ->where('personas.'.$criterio, 'like', '%'. $buscar . '%' )
             ->orderBy('personas.idpersona', 'desc')->paginate(3);
         }
+        
         
         return [
 
@@ -63,6 +64,7 @@ class EmpleadoController extends Controller
         if(!$request->ajax()) return redirect('/main');
         try
         {
+            DB::beginTransaction();
             $persona = new Persona();
             $persona->pnombre = $request->pnombre;
             $persona->snombre = $request->snombre;
@@ -81,7 +83,6 @@ class EmpleadoController extends Controller
             $empleado->idpersona = $persona->idpersona;
             $empleado->puesto = $request->puesto;
             $empleado->salario = $request->salario;
-            $empleado->condicion = '1';
             $empleado->save();
 
             $user = new User();
@@ -109,10 +110,10 @@ class EmpleadoController extends Controller
         try{
             DB::beginTransaction();
 
-            //Buscar primero el empleado a modificar
+            
+            $persona = Persona::findOrFail($request->idpersona);
             $empleado = Empleado::findOrFail($request->idempleado);
-
-            $persona = Persona::findOrFail($proveedor->idpersona);
+            $user = User::findOrFail($request->idusuario);
 
             $persona->pnombre = $request->pnombre;
             $persona->snombre = $request->snombre;
@@ -128,13 +129,12 @@ class EmpleadoController extends Controller
             $persona->save();
 
             
-            $empleado->idpersona = $persona->idpersona;
+            $empleado->idpersona = $request->idpersona;
             $empleado->puesto = $request->puesto;
             $empleado->salario = $request->salario;
-            $empleado->condicion = '1';
             $empleado->save();
            
-            $user->idpersona = $persona->idpersona;
+            $user->idpersona = $request->idpersona;
             $user->nomusuario = $request->nomusuario;
             $user->password = bcrypt($request->password);
             $user->email = $request->email;
@@ -150,20 +150,6 @@ class EmpleadoController extends Controller
 
     }
 
-    public function desactivar(Request $request)
-    {
-        if(!$request->ajax()) return redirect('/main');
-        $empleado = Empleado::findOrFail($request->idempleado);
-        $empleado->estado = '0';
-        $empleado->save();
-    }
-
-    public function activar(Request $request)
-    {
-        if(!$request->ajax()) return redirect('/main');
-        $empleado = Empleado::findOrFail($request->idempleado);
-        $empleado->estado = '1';
-        $empleado->save();
-    }
+    
 
 }

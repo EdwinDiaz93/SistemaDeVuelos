@@ -17,7 +17,7 @@ class Cliente extends Model
         'nomcontacto',
         'numfrecuente'];
 
-    public function tipoCosto(){
+    public function persona(){
 
         return $this->belongsTo(Persona::class);
     }

@@ -351,8 +351,8 @@
                     'telefono': this.telefono,
                     'movil': this.movil,
 
-                    'puesto': this.estadocivil,
-                    'salario': this.genero,
+                    'estadocivil': this.estadocivil,
+                    'genero': this.genero,
                     'nomcontacto': this.nomcontacto,
                     'numfrecuente': this.numfrecuente,
 
@@ -364,7 +364,7 @@
 
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarCliente(1,'','estadocivil');
+                    me.listarCliente(1,'','pnombre');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -561,7 +561,7 @@
                                 this.numfrecuente = '';
 
                                 this.nomusuario = '';
-                                this.cantidad = '';
+                                this.password = '';
                                 this.email = '';
                                 this.idrol = '';
                                 this.tipoAccion = 1;

@@ -12,8 +12,9 @@ class Empleado extends Model
     protected $fillable =[
         'idpersona',
         'puesto',
-        'salario',
-        'condicion'];
+        'salario'];
+
+    public $timestamps = false;
 
     public function persona(){
 
