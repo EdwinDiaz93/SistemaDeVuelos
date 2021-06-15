@@ -13,44 +13,46 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        //if (!$request->ajax()) return redirect('/');
-
+        //if(!$request->ajax()) return redirect('/main');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
-        
-        if ($buscar==''){
-            $personas = User::join('personas','users.idpersona','=','personas.idpersona')
-            ->join('rol','users.idrol','=','rol.idrol')
-            ->select('personas.idpersona','personas.pnombre','personas.snombre',
-            'personas.papellido','personas.sapellido','personas.dui','personas.nit',
-            'personas.pasaporte','personas.fechanaci','personas.direccion',
-            'personas.telefono','personas.movil','users.nomusuario','users.email','users.password',
-            'users.estado','users.idrol','rol.nomrol as rol')
-            ->orderBy('personas.idpersona', 'desc')->paginate(3);
+
+        if($buscar==''){
+            $usuarios = User::join('rol','rol.idrol','=','users.idrol')
+            ->select('rol.idrol','rol.nomrol as nombre_rol',
+                     'users.idusuario','users.idpersona','users.nomusuario', 'users.password', 'users.email', 'users.estado')
+            ->orderBy('users.idusuario', 'desc')->paginate(3);
         }
-        else{
-            $personas = User::join('personas','users.idpersona','=','personas.idpersona')
-            ->join('rol','users.idrol','=','rol.idrol')
-            ->select('personas.idpersona','personas.pnombre','personas.snombre',
-            'personas.papellido','personas.sapellido','personas.dui','personas.nit',
-            'personas.pasaporte','personas.fechanaci','personas.direccion',
-            'personas.telefono','personas.movil','users.nomusuario','users.email','users.password',
-            'users.estado','users.idrol','rol.nomrol as rol')          
-            ->where('persona.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('persona.idpersona', 'desc')->paginate(3);
+
+        elseif($criterio=='nomrol'){
+            $usuarios = User::join('rol','rol.idrol','=','users.idrol')
+            ->select('rol.idrol','rol.nomrol as nombre_rol',
+                     'users.idusuario', 'users.idpersona','users.nomusuario', 'users.password', 'users.email', 'users.estado')
+            ->where('rol.'.$criterio, 'like', '%'. $buscar . '%' )
+            ->orderBy('rol.idrol', 'desc')->paginate(3);
         }
         
 
+        else{
+            $usuarios = User::join('rol','rol.idrol','=','users.idrol')
+            ->select('rol.idrol','rol.nomrol as nombre_rol',
+                     'users.idusuario', 'users.idpersona','users.nomusuario', 'users.password', 'users.email', 'users.estado')
+            ->where('users.'.$criterio, 'like', '%'. $buscar . '%' )
+            ->orderBy('users.idusuario', 'desc')->paginate(3);
+        }
+        
         return [
+
             'pagination' => [
-                'total'        => $personas->total(),
-                'current_page' => $personas->currentPage(),
-                'per_page'     => $personas->perPage(),
-                'last_page'    => $personas->lastPage(),
-                'from'         => $personas->firstItem(),
-                'to'           => $personas->lastItem(),
+
+                'total'        =>  $usuarios->total(),
+                'current_page' =>  $usuarios->currentPage(),
+                'per_page'     =>  $usuarios->perPage(),
+                'last_page'    =>  $usuarios->lastPage(),
+                'from'         =>  $usuarios->firstItem(),
+                'to'           =>  $usuarios->lastItem(),
             ],
-            'personas' => $personas
+            'usuarios' => $usuarios 
         ];
     }
 
@@ -66,11 +68,25 @@ class UserController extends Controller
         return view('contenido/contenido', ['rol'=>$rol[0]->nomrol]);
     }*/
 
+    public function update(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/main');
+    
+            $user = User::findOrFail($request->idusuario);
+            
+            $user->idpersona = $request->idpersona;
+            $user->nomusuario = $request->nomusuario;
+            $user->password = bcrypt($request->password);
+            $user->email = $request->email;
+            $user->estado = '1';
+            $user->idrol = $request->idrol;
+            $user->save();
+    }
    
     public function desactivar(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $user = User::findOrFail($request->idpersona);
+        $user = User::findOrFail($request->id);
         $user->estado = '0';
         $user->save();
     }
@@ -78,7 +94,7 @@ class UserController extends Controller
     public function activar(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $user = User::findOrFail($request->idpersona);
+        $user = User::findOrFail($request->id);
         $user->estado = '1';
         $user->save();
     }
