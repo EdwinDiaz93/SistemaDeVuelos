@@ -33,7 +33,7 @@
               <div>
                 <h2>Sistema de Vuelos</h2>
                 <p>Sistema de reserva de vuelos desarrollado por el Grupo 16.</p>
-                <a href="http://127.0.0.1:8000/main" target="_blank" class="btn btn-primary active mt-3">Ir sin Login</a>
+                <img src="img/avion1.png" class="img-fluid" alt=" ">
               </div>
             </div>
           </div>
