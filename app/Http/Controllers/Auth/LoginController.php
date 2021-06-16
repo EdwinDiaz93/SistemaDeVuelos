@@ -10,10 +10,12 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rol;
-use App\Models\Users;
+use App\Models\User;
 
 class LoginController extends Controller
 {
+  //protected $redirectTo = RouteServiceProvider::HOME;
+
   public function showLoginForm(){
       return view('auth.login');
   }
@@ -43,5 +45,6 @@ class LoginController extends Controller
     return redirect()->route('login');
 
 }
+
 
 }

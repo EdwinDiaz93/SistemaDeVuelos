@@ -4,8 +4,9 @@
             <li class="nav-title">
                 Mantenimiento
             </li>
-    
-
+           
+           
+                    
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i> Vuelos</a>
                 <ul class="nav-dropdown-items">
@@ -96,6 +97,8 @@
                 </ul>
             </li>
 
+           
+
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Empleados </a>
                 <ul class="nav-dropdown-items">
@@ -109,3 +112,5 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
+
+

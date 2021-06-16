@@ -13,7 +13,7 @@ class EmpleadoController extends Controller
     //
     public function index(Request $request)
     {
-       // if(!$request->ajax()) return redirect('/main');
+        //if(!$request->ajax()) return redirect('/main');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
 
@@ -144,7 +144,8 @@ class EmpleadoController extends Controller
 
             DB::commit();
 
-        } catch (Exception $e){
+        } 
+        catch (Exception $e){
             DB::rollBack();
         }
 

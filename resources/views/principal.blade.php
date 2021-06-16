@@ -70,9 +70,20 @@
         </header>
 
         <div class="app-body">
+
+          @if(Auth::check())
+                @if(Auth::user()->idrol == 1)
+                    @include('plantilla.sidebaradministrador')
+                @elseif(Auth::user()->idrol == 2)
+                    @include('plantilla.sidebarempleado')
+                @else
+
+                @endif  
+
+            @endif 
             
-            @include('plantilla.sidebar')
-            <!-- Contenido Principal -->
+          
+            <!-- Contenido Principal   @include('plantilla.sidebar')-->
             @yield('contenido')
             <!-- /Fin del contenido principal -->
         </div>
