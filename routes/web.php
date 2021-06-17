@@ -151,12 +151,16 @@ Route::middleware(['empleado'])->group(function () {
     Route::put('/empleado/actualizar', 'App\Http\Controllers\EmpleadoController@update');
     Route::put('/empleado/desactivar', 'App\Http\Controllers\EmpleadoController@desactivar');
     Route::put('/empleado/activar', 'App\Http\Controllers\EmpladoController@activar');
+
+    Route::get('/cliente', 'App\Http\Controllers\ClienteController@index');
+    Route::post('/cliente/registrar', 'App\Http\Controllers\ClienteController@store');
+    Route::put('/cliente/actualizar', 'App\Http\Controllers\ClienteController@update');
 });
 
 });
 
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
-
+Route::post('login','App\Http\Controllers\Auth\LoginController@login')->name('login');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

@@ -118,7 +118,7 @@
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Telefono Fijo</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="telefono" class="form-control" placeholder="Telefono persona/empresa" >
+                                    <input type="number" v-model="telefono" class="form-control" pattern="[0-9]{8}" placeholder="Telefono persona/empresa" >
                                 </div>
                             </div>                            
                             <div class="form-group row">
@@ -128,7 +128,7 @@
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Movil</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="movil" class="form-control" placeholder="Movil persona" >
+                                    <input type="number" v-model="movil" class="form-control" pattern="[0-9]{8}" placeholder="Movil persona" >
                                 </div>
                             </div>                            
                             <div class="form-group row">
@@ -154,17 +154,17 @@
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">DUI</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="dui" class="form-control" placeholder="DUI persona">
+                                    <input type="number" v-model="dui" class="form-control" pattern="[0-9]{9}" placeholder="DUI persona">
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">NIT</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="nit" class="form-control" placeholder="NIT persona/empresa">
+                                    <input type="number" v-model="nit" class="form-control" pattern="[0-9]{14}" placeholder="NIT persona/empresa">
                                 </div>
                             </div>     
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Pasaporte</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="pasaporte" class="form-control" placeholder="No. Pasaporte persona">
+                                    <input type="text" v-model="pasaporte" class="form-control" pattern="[0-9]{10}" placeholder="No. Pasaporte persona">
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Usuario</label>
                                 <div class="col-md-4">
@@ -197,7 +197,7 @@
                              <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Email</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="email" class="form-control" placeholder="email persona/empresa">
+                                    <input type="email" v-model="email" class="form-control" placeholder="email persona/empresa">
                                 </div>
                             </div>                     
                             <div v-show="errorEmpleado" class="form-group row div-error">
@@ -498,6 +498,10 @@
 
                 if (this.idrol==0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
                 if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El primer nombre no puede estar vacio");
+                 if (!this.papellido) this.errorMostrarMsjEmpleado.push("El primer apellido no puede estar vacio");
+                  if (!this.nit) this.errorMostrarMsjEmpleado.push("El  nit no puede estar vacio");
+                   if (!this.pasaporte) this.errorMostrarMsjEmpleado.push("El  pasaporte no puede estar vacio");
+                    if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("la fecha de nacimiento no puede estar vacia");
 
             
 

@@ -4993,6 +4993,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.errorMostrarMsjEmpleado = [];
       if (this.idrol == 0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
       if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El primer nombre no puede estar vacio");
+      if (!this.papellido) this.errorMostrarMsjEmpleado.push("El primer apellido no puede estar vacio");
+      if (!this.nit) this.errorMostrarMsjEmpleado.push("El  nit no puede estar vacio");
+      if (!this.pasaporte) this.errorMostrarMsjEmpleado.push("El  pasaporte no puede estar vacio");
+      if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("la fecha de nacimiento no puede estar vacia");
       if (this.errorMostrarMsjEmpleado.length) this.errorEmpleado = 1;
       return this.errorEmpleado;
     },
@@ -51441,7 +51445,8 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "number",
+                            pattern: "[0-9]{8}",
                             placeholder: "Telefono persona/empresa"
                           },
                           domProps: { value: _vm.telefono },
@@ -51514,7 +51519,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Movil persona" },
+                          attrs: {
+                            type: "number",
+                            pattern: "[0-9]{8}",
+                            placeholder: "Movil persona"
+                          },
                           domProps: { value: _vm.movil },
                           on: {
                             input: function($event) {
@@ -51691,7 +51700,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "DUI persona" },
+                          attrs: {
+                            type: "number",
+                            pattern: "[0-9]{9}",
+                            placeholder: "DUI persona"
+                          },
                           domProps: { value: _vm.dui },
                           on: {
                             input: function($event) {
@@ -51725,7 +51738,8 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "number",
+                            pattern: "[0-9]{14}",
                             placeholder: "NIT persona/empresa"
                           },
                           domProps: { value: _vm.nit },
@@ -51764,6 +51778,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
+                            pattern: "[0-9]{10}",
                             placeholder: "No. Pasaporte persona"
                           },
                           domProps: { value: _vm.pasaporte },
@@ -51999,7 +52014,7 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "email",
                             placeholder: "email persona/empresa"
                           },
                           domProps: { value: _vm.email },
