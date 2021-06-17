@@ -18,8 +18,8 @@ class ReservaController extends Controller
 
       if($buscar==''){
           $clientes = Cliente::orderBy('idcliente', 'desc')->paginate(3);
-          $vuelos=Vuelo::all();
-          $reservas=Reserva::where("estado","=","1")->orderBy('idreserva', 'desc')->paginate(3);
+          $vuelos=Vuelo::with("aerolinea","clasevuelo","aeropuertoida","aeropuertoreg","horarioida","horarioreg","precio")->get();
+          $reservas=Reserva::with("cliente","vuelo")->paginate(3);
       }
       else{          
           $reservas = Reserva::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idreserva', 'desc')->paginate(3);          
@@ -45,13 +45,11 @@ class ReservaController extends Controller
      
     public function store(Request $request)
     {
-        if(!$request->ajax()) return redirect('/main');
-        $cliente =  Cliente::find($request->cliente_id);;
-        $vuelo =  Vuelo::find($request->vuelo_id);
+        if(!$request->ajax()) return redirect('/main');           
         $reserva = new Reserva();        
         $reserva->estado = '0';
-        $reserva->cliente()->save($cliente);
-        $reserva->vuelo()->save($vuelo);        
+        $reserva->cliente_id=$request->cliente_id;
+        $reserva->vuelo_id=$request->vuelo_id;
         $reserva->save();
     }
 
@@ -62,13 +60,13 @@ class ReservaController extends Controller
         if(!$request->ajax()) return redirect('/main');
 
         $reserva = Reserva::findOrFail($request->idreserva);
-        $pago=Pago::create([
+        $reserva->pago()->create([
             'numerotarjeta'=>$request->numerotarjeta,
             'codigoseguridad'=>$request->codigoseguridad,
             'fechavencimiento'=>$request->fechavencimiento,
-        ]);
-        // $reserva->pago()->save($pago);
-        $pago->reserva()->associate($reserva)->save();
+        ]);        
+        $pago=Pago::latest()->first();
+       $reserva->pago_id=$pago->idpago;
         $reserva->estado = '1'; 
         
         $reserva->save();

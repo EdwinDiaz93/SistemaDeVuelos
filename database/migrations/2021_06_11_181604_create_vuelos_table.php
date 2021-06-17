@@ -17,10 +17,11 @@ class CreateVuelosTable extends Migration
             $table->bigIncrements('idvuelo');
             $table->String("aerolinea_cod");
             $table->integer('idprecio');
+            $table->integer('costo_id');
             $table->integer('idhorariosalida');
             $table->integer('idhorarioregreso');
-            $table->string('codaeropuertoida');
-            $table->string('codaeropuertoregreso');
+            $table->integer('idaeropuertoida');
+            $table->integer('idaeropuertoregreso');
             $table->integer('idclasevuelo');
             $table->integer('millasreales');
             $table->integer('millasotorgadas');
@@ -34,8 +35,9 @@ class CreateVuelosTable extends Migration
             $table->foreign('idprecio')->references('idprecio')->on('precios')->onDelete('cascade');
             $table->foreign('idhorariosalida')->references('idhorario')->on('horario')->onDelete('cascade');
             $table->foreign('idhorarioregreso')->references('idhorario')->on('horario')->onDelete('cascade');
-            $table->foreign('codaeropuertoida')->references('codaeropuerto')->on('aeropuerto')->onDelete('cascade');
-            $table->foreign('codaeropuertoregreso')->references('codaeropuerto')->on('aeropuerto')->onDelete('cascade');
+            $table->foreign('idaeropuertoida')->references('id')->on('aeropuerto')->onDelete('cascade');
+            $table->foreign('idaeropuertoregreso')->references('id')->on('aeropuerto')->onDelete('cascade');
+            $table->foreign('costo_id')->references('idcosto')->on('costos');
 
             $table->timestamps();
         });

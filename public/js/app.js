@@ -6298,7 +6298,7 @@ __webpack_require__.r(__webpack_exports__);
         var respuesta = response.data;
         console.log(respuesta);
         me.arrayReserva = respuesta.reservas.data;
-        me.arrayVuelo = respuesta.vuelos.data;
+        me.arrayVuelo = respuesta.vuelos;
         me.pagination = respuesta.pagination;
         me.arrayCliente = respuesta.clientes.data;
       })["catch"](function (error) {
@@ -8127,7 +8127,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
-      me.listarCostos(page, buscar, criterio);
+      me.listarUsuarios(page, buscar, criterio);
     },
     registrarUsuario: function registrarUsuario() {
       if (this.validarUsuario()) //evalua si el metodo validar categoria retorna 1
@@ -8531,8 +8531,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       idprecio: 0,
       idhorariosalida: 0,
       idhorarioregreso: 0,
-      codaeropuertoida: '',
-      codaeropuertoregreso: '',
+      idaeropuertoida: 0,
+      idaeropuertoregreso: 0,
       idclasevuelo: 0,
       millasreales: 0,
       millasotorgadas: 0,
@@ -8634,8 +8634,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idprecio": this.idprecio,
         "idhorariosalida": this.idhorariosalida,
         "idhorarioregreso": this.idhorarioregreso,
-        "codaeropuertoida": this.codaeropuertoida,
-        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idaeropuertoida": this.idaeropuertoida,
+        "idaeropuertoregreso": this.idaeropuertoregreso,
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
         "idclasevuelo": this.idclasevuelo,
@@ -8663,8 +8663,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idprecio": this.idprecio,
         "idhorariosalida": this.idhorariosalida,
         "idhorarioregreso": this.idhorarioregreso,
-        "codaeropuertoida": this.codaeropuertoida,
-        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idaeropuertoida": this.idaeropuertoida,
+        "idaeropuertoregreso": this.idaeropuertoregreso,
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
         "idclasevuelo": this.idclasevuelo,
@@ -8737,12 +8737,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.idhorariosalida) this.errorMostrarMsjVuelo.push("El horario de salida es obligatorio");
       if (!this.idhorarioregreso) this.errorMostrarMsjVuelo.push("El horario de regreso es obligatorio");
       if (this.idhorariosalida === this.idhorarioregreso) this.errorMostrarMsjVuelo.push("Los horarios no pueden ser los mismos");
-      if (!this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de ida es obligatorio");
-      if (!this.codaeropuertoregreso) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de llegada es obligatorio");
+      if (!this.idaeropuertoida) this.errorMostrarMsjVuelo.push("El  aeropuerto de ida es obligatorio");
+      if (!this.idaeropuertoregreso) this.errorMostrarMsjVuelo.push("El  aeropuerto de llegada es obligatorio");
       if (!this.idciudadorigen) this.errorMostrarMsjVuelo.push("La ciudad de origen es obligatoria");
       if (!this.idciudaddestino) this.errorMostrarMsjVuelo.push("La ciudad de destino es obligatoria");
       if (this.idciudaddestino === this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
-      if (this.codaeropuertoregreso === this.codaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
+      if (this.idaeropuertoregreso === this.idaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
       if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
       if (!this.millasreales || this.millasreales < 0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
       if (!this.millasotorgadas || this.millasotorgadas < 0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
@@ -8752,7 +8752,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
-      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -8766,7 +8766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.modal = 1;
                   this.tipoAccion = 1;
                   this.tituloModal = 'Registrar Vuelo';
-                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
                   break;
                 }
 
@@ -8780,8 +8780,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.idprecio = data['idprecio'];
                   this.idhorariosalida = data['idhorariosalida'];
                   this.idhorarioregreso = data['idhorarioregreso'];
-                  this.codaeropuertoida = data["codaeropuertoida"];
-                  this.codaeropuertoregreso = data["codaeropuertoregreso"];
+                  this.idaeropuertoida = data["idaeropuertoida"];
+                  this.idaeropuertoregreso = data["idaeropuertoregreso"];
                   this.idciudadorigen = data["idciudadorigen"], this.idciudaddestino = data["idciudaddestino"], this.idclasevuelo = data["idclasevuelo"];
                   this.millasreales = data['millasreales'];
                   this.millasotorgadas = data['millasotorgadas'];
@@ -53862,37 +53862,46 @@ var render = function() {
                     _c(
                       "td",
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-warning btn-sm",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.abrirModal(
-                                  "reserva",
-                                  "pagar",
-                                  reserva
-                                )
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "icon-dollar" })]
-                        ),
-                        _vm._v("  \n                                    "),
                         reserva.estado == "0"
-                          ? [_c("i", { staticClass: "icon-pencil" })]
-                          : [_c("i", { staticClass: "icon-check" })]
+                          ? [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success ",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.abrirModal(
+                                        "reserva",
+                                        "pagar",
+                                        reserva
+                                      )
+                                    }
+                                  }
+                                },
+                                [_c("span", [_vm._v("$$")])]
+                              ),
+                              _vm._v("  \n                                    ")
+                            ]
+                          : [
+                              _c("button", {
+                                staticClass: "btn btn-success icon-check"
+                              })
+                            ]
                       ],
                       2
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(reserva.cliente_id) }
+                      domProps: {
+                        textContent: _vm._s(reserva.cliente.nomcontacto)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(reserva.vuelo_id) }
+                      domProps: {
+                        textContent: _vm._s(reserva.vuelo.aerolinea_cod)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -54062,13 +54071,13 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "col-md-3 form-control-label",
+                                staticClass: "col-12 form-control-label",
                                 attrs: { for: "text-input" }
                               },
                               [_vm._v("Cliente")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
+                            _c("div", { staticClass: "col-12" }, [
                               _c(
                                 "select",
                                 {
@@ -54080,7 +54089,7 @@ var render = function() {
                                       expression: "cliente_id"
                                     }
                                   ],
-                                  staticClass: "form-control",
+                                  staticClass: "form-control ",
                                   on: {
                                     change: function($event) {
                                       var $$selectedVal = Array.prototype.filter
@@ -54126,13 +54135,13 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "col-md-3 form-control-label",
+                                staticClass: "col-12 form-control-label",
                                 attrs: { for: "text-input" }
                               },
-                              [_vm._v("Vuelo")]
+                              [_vm._v("Seleccione paquete de vuelo")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
+                            _c("div", { staticClass: "col-12" }, [
                               _c(
                                 "select",
                                 {
@@ -54168,17 +54177,36 @@ var render = function() {
                                   _c(
                                     "option",
                                     { attrs: { value: "0", disabled: "" } },
-                                    [_vm._v("Seleccione o agregue  vuelo")]
+                                    [
+                                      _vm._v(
+                                        "Fecha Ida/Fecha Reg/Aeropuerto ida/ Aeropuerto Reg"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _vm._l(_vm.arrayVuelo, function(vuelo) {
-                                    return _c("option", {
-                                      key: vuelo.idvuelo,
-                                      domProps: {
-                                        value: vuelo.idvuelo,
-                                        textContent: _vm._s(vuelo.aerolinea_cod)
-                                      }
-                                    })
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: vuelo.idvuelo,
+                                        domProps: { value: vuelo.idvuelo }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(vuelo.horarioida.fecha) +
+                                            "/" +
+                                            _vm._s(vuelo.horarioreg.fecha) +
+                                            "/" +
+                                            _vm._s(
+                                              vuelo.aeropuertoida.nomaeropuerto
+                                            ) +
+                                            "/" +
+                                            _vm._s(
+                                              vuelo.aeropuertoreg.nomaeropuerto
+                                            )
+                                        )
+                                      ]
+                                    )
                                   })
                                 ],
                                 2
@@ -54527,7 +54555,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Cliente")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vuelo")]),
+        _c("th", [_vm._v("Aerolinea")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])
@@ -57569,7 +57597,9 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(vuelo.aerolinea_cod) }
+                      domProps: {
+                        textContent: _vm._s(vuelo.aerolinea.nombreaerolinea)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", {
@@ -57582,12 +57612,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
-                        textContent: _vm._s(vuelo.codaeropuertoregreso)
+                        textContent: _vm._s(vuelo.aeropuertoreg.nomaeropuerto)
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(vuelo.codaeropuertoida) }
+                      domProps: {
+                        textContent: _vm._s(vuelo.aeropuertoida.nomaeropuerto)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -58161,8 +58193,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.codaeropuertoida,
-                                expression: "codaeropuertoida"
+                                value: _vm.idaeropuertoida,
+                                expression: "idaeropuertoida"
                               }
                             ],
                             staticClass: "form-control",
@@ -58176,7 +58208,7 @@ var render = function() {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.codaeropuertoida = $event.target.multiple
+                                _vm.idaeropuertoida = $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               }
@@ -58185,15 +58217,15 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "", disabled: "" } },
+                              { attrs: { value: "0", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un aeropuerto")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayAeropuertos, function(aeropuerto) {
                               return _c("option", {
-                                key: aeropuerto.codaeropuerto,
+                                key: aeropuerto.id,
                                 domProps: {
-                                  value: aeropuerto.codaeropuerto,
+                                  value: aeropuerto.id,
                                   textContent: _vm._s(aeropuerto.nomaeropuerto)
                                 }
                               })
@@ -58220,8 +58252,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.codaeropuertoregreso,
-                                expression: "codaeropuertoregreso"
+                                value: _vm.idaeropuertoregreso,
+                                expression: "idaeropuertoregreso"
                               }
                             ],
                             staticClass: "form-control",
@@ -58235,8 +58267,7 @@ var render = function() {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.codaeropuertoregreso = $event.target
-                                  .multiple
+                                _vm.idaeropuertoregreso = $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               }
@@ -58245,15 +58276,15 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "", disabled: "" } },
+                              { attrs: { value: "0", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un aeropuerto")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayAeropuertos, function(aeropuerto) {
                               return _c("option", {
-                                key: aeropuerto.codaeropuerto,
+                                key: aeropuerto.id,
                                 domProps: {
-                                  value: aeropuerto.codaeropuerto,
+                                  value: aeropuerto.id,
                                   textContent: _vm._s(aeropuerto.nomaeropuerto)
                                 }
                               })
@@ -58489,15 +58520,15 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Codigo Aerolinea")]),
+        _c("th", [_vm._v("Aerolinea")]),
         _vm._v(" "),
         _c("th", [_vm._v("Millas reales")]),
         _vm._v(" "),
         _c("th", [_vm._v("Millas otorgadas")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cod aeropuerto origen")]),
+        _c("th", [_vm._v("aeropuerto origen")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cod aeropuerto destino")]),
+        _c("th", [_vm._v("aeropuerto destino")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])

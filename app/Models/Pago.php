@@ -14,6 +14,6 @@ class Pago extends Model
         'fechavencimiento' => 'datetime:d-m-Y',    
      ];
     public function reserva(){
-        return $this->belongsTo(Reserva::class);
+        return $this->hasOne(Reserva::class);
     }
 }
