@@ -66,9 +66,8 @@ class ReservaController extends Controller
             'fechavencimiento'=>$request->fechavencimiento,
         ]);        
         $pago=Pago::latest()->first();
-       $reserva->pago_id=$pago->idpago;
+        $reserva->pago_id=$pago->idpago;
         $reserva->estado = '1'; 
-        
         $reserva->save();
     }
     

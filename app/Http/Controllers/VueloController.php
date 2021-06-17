@@ -109,4 +109,23 @@ class VueloController extends Controller
         $vuelo->estado = '1';
         $vuelo->save();
     }
+
+    public function listarPdf(){
+
+       
+        $vuelos=Vuelo::with("aerolinea","aeropuertoida","aeropuertoreg")->orderBy('idvuelo', 'desc')->paginate(3);
+            $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
+           // $horarios=Horario::orderBy('idhorario', 'desc')->paginate(3);
+            $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
+           // //$precios=Precio::orderBy('idprecio', 'desc')->paginate(3);
+           // $clasevuelos=ClaseVuelo::orderBy('idclasevuelo', 'desc')->paginate(3);
+            //$ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
+       
+        $cont=Vuelo::count();
+        $pdf= \PDF::loadView('pdf.vuelospdf',['vuelos'=>$vuelos,'aerolineas'=>$aerolineas,'aeropuertos'=>$aeropuertos,'cont'=>$cont]);
+        return $pdf->download('vuelos.pdf');
+        
+    }
+
+
 }

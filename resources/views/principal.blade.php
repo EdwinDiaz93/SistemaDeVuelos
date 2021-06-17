@@ -9,7 +9,7 @@
     <meta name="author" content="Incanatoit.com">
     <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema de Vuelos</title>
+    <title>Sistema de Vuelos  </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
     <link href="css/plantilla.css" rel="stylesheet">
@@ -26,12 +26,13 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="nav navbar-nav d-md-down-none">
-                <li class="nav-item px-3">
+              <!-- <li class="nav-item px-3">
                     <a class="nav-link" href="#">Reservas</a>
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link" href="#">Vuelos</a>
-                </li>
+                </li> -->
+                
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item d-md-down-none">
@@ -49,6 +50,9 @@
                             <span class="badge badge-danger">2</span>
                         </a>
                     </div>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#">{{now()}}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -88,7 +92,7 @@
     
 
     <footer class="app-footer">
-        <span><a href="{{ route('logout') }}">Sistema De Vuelos</a> &copy; 2021</span>
+        <span><a href="{{ route('main') }}">Sistema De Vuelos</a> &copy; 2021</span>
         <span class="ml-auto"> <a href="http://127.0.0.1:8000/">Cerrar Sesión</a></span>
     </footer>
 

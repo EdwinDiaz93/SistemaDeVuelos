@@ -39,6 +39,8 @@ Route::middleware(['Administrador'])->group(function () {
     Route::put('/vuelo/actualizar', 'App\Http\Controllers\VueloController@update');
     Route::put('/vuelo/desactivar', 'App\Http\Controllers\VueloController@desactivar');
     Route::put('/vuelo/activar', 'App\Http\Controllers\VueloController@activar');
+
+    Route::get('/vuelo/listarPdf', 'App\Http\Controllers\VueloController@listarPdf')->name('vuelos_pdf');
     
     // Rutas de precio
     Route::get('/precio', 'App\Http\Controllers\PrecioController@index');
@@ -53,6 +55,8 @@ Route::middleware(['Administrador'])->group(function () {
     Route::put('/aerolinea/actualizar', 'App\Http\Controllers\AeroLineaController@update');
     Route::put('/aerolinea/desactivar', 'App\Http\Controllers\AeroLineaController@desactivar');
     Route::put('/aerolinea/activar', 'App\Http\Controllers\AeroLineaController@activar');
+
+    Route::get('/aerolinea/listarPdf', 'App\Http\Controllers\AerolineaController@listarPdf')->name('aerolineas_pdf');
     
     /*rutas para el aeropuerto*/
     Route::get('/aeropuerto', 'App\Http\Controllers\AeropuertoController@index');
@@ -60,6 +64,8 @@ Route::middleware(['Administrador'])->group(function () {
     Route::put('/aeropuerto/actualizar', 'App\Http\Controllers\AeropuertoController@update');
     Route::put('/aeropuerto/desactivar', 'App\Http\Controllers\AeropuertoController@desactivar');
     Route::put('/aeropuerto/activar', 'App\Http\Controllers\AeropuertoController@activar');
+
+    Route::get('/aeropuerto/listarPdf', 'App\Http\Controllers\AeropuertoController@listarPdf')->name('aeropuertos_pdf');
     
     Route::get('/pais/selectPais', 'App\Http\Controllers\PaisController@selectPais');
     Route::get('/ciudad/selectCiudad', 'App\Http\Controllers\CiudadController@selectCiudad');
@@ -143,6 +149,8 @@ Route::middleware(['Administrador'])->group(function () {
      Route::put('/user/actualizar', 'App\Http\Controllers\UserController@update');
      Route::put('/user/desactivar', 'App\Http\Controllers\UserController@desactivar');
      Route::put('/user/activar', 'App\Http\Controllers\UserController@activar');
+
+     Route::get('/user/listarPdf', 'App\Http\Controllers\UserController@listarPdf')->name('users_pdf');
 });
 
 Route::middleware(['empleado'])->group(function () {

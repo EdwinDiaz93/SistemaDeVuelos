@@ -90,4 +90,13 @@ class AeroLineaController extends Controller
         $aerolinea->estado = '1';
         $aerolinea->save();
     }
+    public function listarPdf(){
+
+        $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
+       
+        $cont=AeroLinea::count();
+        $pdf= \PDF::loadView('pdf.aerolineaspdf',['aerolineas'=>$aerolineas,'cont'=>$cont]);
+        return $pdf->download('aerolineas.pdf');
+        
+    }
 }

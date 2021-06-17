@@ -2,9 +2,7 @@
         <!-- Contenido Principal -->
     <main class="main">
         <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
-        </ol>
+      
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
@@ -12,6 +10,9 @@
                     <i class="fa fa-align-justify"></i> Aerolinea
                     <button type="button" @click="abrirModal('aeroLinea', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
+                    </button>
+                     <button type="button" @click="cargarPdf()" class="btn btn-info">
+                        <i class="icon-doc"></i>&nbsp;Reporte
                     </button>
                 </div>
                 <div class="card-body">
@@ -280,6 +281,10 @@
                 me.pagination.current_page = page;
                 //enviar peticion para visualizar la data  de esa pagina
                 me.listarAerolineas(page,buscar,criterio); 
+            },
+
+            cargarPdf(){
+                window.open('http://127.0.0.1:8000/aerolinea/listarPdf','_blank');
             },
            
            registrarAeroLinea()

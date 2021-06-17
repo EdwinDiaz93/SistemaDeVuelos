@@ -13,6 +13,9 @@
                     <button type="button" @click="abrirModal('usuario', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
+                      <button type="button" @click="cargarPdf()" class="btn btn-info">
+                        <i class="icon-doc"></i>&nbsp;Reporte
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -245,6 +248,9 @@
                 })
                 .then(function () {
                 });
+            },
+              cargarPdf(){
+                window.open('http://127.0.0.1:8000/user/listarPdf','_blank');
             },
 
             cambiarPagina(page,buscar,criterio){
