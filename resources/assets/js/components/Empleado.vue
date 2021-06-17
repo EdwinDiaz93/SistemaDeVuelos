@@ -174,17 +174,15 @@
                                         <option v-for="rol in arrayRol" :key="rol.idrol"  :value="rol.idrol" v-text="rol.nomrol" ></option>
                                     </select>
                                 </div>
-<<<<<<< HEAD
+
                             </div> 
                              <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Email</label>
                                 <div class="col-md-4">
                                     <input type="email" v-model="email" class="form-control" placeholder="email persona/empresa">
                                 </div>
-                            </div>                     
-=======
-                            </div>               
->>>>>>> 3bd97af8877e330ecf547adf3b8327158e692320
+                            </div>
+
                             <div v-show="errorEmpleado" class="form-group row div-error">
                                 <div class="text-center text-error">
                                     <div v-for="error in errorMostrarMsjEmpleado" :key=error v-text="error">
@@ -498,13 +496,7 @@
                 this.errorMostrarMsjEmpleado=[];
 
 
-                if (this.idrol==0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
-                if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El primer nombre no puede estar vacio");
-                 if (!this.papellido) this.errorMostrarMsjEmpleado.push("El primer apellido no puede estar vacio");
-                  if (!this.nit) this.errorMostrarMsjEmpleado.push("El  nit no puede estar vacio");
-                   if (!this.pasaporte) this.errorMostrarMsjEmpleado.push("El  pasaporte no puede estar vacio");
-                    if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("la fecha de nacimiento no puede estar vacia");
-
+            
                 //validaciones de persona
                 if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El campo primer nombre no puede estar vacio");
                 if (!this.nit) this.errorMostrarMsjEmpleado.push("El campo nit no puede estar vacio");
