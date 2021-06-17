@@ -8127,7 +8127,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
-      me.listarCostos(page, buscar, criterio);
+      me.listarUsuarios(page, buscar, criterio);
     },
     registrarUsuario: function registrarUsuario() {
       if (this.validarUsuario()) //evalua si el metodo validar categoria retorna 1
