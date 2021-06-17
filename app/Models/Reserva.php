@@ -12,12 +12,12 @@ class Reserva extends Model
     protected $guarded=[];
 
     public function vuelo(){
-        return $this->hasOne(Vuelo::class);
+        return $this->BelongsTo(Vuelo::class,"vuelo_id");
     }
     public function cliente(){
-        return $this->hasOne(Cliente::class);
+        return $this->BelongsTo(Cliente::class,"cliente_id");
     }
     public function pago(){
-        return $this->hasOne(Pago::class);
+        return $this->BelongsTo(Pago::class,"pago_id");
     }
 }

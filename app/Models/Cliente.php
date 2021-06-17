@@ -23,6 +23,6 @@ class Cliente extends Model
     }
 
     public function reserva(){
-        return $this->belongsTo(Reserva::class);
+        return $this->hasOne(Reserva::class);
     }
 }

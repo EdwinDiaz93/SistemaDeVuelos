@@ -22,7 +22,7 @@ class VueloController extends Controller
           $criterio = $request->criterio;
   
         if($buscar==''){          
-            $vuelos=Vuelo::orderBy('idvuelo', 'desc')->paginate(3);
+            $vuelos=Vuelo::with("aerolinea","aeropuertoida","aeropuertoreg")->orderBy('idvuelo', 'desc')->paginate(3);
             $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
             $horarios=Horario::orderBy('idhorario', 'desc')->paginate(3);
             $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
@@ -64,8 +64,8 @@ class VueloController extends Controller
         $vuelo->idprecio = $request->idprecio;         
         $vuelo->idhorariosalida = $request->idhorariosalida;         
         $vuelo->idhorarioregreso = $request->idhorarioregreso;         
-        $vuelo->codaeropuertoida= $request->codaeropuertoida;
-        $vuelo->codaeropuertoregreso= $request->codaeropuertoregreso;
+        $vuelo->idaeropuertoida= $request->idaeropuertoida;
+        $vuelo->idaeropuertoregreso= $request->idaeropuertoregreso;
         $vuelo->idciudadorigen= $request->idciudadorigen;
         $vuelo->idciudaddestino= $request->idciudaddestino;
         $vuelo->idclasevuelo= $request->idclasevuelo;
@@ -83,8 +83,8 @@ class VueloController extends Controller
         $vuelo->idprecio = $request->idprecio;         
         $vuelo->idhorariosalida = $request->idhorariosalida;         
         $vuelo->idhorarioregreso = $request->idhorarioregreso;         
-        $vuelo->codaeropuertoida= $request->codaeropuertoida;
-        $vuelo->codaeropuertoregreso= $request->codaeropuertoregreso;
+        $vuelo->idaeropuertoida= $request->idaeropuertoida;
+        $vuelo->idaeropuertoregreso= $request->idaeropuertoregreso;
         $vuelo->idciudadorigen= $request->idciudadorigen;
         $vuelo->idciudaddestino= $request->idciudaddestino;
         $vuelo->idclasevuelo= $request->idclasevuelo;
