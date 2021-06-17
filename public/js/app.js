@@ -4746,6 +4746,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4975,16 +4983,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     validarEmpleado: function validarEmpleado() {
-<<<<<<< HEAD
-      this.errorEmpelado = 0;
-      this.errorMostrarMsjEmpleado = [];
-      if (this.idrol == 0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
-      if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El primer nombre no puede estar vacio");
-      if (!this.papellido) this.errorMostrarMsjEmpleado.push("El primer apellido no puede estar vacio");
-      if (!this.nit) this.errorMostrarMsjEmpleado.push("El  nit no puede estar vacio");
-      if (!this.pasaporte) this.errorMostrarMsjEmpleado.push("El  pasaporte no puede estar vacio");
-      if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("la fecha de nacimiento no puede estar vacia");
-=======
       this.errorEmpleado = 0;
       this.errorMostrarMsjEmpleado = []; //validaciones de persona
 
@@ -5001,7 +4999,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.email) this.errorMostrarMsjEmpleado.push("El campo email no puede estar vacio");
       if (!this.password) this.errorMostrarMsjEmpleado.push("El campo password no puede estar vacio");
       if (!this.nomusuario) this.errorMostrarMsjEmpleado.push("El campo usuario no puede estar vacio");
->>>>>>> 3bd97af8877e330ecf547adf3b8327158e692320
       if (this.errorMostrarMsjEmpleado.length) this.errorEmpleado = 1;
       return this.errorEmpleado;
     },
@@ -51990,7 +51987,6 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-<<<<<<< HEAD
                     _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "label",
@@ -52029,8 +52025,6 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-=======
->>>>>>> 3bd97af8877e330ecf547adf3b8327158e692320
                     _c(
                       "div",
                       {
