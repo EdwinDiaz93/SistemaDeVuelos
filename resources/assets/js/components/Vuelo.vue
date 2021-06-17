@@ -185,15 +185,24 @@
                                         v-text="clasevuelo.nomclasevuelo"></option>
                                     </select>
                                 </div>
-                                <label class="col-md-2 form-control-label" for="text-input">Millas reales</label>
+                                 <label class="col-md-2 form-control-label" for="text-input">Costo adicional</label>
                                 <div class="col-md-4">
-                                    <input type="text" v-model="millasreales" class="form-control" >
+                                    <select class="form-control" v-model="costo_id">
+                                        <option value="0" disabled>Seleccione o agregue  un costo</option>
+                                        <option v-for="costo in arrayCostos" :key="costo.idcosto" :value="costo.idcosto" 
+                                        v-text="costo.cantidad"></option>
+                                    </select>
                                 </div>
+                                
                             </div>                            
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Millas Otorgadas</label>
                                 <div class="col-md-4">
                                     <input type="text" v-model="millasotorgadas" class="form-control" >
+                                </div>
+                                <label class="col-md-2 form-control-label" for="text-input">Millas reales</label>
+                                <div class="col-md-4">
+                                    <input type="text" v-model="millasreales" class="form-control" >
                                 </div>
                             </div>
                                                         
@@ -239,6 +248,7 @@
                 millasotorgadas:0,
                 idciudadorigen:0,
                 idciudaddestino:0,
+                costo_id:0,
                 arrayVuelos : [],
                 arrayAerolineas : [],
                 arrayHorarios : [],
@@ -246,6 +256,7 @@
                 arrayPrecios : [],
                 arrayClaseVuelo : [],
                 arrayCiudades : [],
+                arrayCostos : [],
                 modal : 0,
                 tituloModal : '', 
                 tipoAccion : 0,
@@ -312,6 +323,7 @@
                     me.arrayAeropuertos = respuesta.aeropuertos.data;
                     me.arrayClaseVuelo = respuesta.clasevuelos.data;
                     me.arrayCiudades = respuesta.ciudades.data;
+                    me.arrayCostos = respuesta.costos.data;
                     me.pagination = respuesta.pagination;
                     
                 })
@@ -351,6 +363,7 @@
                     "idciudadorigen":this.idciudadorigen,
                     "idciudaddestino":this.idciudaddestino,
                     "idclasevuelo":this.idclasevuelo,
+                    "costo_id":this.costo_id,
                     "millasreales":this.millasreales,
                     "millasotorgadas":this.millasotorgadas,                    
                 }).then(function (response) {
@@ -380,6 +393,7 @@
                     "idaeropuertoregreso":this.idaeropuertoregreso,
                     "idciudadorigen":this.idciudadorigen,
                     "idciudaddestino":this.idciudaddestino,
+                    "costo_id":this.costo_id,
                     "idclasevuelo":this.idclasevuelo,
                     "millasreales":this.millasreales,
                     "millasotorgadas":this.millasotorgadas,                    
@@ -490,6 +504,7 @@
                 if (this.idciudaddestino===this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
                 if (this.idaeropuertoregreso===this.idaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
                 if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
+                if (!this.costo_id) this.errorMostrarMsjVuelo.push("El costo es obligatorio");
                 if (!this.millasreales || this.millasreales<0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
                 if (!this.millasotorgadas || this.millasotorgadas<0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
 
@@ -511,6 +526,7 @@
                 this.idciudadorigen=0,
                 this.idciudaddestino=0,
                 this.idclasevuelo=0,
+                this.costo_id=0,
                 this.millasreales=0,
                 this.millasotorgadas=0
            },
@@ -537,6 +553,7 @@
                                 this.idciudadorigen=0,
                                 this.idciudaddestino=0,
                                 this.idclasevuelo=0,
+                                this.costo_id=0,
                                 this.millasreales=0,
                                 this.millasotorgadas=0
                                break;
@@ -556,6 +573,7 @@
                                 this.idciudadorigen=data["idciudadorigen"],
                                 this.idciudaddestino=data["idciudaddestino"],
                                 this.idclasevuelo=data["idclasevuelo"];
+                                this.costo_id=data["costo_id"];
                                 this.millasreales=data['millasreales'];
                                 this.millasotorgadas=data['millasotorgadas'];
                                break;

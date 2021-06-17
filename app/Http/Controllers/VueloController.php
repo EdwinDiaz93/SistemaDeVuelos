@@ -10,6 +10,7 @@ use App\Models\Aeropuerto;
 use App\Models\Precio;
 use App\Models\ClaseVuelo;
 use App\Models\Ciudad;
+use App\Models\Costos;
 
 
 class VueloController extends Controller
@@ -22,12 +23,13 @@ class VueloController extends Controller
           $criterio = $request->criterio;
   
         if($buscar==''){          
-            $vuelos=Vuelo::with("aerolinea","aeropuertoida","aeropuertoreg")->orderBy('idvuelo', 'desc')->paginate(3);
+            $vuelos=Vuelo::with("aerolinea","aeropuertoida","aeropuertoreg","costo")->orderBy('idvuelo', 'desc')->paginate(3);
             $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
             $horarios=Horario::orderBy('idhorario', 'desc')->paginate(3);
             $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
             $precios=Precio::orderBy('idprecio', 'desc')->paginate(3);
             $clasevuelos=ClaseVuelo::orderBy('idclasevuelo', 'desc')->paginate(3);
+            $costos=Costos::orderBy('idcosto', 'desc')->paginate(3);
             $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
         }
         else{          
@@ -52,6 +54,7 @@ class VueloController extends Controller
             'precios'=>$precios,            
             'clasevuelos'=>$clasevuelos,            
             'ciudades'=>$ciudades,            
+            'costos'=>$costos,            
         ];
     }
 
@@ -71,6 +74,7 @@ class VueloController extends Controller
         $vuelo->idclasevuelo= $request->idclasevuelo;
         $vuelo->millasreales = $request->millasreales;         
         $vuelo->millasotorgadas = $request->millasotorgadas;         
+        $vuelo->costo_id = $request->costo_id;         
         $vuelo->estado = '1';         
         $vuelo->save();
     }
@@ -90,6 +94,7 @@ class VueloController extends Controller
         $vuelo->idclasevuelo= $request->idclasevuelo;
         $vuelo->millasreales = $request->millasreales;         
         $vuelo->millasotorgadas = $request->millasotorgadas;         
+        $vuelo->costo_id = $request->costo_id;         
         $vuelo->estado = '1';         
         $vuelo->save();
     }

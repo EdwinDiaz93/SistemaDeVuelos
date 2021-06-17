@@ -8550,6 +8550,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8565,6 +8574,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       millasotorgadas: 0,
       idciudadorigen: 0,
       idciudaddestino: 0,
+      costo_id: 0,
       arrayVuelos: [],
       arrayAerolineas: [],
       arrayHorarios: [],
@@ -8572,6 +8582,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       arrayPrecios: [],
       arrayClaseVuelo: [],
       arrayCiudades: [],
+      arrayCostos: [],
       modal: 0,
       tituloModal: '',
       tipoAccion: 0,
@@ -8635,6 +8646,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         me.arrayAeropuertos = respuesta.aeropuertos.data;
         me.arrayClaseVuelo = respuesta.clasevuelos.data;
         me.arrayCiudades = respuesta.ciudades.data;
+        me.arrayCostos = respuesta.costos.data;
         me.pagination = respuesta.pagination;
       })["catch"](function (error) {
         console.log(error);
@@ -8669,6 +8681,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
         "idclasevuelo": this.idclasevuelo,
+        "costo_id": this.costo_id,
         "millasreales": this.millasreales,
         "millasotorgadas": this.millasotorgadas
       }).then(function (response) {
@@ -8697,6 +8710,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idaeropuertoregreso": this.idaeropuertoregreso,
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
+        "costo_id": this.costo_id,
         "idclasevuelo": this.idclasevuelo,
         "millasreales": this.millasreales,
         "millasotorgadas": this.millasotorgadas
@@ -8774,6 +8788,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.idciudaddestino === this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
       if (this.idaeropuertoregreso === this.idaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
       if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
+      if (!this.costo_id) this.errorMostrarMsjVuelo.push("El costo es obligatorio");
       if (!this.millasreales || this.millasreales < 0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
       if (!this.millasotorgadas || this.millasotorgadas < 0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
       if (this.errorMostrarMsjVuelo.length) this.errorVuelo = 1;
@@ -8782,7 +8797,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
-      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.costo_id = 0, this.millasreales = 0, this.millasotorgadas = 0;
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -8796,7 +8811,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.modal = 1;
                   this.tipoAccion = 1;
                   this.tituloModal = 'Registrar Vuelo';
-                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.costo_id = 0, this.millasreales = 0, this.millasotorgadas = 0;
                   break;
                 }
 
@@ -8813,6 +8828,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.idaeropuertoida = data["idaeropuertoida"];
                   this.idaeropuertoregreso = data["idaeropuertoregreso"];
                   this.idciudadorigen = data["idciudadorigen"], this.idciudaddestino = data["idciudaddestino"], this.idclasevuelo = data["idclasevuelo"];
+                  this.costo_id = data["costo_id"];
                   this.millasreales = data['millasreales'];
                   this.millasotorgadas = data['millasotorgadas'];
                   break;
@@ -58500,31 +58516,57 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Millas reales")]
+                        [_vm._v("Costo adicional")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.millasreales,
-                              expression: "millasreales"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.millasreales },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.costo_id,
+                                expression: "costo_id"
                               }
-                              _vm.millasreales = $event.target.value
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.costo_id = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
                             }
-                          }
-                        })
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "0", disabled: "" } },
+                              [_vm._v("Seleccione o agregue  un costo")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.arrayCostos, function(costo) {
+                              return _c("option", {
+                                key: costo.idcosto,
+                                domProps: {
+                                  value: costo.idcosto,
+                                  textContent: _vm._s(costo.cantidad)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        )
                       ])
                     ]),
                     _vm._v(" "),
@@ -58557,6 +58599,39 @@ var render = function() {
                                 return
                               }
                               _vm.millasotorgadas = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-2 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Millas reales")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.millasreales,
+                              expression: "millasreales"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.millasreales },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.millasreales = $event.target.value
                             }
                           }
                         })

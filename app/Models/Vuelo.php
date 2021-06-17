@@ -42,7 +42,7 @@ class Vuelo extends Model
     }
 
     public function costo(){
-        return $this->BelongsTo(Costo::class,"costo_id");
+        return $this->BelongsTo(Costos::class,"costo_id");
     }
 
 
