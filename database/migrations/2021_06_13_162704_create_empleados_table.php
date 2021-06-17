@@ -18,9 +18,7 @@ class CreateEmpleadosTable extends Migration
             $table->bigIncrements("idempleado");  
             $table->integer('idpersona')->unsigned();   
             $table->String('puesto',25)->nullable;
-            $table->float('salario',8,4)->nullable;
-            $table->boolean('condicion')->default(1);
-            $table->timestamps();
+            $table->float('salario')->nullable;
             $table->foreign('idpersona')->references('idpersona')->on('personas');
         });
     }

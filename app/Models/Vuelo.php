@@ -12,31 +12,37 @@ class Vuelo extends Model
     protected $guarded=[];
 
     public function reserva(){
-        return $this->belongsTo(Reserva::class);
+        return $this->hasOne(Reserva::class);
     }
 
 
-    public function aerolineas(){
-        return $this->hasMany(Aerolinea::class);
+    public function aerolinea(){
+        return $this->BelongsTo(Aerolinea::class,"aerolinea_cod");
     }
 
-    public function aeropuertos(){
-        return $this->hasMany(Aeropuerto::class);
+    public function aeropuertoida(){
+        return $this->BelongsTo(Aeropuerto::class,"idaeropuertoida");
     }
-    public function clasevuelos(){
-        return $this->hasMany(ClaseVuelo::class);
+    public function aeropuertoreg(){
+        return $this->BelongsTo(Aeropuerto::class,"idaeropuertoregreso");
     }
-
-    public function precios(){
-        return $this->hasMany(Precio::class);
-    }
-
-    public function horarios(){
-        return $this->hasMany(Horario::class);
+    public function clasevuelo(){
+        return $this->BelongsTo(ClaseVuelo::class,"");
     }
 
-    public function costos(){
-        return $this->hasMany(Costo::class);
+    public function precio(){
+        return $this->BelongsTo(Precio::class,"idprecio");
+    }
+
+    public function horarioida(){
+        return $this->BelongsTo(Horario::class,"idhorariosalida");
+    }
+    public function horarioreg(){
+        return $this->BelongsTo(Horario::class,"idhorarioregreso");
+    }
+
+    public function costo(){
+        return $this->BelongsTo(Costo::class,"costo_id");
     }
 
 

@@ -17,14 +17,14 @@ class CreatePersonasTable extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->bigIncrements('idpersona');
             $table->string('pnombre', 25);
-            $table->string('snombre', 25)->nullable;
-            $table->string('papellido', 25)->nullable;
-            $table->string('sapellido', 25)->nullable;
-            $table->string('dui', 25)->nullable;
+            $table->string('snombre', 25)->nullable();
+            $table->string('papellido', 25)->nullable();
+            $table->string('sapellido', 25)->nullable();
+            $table->string('dui', 25)->nullable();
             $table->string('nit', 25);
-            $table->string('pasaporte', 25)->nullable;
+            $table->string('pasaporte', 25)->nullable();
             $table->Date('fechanaci');
-            $table->string('direccion', 50)->nullable;
+            $table->string('direccion', 50);
             $table->string('telefono', 25);
             $table->string('movil', 25);
             $table->timestamps();

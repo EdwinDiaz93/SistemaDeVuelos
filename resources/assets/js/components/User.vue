@@ -252,7 +252,7 @@
                 //actualizar pagina actual 
                 me.pagination.current_page = page;
                 //enviar peticion para visualizar la data  de esa pagina
-                me.listarCostos(page,buscar,criterio); 
+                me.listarUsuarios(page,buscar,criterio); 
             },
 
            registrarUsuario()

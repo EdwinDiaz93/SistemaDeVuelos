@@ -30,11 +30,11 @@
                         <thead>
                             <tr>
                                 <th>Opciones</th>
-                                <th>Codigo Aerolinea</th>
+                                <th>Aerolinea</th>
                                 <th>Millas reales</th>
                                 <th>Millas otorgadas</th>
-                                <th>Cod aeropuerto origen</th>
-                                <th>Cod aeropuerto destino</th>
+                                <th>aeropuerto origen</th>
+                                <th>aeropuerto destino</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
@@ -55,11 +55,11 @@
                                         </button>
                                     </template>
                                 </td>
-                                <td v-text="vuelo.aerolinea_cod"></td>
+                                <td v-text="vuelo.aerolinea.nombreaerolinea"></td>
                                 <td v-text="vuelo.millasreales"></td>
                                 <td v-text="vuelo.millasotorgadas"></td>
-                                <td v-text="vuelo.codaeropuertoregreso"></td>
-                                <td v-text="vuelo.codaeropuertoida"></td>
+                                <td v-text="vuelo.aeropuertoreg.nomaeropuerto"></td>
+                                <td v-text="vuelo.aeropuertoida.nomaeropuerto"></td>
                                 <td>
                                     <div v-if="vuelo.estado == '1'">
                                         <span class="badge badge-success">Activo</span>
@@ -157,17 +157,17 @@
                             <div class="form-group row">
                                 <label class="col-md-2 form-control-label" for="text-input">Aeropuerto Destino</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" v-model="codaeropuertoida">
-                                        <option value="" disabled>Seleccione o agregue  un aeropuerto</option>
-                                        <option v-for="aeropuerto in arrayAeropuertos" :key="aeropuerto.codaeropuerto" :value="aeropuerto.codaeropuerto" 
+                                    <select class="form-control" v-model="idaeropuertoida">
+                                        <option value="0" disabled>Seleccione o agregue  un aeropuerto</option>
+                                        <option v-for="aeropuerto in arrayAeropuertos" :key="aeropuerto.id" :value="aeropuerto.id" 
                                         v-text="aeropuerto.nomaeropuerto"></option>
                                     </select>
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Aeropuerto Origen</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" v-model="codaeropuertoregreso">
-                                        <option value="" disabled>Seleccione o agregue  un aeropuerto</option>
-                                        <option v-for="aeropuerto in arrayAeropuertos" :key="aeropuerto.codaeropuerto" :value="aeropuerto.codaeropuerto" 
+                                    <select class="form-control" v-model="idaeropuertoregreso">
+                                        <option value="0" disabled>Seleccione o agregue  un aeropuerto</option>
+                                        <option v-for="aeropuerto in arrayAeropuertos" :key="aeropuerto.id" :value="aeropuerto.id" 
                                         v-text="aeropuerto.nomaeropuerto"></option>
                                     </select>
                                 </div>
@@ -229,8 +229,8 @@
                 idprecio :0,
                 idhorariosalida :0,
                 idhorarioregreso :0,
-                codaeropuertoida : '',
-                codaeropuertoregreso : '',
+                idaeropuertoida : 0,
+                idaeropuertoregreso : 0,
                 idclasevuelo:0,
                 millasreales:0,
                 millasotorgadas:0,
@@ -340,8 +340,8 @@
                     "idprecio":this.idprecio,
                     "idhorariosalida":this.idhorariosalida,
                     "idhorarioregreso":this.idhorarioregreso,
-                    "codaeropuertoida":this.codaeropuertoida,
-                    "codaeropuertoregreso":this.codaeropuertoregreso,
+                    "idaeropuertoida":this.idaeropuertoida,
+                    "idaeropuertoregreso":this.idaeropuertoregreso,
                     "idciudadorigen":this.idciudadorigen,
                     "idciudaddestino":this.idciudaddestino,
                     "idclasevuelo":this.idclasevuelo,
@@ -370,8 +370,8 @@
                     "idprecio":this.idprecio,
                     "idhorariosalida":this.idhorariosalida,
                     "idhorarioregreso":this.idhorarioregreso,
-                    "codaeropuertoida":this.codaeropuertoida,
-                    "codaeropuertoregreso":this.codaeropuertoregreso,
+                    "idaeropuertoida":this.idaeropuertoida,
+                    "idaeropuertoregreso":this.idaeropuertoregreso,
                     "idciudadorigen":this.idciudadorigen,
                     "idciudaddestino":this.idciudaddestino,
                     "idclasevuelo":this.idclasevuelo,
@@ -477,12 +477,12 @@
                 if (!this.idhorariosalida) this.errorMostrarMsjVuelo.push("El horario de salida es obligatorio");
                 if (!this.idhorarioregreso) this.errorMostrarMsjVuelo.push("El horario de regreso es obligatorio");
                 if (this.idhorariosalida===this.idhorarioregreso) this.errorMostrarMsjVuelo.push("Los horarios no pueden ser los mismos");
-                if (!this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de ida es obligatorio");
-                if (!this.codaeropuertoregreso) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de llegada es obligatorio");
+                if (!this.idaeropuertoida) this.errorMostrarMsjVuelo.push("El  aeropuerto de ida es obligatorio");
+                if (!this.idaeropuertoregreso) this.errorMostrarMsjVuelo.push("El  aeropuerto de llegada es obligatorio");
                 if (!this.idciudadorigen) this.errorMostrarMsjVuelo.push("La ciudad de origen es obligatoria");
                 if (!this.idciudaddestino) this.errorMostrarMsjVuelo.push("La ciudad de destino es obligatoria");
                 if (this.idciudaddestino===this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
-                if (this.codaeropuertoregreso===this.codaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
+                if (this.idaeropuertoregreso===this.idaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
                 if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
                 if (!this.millasreales || this.millasreales<0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
                 if (!this.millasotorgadas || this.millasotorgadas<0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
@@ -500,8 +500,8 @@
                 this.idprecio =0,
                 this.idhorariosalida =0,
                 this.idhorarioregreso =0,
-                this.codaeropuertoida = '',
-                this.codaeropuertoregreso = '',
+                this.idaeropuertoida = 0,
+                this.idaeropuertoregreso = 0,
                 this.idciudadorigen=0,
                 this.idciudaddestino=0,
                 this.idclasevuelo=0,
@@ -526,8 +526,8 @@
                                 this.idprecio =0,
                                 this.idhorariosalida =0,
                                 this.idhorarioregreso =0,
-                                this.codaeropuertoida = '',
-                                this.codaeropuertoregreso = '',
+                                this.idaeropuertoida = 0,
+                                this.idaeropuertoregreso = 0,
                                 this.idciudadorigen=0,
                                 this.idciudaddestino=0,
                                 this.idclasevuelo=0,
@@ -545,8 +545,8 @@
                                 this.idprecio=data['idprecio'];
                                 this.idhorariosalida=data['idhorariosalida'];
                                 this.idhorarioregreso=data['idhorarioregreso'];
-                                this.codaeropuertoida=data["codaeropuertoida"];
-                                this.codaeropuertoregreso=data["codaeropuertoregreso"];
+                                this.idaeropuertoida=data["idaeropuertoida"];
+                                this.idaeropuertoregreso=data["idaeropuertoregreso"];
                                 this.idciudadorigen=data["idciudadorigen"],
                                 this.idciudaddestino=data["idciudaddestino"],
                                 this.idclasevuelo=data["idclasevuelo"];

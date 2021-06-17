@@ -10,6 +10,7 @@ class AeroLinea extends Model
     use HasFactory;
     protected $table = 'aero_lineas';
     public $incrementing = false;
+    protected $keyType = 'string';
     protected $primaryKey = 'codaerolinea';
     protected $guarded=[];
     protected $casts = [

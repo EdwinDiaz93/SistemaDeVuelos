@@ -31,25 +31,25 @@
                             <tr>
                                 <th>Opciones</th>                                
                                 <th>Cliente</th>
-                                <th>Vuelo</th>                                
+                                <th>Aerolinea</th>                                
                                 <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="reserva in arrayReserva" :key="reserva.idreserva">
                                 <td>
-                                    <button type="button" @click="abrirModal('reserva', 'pagar', reserva)" class="btn btn-warning btn-sm">
-                                      <i class="icon-dollar"></i>
-                                    </button> &nbsp;
+                                    
                                     <template v-if="reserva.estado=='0'">                                        
-                                            <i class="icon-pencil"></i>                                        
+                                    <button type="button" @click="abrirModal('reserva', 'pagar', reserva)" class="btn btn-success ">
+                                      <span >$$</span>
+                                    </button> &nbsp;
                                     </template>
                                     <template v-else>                                        
-                                            <i class="icon-check"></i>                                        
+                                           <button class="btn btn-success icon-check"></button>                                   
                                     </template>
                                 </td>
-                                <td v-text="reserva.cliente_id"></td>
-                                <td v-text="reserva.vuelo_id"></td>                                 
+                                <td v-text="reserva.cliente.nomcontacto"></td>
+                                <td v-text="reserva.vuelo.aerolinea_cod"></td>                                 
                                 <td>
                                     <div v-if="reserva.estado=='1'">
                                         <span class="badge badge-success">Pagado</span>
@@ -92,9 +92,9 @@
                     <div class="modal-body">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Cliente</label>
-                                <div class="col-md-9">
-                                    <select class="form-control" v-model="cliente_id">
+                                <label class="col-12 form-control-label" for="text-input">Cliente</label>
+                                <div class="col-12">
+                                    <select class="form-control " v-model="cliente_id">
                                         <option value="0" disabled>Seleccione o agregue  cliente</option>
                                         <option v-for="cliente in arrayCliente" :key="cliente.idcliente" :value="cliente.idcliente" 
                                         v-text="cliente.nomcontacto"></option>
@@ -102,12 +102,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Vuelo</label>
-                                <div class="col-md-9">
+                                <label class="col-12 form-control-label" for="text-input">Seleccione paquete de vuelo</label>
+                                <div class="col-12">
                                     <select class="form-control" v-model="vuelo_id">
-                                        <option value="0" disabled>Seleccione o agregue  vuelo</option>
-                                        <option v-for="vuelo in arrayVuelo" :key="vuelo.idvuelo" :value="vuelo.idvuelo" 
-                                        v-text="vuelo.aerolinea_cod"></option>
+                                        <option value="0" disabled>Fecha Ida/Fecha Reg/Aeropuerto ida/ Aeropuerto Reg</option>
+                                        <option  v-for="vuelo in arrayVuelo" :key="vuelo.idvuelo" :value="vuelo.idvuelo" 
+                                        >{{vuelo.horarioida.fecha}}/{{vuelo.horarioreg.fecha}}/{{vuelo.aeropuertoida.nomaeropuerto}}/{{vuelo.aeropuertoreg.nomaeropuerto}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -263,7 +263,7 @@
                     var respuesta = response.data;       
                     console.log(respuesta);             
                     me.arrayReserva = respuesta.reservas.data;
-                    me.arrayVuelo=respuesta.vuelos.data;
+                    me.arrayVuelo=respuesta.vuelos;
                     me.pagination = respuesta.pagination;
                     me.arrayCliente=respuesta.clientes.data;
                 })

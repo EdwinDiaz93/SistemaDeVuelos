@@ -3927,8 +3927,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'direccion': this.direccion,
         'telefono': this.telefono,
         'movil': this.movil,
-        'puesto': this.estadocivil,
-        'salario': this.genero,
+        'estadocivil': this.estadocivil,
+        'genero': this.genero,
         'nomcontacto': this.nomcontacto,
         'numfrecuente': this.numfrecuente,
         'nomusuario': this.nomusuario,
@@ -3937,7 +3937,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'idrol': this.idrol
       }).then(function (response) {
         me.cerrarModal();
-        me.listarCliente(1, '', 'estadocivil');
+        me.listarCliente(1, '', 'pnombre');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4083,7 +4083,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.nomcontacto = '';
                   this.numfrecuente = '';
                   this.nomusuario = '';
-                  this.cantidad = '';
+                  this.password = '';
                   this.email = '';
                   this.idrol = '';
                   this.tipoAccion = 1;
@@ -4746,35 +4746,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      persona_id: 0,
+      idpersona: 0,
       pnombre: '',
       snombre: '',
       papellido: '',
@@ -4786,15 +4761,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       direccion: '',
       telefono: '',
       movil: '',
-      //variables para cliente
-      empleado_id: 0,
+      //variables para empleado
+      idempleado: 0,
       puesto: '',
-      salario: '',
+      salario: 0,
       //variables para usuario
+      idusuario: 0,
       idrol: 0,
       nomusuario: '',
       password: '',
       email: '',
+      //
       arrayEmpleado: [],
       modal: 0,
       tituloModal: '',
@@ -4848,7 +4825,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
-    listarEmpleado: function listarEmpleado(page, buscar, criterio) {
+    listarEmpleados: function listarEmpleados(page, buscar, criterio) {
       var me = this;
       var url = '/empleado?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
@@ -4875,14 +4852,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
-      me.listarEmpleado(page, buscar, criterio);
+      me.listarEmpleados(page, buscar, criterio);
     },
     registrarEmpleado: function registrarEmpleado() {
       if (this.validarEmpleado()) //evalua si el metodo validar categoria retorna 1
         {
           // y no realiza nada
           return;
-        } // en caso que validar cliente retorne diferente de 1 realizar lo siguiente
+        } // en caso que validar empleado retorne diferente de 1 realizar lo siguiente
 
 
       var me = this;
@@ -4906,7 +4883,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'idrol': this.idrol
       }).then(function (response) {
         me.cerrarModal();
-        me.listarEmpleado(1, '', 'pnombre');
+        me.listarEmpleados(1, '', 'pnombre');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4922,21 +4899,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'snombre': this.snombre,
         'papellido': this.papellido,
         'sapellido': this.sapellido,
+        'dui': this.dui,
+        'nit': this.nit,
+        'pasaporte': this.pasaporte,
         'fechanaci': this.fechanaci,
         'direccion': this.direccion,
         'telefono': this.telefono,
         'movil': this.movil,
+        'idpersona': this.idpersona,
         'puesto': this.puesto,
         'salario': this.salario,
-        'idpersona': this.persona_id
+        'idempleado': this.idempleado,
+        'nomusuario': this.nomusuario,
+        'password': this.password,
+        'email': this.email,
+        'idrol': this.idrol,
+        'idusuario': this.idusuario
       }).then(function (response) {
         me.cerrarModal();
-        me.listarEmpleado(1, '', 'pnombre');
+        me.listarEmpleados(1, '', 'pnombre');
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    desactivarEmpleado: function desactivarEmpleado(id) {
+    desactivarCosto: function desactivarCosto(id) {
       var _swal,
           _this = this;
 
@@ -4950,10 +4936,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal, "cancelButtonText", 'Cancelar'), _defineProperty(_swal, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal, "buttonsStyling", false), _defineProperty(_swal, "reverseButtons", true), _swal)).then(function (result) {
         if (result.value) {
           var me = _this;
-          axios.put('/empleado/desactivar', {
+          axios.put('/costos/desactivar', {
             'id': id
           }).then(function (response) {
-            me.listarEmpleado(1, '', 'pnombre');
+            me.listarCostos(1, '', 'descripcion');
             swal('Desactivado!', 'El registro ha sido desactivado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -4962,7 +4948,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         result.dismiss === swal.DismissReason.cancel) {}
       });
     },
-    activarEmpleado: function activarEmpleado(id) {
+    activarCosto: function activarCosto(id) {
       var _swal2,
           _this2 = this;
 
@@ -4976,10 +4962,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_swal2, "cancelButtonText", 'Cancelar'), _defineProperty(_swal2, "confirmButtonClass", 'btn btn-success ml-3'), _defineProperty(_swal2, "cancelButtonClass", 'btn btn-danger mr-3'), _defineProperty(_swal2, "buttonsStyling", false), _defineProperty(_swal2, "reverseButtons", true), _swal2)).then(function (result) {
         if (result.value) {
           var me = _this2;
-          axios.put('/empleado/activar', {
+          axios.put('/costos/activar', {
             'id': id
           }).then(function (response) {
-            me.listarEmpleado(1, '', 'pnombre');
+            me.listarCostos(1, '', 'descripcion');
             swal('Activado!', 'El registro ha sido activado con exito.', 'success');
           })["catch"](function (error) {
             console.log(error);
@@ -4989,6 +4975,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     validarEmpleado: function validarEmpleado() {
+<<<<<<< HEAD
       this.errorEmpelado = 0;
       this.errorMostrarMsjEmpleado = [];
       if (this.idrol == 0) this.errorMostrarMsjEmpleado.push("Seleccione un roll");
@@ -4997,23 +4984,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.nit) this.errorMostrarMsjEmpleado.push("El  nit no puede estar vacio");
       if (!this.pasaporte) this.errorMostrarMsjEmpleado.push("El  pasaporte no puede estar vacio");
       if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("la fecha de nacimiento no puede estar vacia");
+=======
+      this.errorEmpleado = 0;
+      this.errorMostrarMsjEmpleado = []; //validaciones de persona
+
+      if (!this.pnombre) this.errorMostrarMsjEmpleado.push("El campo primer nombre no puede estar vacio");
+      if (!this.nit) this.errorMostrarMsjEmpleado.push("El campo nit no puede estar vacio");
+      if (!this.fechanaci) this.errorMostrarMsjEmpleado.push("El campo fecha de nacimiento/Fecha de Fundacion no puede estar vacio");
+      if (!this.telefono) this.errorMostrarMsjEmpleado.push("El campo telefono no puede estar vacio");
+      if (!this.movil) this.errorMostrarMsjEmpleado.push("El campo movil no puede estar vacio"); //validaciones de empleado
+
+      if (this.salario == 0) this.errorMostrarMsjEmpleado.push("El salario debe ser mayor que 0");
+      if (!this.puesto) this.errorMostrarMsjEmpleado.push("El campo puesto no puede estar vacio"); //validaciones de usuario
+
+      if (this.idrol == 0) this.errorMostrarMsjEmpleado.push("Seleccione un rol");
+      if (!this.email) this.errorMostrarMsjEmpleado.push("El campo email no puede estar vacio");
+      if (!this.password) this.errorMostrarMsjEmpleado.push("El campo password no puede estar vacio");
+      if (!this.nomusuario) this.errorMostrarMsjEmpleado.push("El campo usuario no puede estar vacio");
+>>>>>>> 3bd97af8877e330ecf547adf3b8327158e692320
       if (this.errorMostrarMsjEmpleado.length) this.errorEmpleado = 1;
       return this.errorEmpleado;
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
-      this.pnombre = '';
-      this.snombre = '';
-      this.papellido = '';
-      this.sapellido = '';
-      this.dui = '';
-      this.nit = '';
-      this.pasaporte = '';
-      this.fechanaci = '';
-      this.direccion = '';
-      this.telefono = '';
-      this.movil = '';
+      this.idrol = 0; //this.nombre_tipocosto = '';
+      //this.cantidad = 0;
+      //this.descripcion='';
+
       this.errorEmpleado = 0;
     },
     abrirModal: function abrirModal(modelo, accion) {
@@ -5026,7 +5024,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 'registrar':
                 {
                   this.modal = 1;
-                  this.tituloModal = 'Registrar Cliente';
+                  this.tituloModal = 'Registrar Empleado';
                   this.pnombre = '';
                   this.snombre = '';
                   this.papellido = '';
@@ -5039,9 +5037,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.telefono = '';
                   this.movil = '';
                   this.puesto = '';
-                  this.salario = '';
+                  this.salario = 0;
                   this.nomusuario = '';
-                  this.cantidad = '';
+                  this.password = '';
                   this.email = '';
                   this.idrol = '';
                   this.tipoAccion = 1;
@@ -5053,7 +5051,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.modal = 1;
                   this.tituloModal = 'Actualizar Empleado';
                   this.tipoAccion = 2;
-                  this.persona_id = data['idpersona'];
+                  this.idpersona = data['idpersona'];
                   this.pnombre = data['pnombre'];
                   this.snombre = data['snombre'];
                   this.papellido = data['papellido'];
@@ -5065,8 +5063,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.direccion = data['direccion'];
                   this.telefono = data['telefono'];
                   this.movil = data['movil'];
+                  this.idempleado = data['idempleado'];
                   this.puesto = data['puesto'];
                   this.salario = data['salario'];
+                  this.idusuario = data['idusuario'];
+                  this.nomusuario = data['nomusuario'];
+                  this.email = data['email'];
+                  this.idrol = data['idrol'];
                   break;
                 }
             }
@@ -5077,7 +5080,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
-    this.listarEmpleado(1, this.buscar, this.criterio);
+    this.listarEmpleados(1, this.buscar, this.criterio);
   }
 });
 
@@ -6306,7 +6309,7 @@ __webpack_require__.r(__webpack_exports__);
         var respuesta = response.data;
         console.log(respuesta);
         me.arrayReserva = respuesta.reservas.data;
-        me.arrayVuelo = respuesta.vuelos.data;
+        me.arrayVuelo = respuesta.vuelos;
         me.pagination = respuesta.pagination;
         me.arrayCliente = respuesta.clientes.data;
       })["catch"](function (error) {
@@ -8135,7 +8138,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       me.pagination.current_page = page; //enviar peticion para visualizar la data  de esa pagina
 
-      me.listarCostos(page, buscar, criterio);
+      me.listarUsuarios(page, buscar, criterio);
     },
     registrarUsuario: function registrarUsuario() {
       if (this.validarUsuario()) //evalua si el metodo validar categoria retorna 1
@@ -8539,8 +8542,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       idprecio: 0,
       idhorariosalida: 0,
       idhorarioregreso: 0,
-      codaeropuertoida: '',
-      codaeropuertoregreso: '',
+      idaeropuertoida: 0,
+      idaeropuertoregreso: 0,
       idclasevuelo: 0,
       millasreales: 0,
       millasotorgadas: 0,
@@ -8642,8 +8645,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idprecio": this.idprecio,
         "idhorariosalida": this.idhorariosalida,
         "idhorarioregreso": this.idhorarioregreso,
-        "codaeropuertoida": this.codaeropuertoida,
-        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idaeropuertoida": this.idaeropuertoida,
+        "idaeropuertoregreso": this.idaeropuertoregreso,
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
         "idclasevuelo": this.idclasevuelo,
@@ -8671,8 +8674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "idprecio": this.idprecio,
         "idhorariosalida": this.idhorariosalida,
         "idhorarioregreso": this.idhorarioregreso,
-        "codaeropuertoida": this.codaeropuertoida,
-        "codaeropuertoregreso": this.codaeropuertoregreso,
+        "idaeropuertoida": this.idaeropuertoida,
+        "idaeropuertoregreso": this.idaeropuertoregreso,
         "idciudadorigen": this.idciudadorigen,
         "idciudaddestino": this.idciudaddestino,
         "idclasevuelo": this.idclasevuelo,
@@ -8745,12 +8748,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.idhorariosalida) this.errorMostrarMsjVuelo.push("El horario de salida es obligatorio");
       if (!this.idhorarioregreso) this.errorMostrarMsjVuelo.push("El horario de regreso es obligatorio");
       if (this.idhorariosalida === this.idhorarioregreso) this.errorMostrarMsjVuelo.push("Los horarios no pueden ser los mismos");
-      if (!this.codaeropuertoida) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de ida es obligatorio");
-      if (!this.codaeropuertoregreso) this.errorMostrarMsjVuelo.push("El codigo de aeropuerto de llegada es obligatorio");
+      if (!this.idaeropuertoida) this.errorMostrarMsjVuelo.push("El  aeropuerto de ida es obligatorio");
+      if (!this.idaeropuertoregreso) this.errorMostrarMsjVuelo.push("El  aeropuerto de llegada es obligatorio");
       if (!this.idciudadorigen) this.errorMostrarMsjVuelo.push("La ciudad de origen es obligatoria");
       if (!this.idciudaddestino) this.errorMostrarMsjVuelo.push("La ciudad de destino es obligatoria");
       if (this.idciudaddestino === this.idciudadorigen) this.errorMostrarMsjVuelo.push("Las ciudades de origen y destino no pueden ser iguales");
-      if (this.codaeropuertoregreso === this.codaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
+      if (this.idaeropuertoregreso === this.idaeropuertoida) this.errorMostrarMsjVuelo.push(" Los aeropuerto no pueden ser iguales");
       if (!this.idclasevuelo) this.errorMostrarMsjVuelo.push("La clase de vuelo es obligatoria");
       if (!this.millasreales || this.millasreales < 0) this.errorMostrarMsjVuelo.push("Las millas reales son obligatorios y no pueden ser menor que cero");
       if (!this.millasotorgadas || this.millasotorgadas < 0) this.errorMostrarMsjVuelo.push("Las millas otorgadas son obligatorios y no pueden ser menor que cero");
@@ -8760,7 +8763,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cerrarModal: function cerrarModal() {
       this.modal = 0;
       this.tituloModal = '';
-      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+      this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -8774,7 +8777,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.modal = 1;
                   this.tipoAccion = 1;
                   this.tituloModal = 'Registrar Vuelo';
-                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.codaeropuertoida = '', this.codaeropuertoregreso = '', this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
+                  this.aerolinea_cod = '', this.idprecio = 0, this.idhorariosalida = 0, this.idhorarioregreso = 0, this.idaeropuertoida = 0, this.idaeropuertoregreso = 0, this.idciudadorigen = 0, this.idciudaddestino = 0, this.idclasevuelo = 0, this.millasreales = 0, this.millasotorgadas = 0;
                   break;
                 }
 
@@ -8788,8 +8791,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   this.idprecio = data['idprecio'];
                   this.idhorariosalida = data['idhorariosalida'];
                   this.idhorarioregreso = data['idhorarioregreso'];
-                  this.codaeropuertoida = data["codaeropuertoida"];
-                  this.codaeropuertoregreso = data["codaeropuertoregreso"];
+                  this.idaeropuertoida = data["idaeropuertoida"];
+                  this.idaeropuertoregreso = data["idaeropuertoregreso"];
                   this.idciudadorigen = data["idciudadorigen"], this.idciudaddestino = data["idciudaddestino"], this.idclasevuelo = data["idclasevuelo"];
                   this.millasreales = data['millasreales'];
                   this.millasotorgadas = data['millasotorgadas'];
@@ -51025,7 +51028,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("i", { staticClass: "fa fa-align-justify" }),
-          _vm._v(" Empleado\n                "),
+          _vm._v(" Empleados\n                "),
           _c(
             "button",
             {
@@ -51081,16 +51084,8 @@ var render = function() {
                       _vm._v("Nombre")
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "fechanaci" } }, [
-                      _vm._v("fecha")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "direccion" } }, [
-                      _vm._v("direccion")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "movil" } }, [
-                      _vm._v("movil")
+                    _c("option", { attrs: { value: "papellido" } }, [
+                      _vm._v("Apellido")
                     ])
                   ]
                 ),
@@ -51115,7 +51110,7 @@ var render = function() {
                       ) {
                         return null
                       }
-                      return _vm.listarEmpleado(1, _vm.buscar, _vm.criterio)
+                      return _vm.listarEmpleados(1, _vm.buscar, _vm.criterio)
                     },
                     input: function($event) {
                       if ($event.target.composing) {
@@ -51133,7 +51128,7 @@ var render = function() {
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
-                        return _vm.listarEmpleado(1, _vm.buscar, _vm.criterio)
+                        return _vm.listarEmpleados(1, _vm.buscar, _vm.criterio)
                       }
                     }
                   },
@@ -51200,45 +51195,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: { textContent: _vm._s(empleado.pasaporte) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.fechanaci) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.direccion) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.telefono) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.movil) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.puesto) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(empleado.salario) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      empleado.condicion == "1"
-                        ? _c("div", [
-                            _c("span", { staticClass: "badge badge-success" }, [
-                              _vm._v("Activo")
-                            ])
-                          ])
-                        : _c("div", [
-                            _c("span", { staticClass: "badge badge-danger" }, [
-                              _vm._v("Desactivo")
-                            ])
-                          ])
-                    ])
+                    })
                   ])
                 }),
                 0
@@ -51580,7 +51537,7 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Puesto")]
+                        [_vm._v("Puesto de trabajo ")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
@@ -51594,7 +51551,10 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Puesto" },
+                          attrs: {
+                            type: "text",
+                            placeholder: "Puesto de trabajo"
+                          },
                           domProps: { value: _vm.puesto },
                           on: {
                             input: function($event) {
@@ -51651,7 +51611,7 @@ var render = function() {
                           staticClass: "col-md-2 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Salario")]
+                        [_vm._v("Email")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
@@ -51660,19 +51620,22 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.salario,
-                              expression: "salario"
+                              value: _vm.email,
+                              expression: "email"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "number", placeholder: "Salario" },
-                          domProps: { value: _vm.salario },
+                          attrs: {
+                            type: "text",
+                            placeholder: "email persona/empresa"
+                          },
+                          domProps: { value: _vm.email },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.salario = $event.target.value
+                              _vm.email = $event.target.value
                             }
                           }
                         })
@@ -51717,6 +51680,41 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-2 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v(" Salario")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.salario,
+                              expression: "salario"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", placeholder: "Salario" },
+                          domProps: { value: _vm.salario },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.salario = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "label",
                         {
@@ -51992,6 +51990,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+<<<<<<< HEAD
                     _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "label",
@@ -52030,6 +52029,8 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+=======
+>>>>>>> 3bd97af8877e330ecf547adf3b8327158e692320
                     _c(
                       "div",
                       {
@@ -52122,33 +52123,19 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("1° Nombre")]),
+        _c("th", [_vm._v("Primer Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("2° Nombre")]),
+        _c("th", [_vm._v("Segundo Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("1° Apellido")]),
+        _c("th", [_vm._v("Primer Apellido")]),
         _vm._v(" "),
-        _c("th", [_vm._v("2° Apellido")]),
+        _c("th", [_vm._v("Segundo Apellido")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Dui")]),
+        _c("th", [_vm._v("DUI")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Nit")]),
+        _c("th", [_vm._v("NIT")]),
         _vm._v(" "),
-        _c("th", [_vm._v("pasaporte")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("fecha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Direccion")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Telefono")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Movil")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Puesto")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Salario")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Estado")])
+        _c("th", [_vm._v("Pasaporte")])
       ])
     ])
   }
@@ -53938,37 +53925,46 @@ var render = function() {
                     _c(
                       "td",
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-warning btn-sm",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.abrirModal(
-                                  "reserva",
-                                  "pagar",
-                                  reserva
-                                )
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "icon-dollar" })]
-                        ),
-                        _vm._v("  \n                                    "),
                         reserva.estado == "0"
-                          ? [_c("i", { staticClass: "icon-pencil" })]
-                          : [_c("i", { staticClass: "icon-check" })]
+                          ? [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success ",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.abrirModal(
+                                        "reserva",
+                                        "pagar",
+                                        reserva
+                                      )
+                                    }
+                                  }
+                                },
+                                [_c("span", [_vm._v("$$")])]
+                              ),
+                              _vm._v("  \n                                    ")
+                            ]
+                          : [
+                              _c("button", {
+                                staticClass: "btn btn-success icon-check"
+                              })
+                            ]
                       ],
                       2
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(reserva.cliente_id) }
+                      domProps: {
+                        textContent: _vm._s(reserva.cliente.nomcontacto)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(reserva.vuelo_id) }
+                      domProps: {
+                        textContent: _vm._s(reserva.vuelo.aerolinea_cod)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -54138,13 +54134,13 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "col-md-3 form-control-label",
+                                staticClass: "col-12 form-control-label",
                                 attrs: { for: "text-input" }
                               },
                               [_vm._v("Cliente")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
+                            _c("div", { staticClass: "col-12" }, [
                               _c(
                                 "select",
                                 {
@@ -54156,7 +54152,7 @@ var render = function() {
                                       expression: "cliente_id"
                                     }
                                   ],
-                                  staticClass: "form-control",
+                                  staticClass: "form-control ",
                                   on: {
                                     change: function($event) {
                                       var $$selectedVal = Array.prototype.filter
@@ -54202,13 +54198,13 @@ var render = function() {
                             _c(
                               "label",
                               {
-                                staticClass: "col-md-3 form-control-label",
+                                staticClass: "col-12 form-control-label",
                                 attrs: { for: "text-input" }
                               },
-                              [_vm._v("Vuelo")]
+                              [_vm._v("Seleccione paquete de vuelo")]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9" }, [
+                            _c("div", { staticClass: "col-12" }, [
                               _c(
                                 "select",
                                 {
@@ -54244,17 +54240,36 @@ var render = function() {
                                   _c(
                                     "option",
                                     { attrs: { value: "0", disabled: "" } },
-                                    [_vm._v("Seleccione o agregue  vuelo")]
+                                    [
+                                      _vm._v(
+                                        "Fecha Ida/Fecha Reg/Aeropuerto ida/ Aeropuerto Reg"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _vm._l(_vm.arrayVuelo, function(vuelo) {
-                                    return _c("option", {
-                                      key: vuelo.idvuelo,
-                                      domProps: {
-                                        value: vuelo.idvuelo,
-                                        textContent: _vm._s(vuelo.aerolinea_cod)
-                                      }
-                                    })
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: vuelo.idvuelo,
+                                        domProps: { value: vuelo.idvuelo }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(vuelo.horarioida.fecha) +
+                                            "/" +
+                                            _vm._s(vuelo.horarioreg.fecha) +
+                                            "/" +
+                                            _vm._s(
+                                              vuelo.aeropuertoida.nomaeropuerto
+                                            ) +
+                                            "/" +
+                                            _vm._s(
+                                              vuelo.aeropuertoreg.nomaeropuerto
+                                            )
+                                        )
+                                      ]
+                                    )
                                   })
                                 ],
                                 2
@@ -54603,7 +54618,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Cliente")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vuelo")]),
+        _c("th", [_vm._v("Aerolinea")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])
@@ -57645,7 +57660,9 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(vuelo.aerolinea_cod) }
+                      domProps: {
+                        textContent: _vm._s(vuelo.aerolinea.nombreaerolinea)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", {
@@ -57658,12 +57675,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
-                        textContent: _vm._s(vuelo.codaeropuertoregreso)
+                        textContent: _vm._s(vuelo.aeropuertoreg.nomaeropuerto)
                       }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(vuelo.codaeropuertoida) }
+                      domProps: {
+                        textContent: _vm._s(vuelo.aeropuertoida.nomaeropuerto)
+                      }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -58237,8 +58256,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.codaeropuertoida,
-                                expression: "codaeropuertoida"
+                                value: _vm.idaeropuertoida,
+                                expression: "idaeropuertoida"
                               }
                             ],
                             staticClass: "form-control",
@@ -58252,7 +58271,7 @@ var render = function() {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.codaeropuertoida = $event.target.multiple
+                                _vm.idaeropuertoida = $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               }
@@ -58261,15 +58280,15 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "", disabled: "" } },
+                              { attrs: { value: "0", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un aeropuerto")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayAeropuertos, function(aeropuerto) {
                               return _c("option", {
-                                key: aeropuerto.codaeropuerto,
+                                key: aeropuerto.id,
                                 domProps: {
-                                  value: aeropuerto.codaeropuerto,
+                                  value: aeropuerto.id,
                                   textContent: _vm._s(aeropuerto.nomaeropuerto)
                                 }
                               })
@@ -58296,8 +58315,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.codaeropuertoregreso,
-                                expression: "codaeropuertoregreso"
+                                value: _vm.idaeropuertoregreso,
+                                expression: "idaeropuertoregreso"
                               }
                             ],
                             staticClass: "form-control",
@@ -58311,8 +58330,7 @@ var render = function() {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.codaeropuertoregreso = $event.target
-                                  .multiple
+                                _vm.idaeropuertoregreso = $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               }
@@ -58321,15 +58339,15 @@ var render = function() {
                           [
                             _c(
                               "option",
-                              { attrs: { value: "", disabled: "" } },
+                              { attrs: { value: "0", disabled: "" } },
                               [_vm._v("Seleccione o agregue  un aeropuerto")]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.arrayAeropuertos, function(aeropuerto) {
                               return _c("option", {
-                                key: aeropuerto.codaeropuerto,
+                                key: aeropuerto.id,
                                 domProps: {
-                                  value: aeropuerto.codaeropuerto,
+                                  value: aeropuerto.id,
                                   textContent: _vm._s(aeropuerto.nomaeropuerto)
                                 }
                               })
@@ -58565,15 +58583,15 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Codigo Aerolinea")]),
+        _c("th", [_vm._v("Aerolinea")]),
         _vm._v(" "),
         _c("th", [_vm._v("Millas reales")]),
         _vm._v(" "),
         _c("th", [_vm._v("Millas otorgadas")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cod aeropuerto origen")]),
+        _c("th", [_vm._v("aeropuerto origen")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cod aeropuerto destino")]),
+        _c("th", [_vm._v("aeropuerto destino")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
       ])

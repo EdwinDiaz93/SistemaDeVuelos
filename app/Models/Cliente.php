@@ -17,12 +17,12 @@ class Cliente extends Model
         'nomcontacto',
         'numfrecuente'];
 
-    public function tipoCosto(){
+    public function persona(){
 
         return $this->belongsTo(Persona::class);
     }
 
     public function reserva(){
-        return $this->belongsTo(Reserva::class);
+        return $this->hasOne(Reserva::class);
     }
 }
