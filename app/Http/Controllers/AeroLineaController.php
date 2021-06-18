@@ -20,6 +20,7 @@ class AeroLineaController extends Controller
             $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
         }
         else{          
+            $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
             $aerolineas = AeroLinea::where($criterio, 'like', '%'. $buscar . '%')->orderBy('codaerolinea', 'desc')->paginate(3);          
         }
         

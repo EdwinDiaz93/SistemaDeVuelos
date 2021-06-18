@@ -22,7 +22,9 @@ class ReservaController extends Controller
           $reservas=Reserva::with("cliente","vuelo")->paginate(3);
       }
       else{          
-          $reservas = Reserva::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idreserva', 'desc')->paginate(3);          
+        $clientes = Cliente::orderBy('idcliente', 'desc')->paginate(3);
+        $vuelos=Vuelo::with("aerolinea","clasevuelo","aeropuertoida","aeropuertoreg","horarioida","horarioreg","precio")->get();
+        $reservas = Reserva::where($criterio, 'like', '%'. $buscar . '%')->with("cliente","vuelo")->orderBy('idreserva', 'desc')->paginate(3);          
       }
       
       return [

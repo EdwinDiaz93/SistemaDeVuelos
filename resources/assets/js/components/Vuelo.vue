@@ -19,7 +19,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <select class="form-control col-md-3" v-model="criterio">
-                                  <option value="idvuelo">Id Vuelo</option>
+                                  <option selected value="aerolinea_cod">Codigo Aerolinea</option>                                  
                                 </select>
                                 <input type="text" v-model="buscar" @keyup.enter="listarVuelos(1,buscar,criterio)"  class="form-control" placeholder="Texto a buscar">
                                 <button type="submit" @click="listarVuelos(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -268,7 +268,7 @@
                     'to': 0,
                 },
                 offset : 3,
-                criterio : '', 
+                criterio : 'aerolinea_cod', 
                 buscar : ""
 
             } 

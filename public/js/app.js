@@ -2036,6 +2036,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2065,7 +2066,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'to': 0
       },
       offset: 3,
-      criterio: '',
+      criterio: 'codaerolinea',
       buscar: ""
     };
   },
@@ -3001,7 +3002,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'to': 0
       },
       offset: 3,
-      criterio: '',
+      criterio: 'modeloavion',
       buscar: ''
     };
   },
@@ -6263,7 +6264,7 @@ __webpack_require__.r(__webpack_exports__);
         'to': 0
       },
       offset: 3,
-      criterio: '',
+      criterio: 'cliente_id',
       buscar: ''
     };
   },
@@ -6798,6 +6799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -8578,7 +8580,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'to': 0
       },
       offset: 3,
-      criterio: '',
+      criterio: 'aerolinea_cod',
       buscar: ""
     };
   },
@@ -46301,6 +46303,10 @@ var render = function() {
                   [
                     _c("option", { attrs: { value: "codaerolinea" } }, [
                       _vm._v("Codigo de Aerolinea")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "nombreaerolinea" } }, [
+                      _vm._v("Nombre de Aerolinea")
                     ])
                   ]
                 ),
@@ -48075,12 +48081,14 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "modeloavion" } }, [
-                      _vm._v("Modelo")
-                    ]),
+                    _c(
+                      "option",
+                      { attrs: { selected: "", value: "modeloavion" } },
+                      [_vm._v("Modelo")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "marcaavion" } }, [
-                      _vm._v("Avion")
+                      _vm._v("Marca")
                     ])
                   ]
                 ),
@@ -53869,7 +53877,7 @@ var render = function() {
                   },
                   [
                     _c("option", { attrs: { value: "cliente_id" } }, [
-                      _vm._v("Cliente")
+                      _vm._v("Id Cliente")
                     ])
                   ]
                 ),
@@ -53965,11 +53973,14 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _c("td", {
-                      domProps: {
-                        textContent: _vm._s(reserva.cliente.nomcontacto)
-                      }
-                    }),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(reserva.cliente.nomcontacto) +
+                          " (Id=" +
+                          _vm._s(reserva.cliente_id) +
+                          ")"
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
@@ -55261,8 +55272,14 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "nombretipoavion" } }, [
-                      _vm._v("Tipo de avion")
+                    _c(
+                      "option",
+                      { attrs: { selected: "", value: "nombretipoavion" } },
+                      [_vm._v("Nombre Tipo avion")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "cantidadasientos" } }, [
+                      _vm._v("Asientos")
                     ])
                   ]
                 ),
@@ -57549,9 +57566,11 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "idvuelo" } }, [
-                      _vm._v("Id Vuelo")
-                    ])
+                    _c(
+                      "option",
+                      { attrs: { selected: "", value: "aerolinea_cod" } },
+                      [_vm._v("Codigo Aerolinea")]
+                    )
                   ]
                 ),
                 _vm._v(" "),

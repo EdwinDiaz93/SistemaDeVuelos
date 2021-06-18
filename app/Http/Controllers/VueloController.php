@@ -33,7 +33,14 @@ class VueloController extends Controller
             $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
         }
         else{          
-            $vuelos = Vuelo::where($criterio, 'like', '%'. $buscar . '%')->orderBy('idvuelo', 'desc')->paginate(3);          
+            $vuelos = Vuelo::where($criterio, 'like', '%'. $buscar . '%')->with("aerolinea","aeropuertoida","aeropuertoreg","costo")->orderBy('idvuelo', 'desc')->paginate(3);
+            $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
+            $horarios=Horario::orderBy('idhorario', 'desc')->paginate(3);
+            $aeropuertos=Aeropuerto::orderBy('codaeropuerto', 'desc')->paginate(3);
+            $precios=Precio::orderBy('idprecio', 'desc')->paginate(3);
+            $clasevuelos=ClaseVuelo::orderBy('idclasevuelo', 'desc')->paginate(3);
+            $costos=Costos::orderBy('idcosto', 'desc')->paginate(3);
+            $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
         }
         
         return [
