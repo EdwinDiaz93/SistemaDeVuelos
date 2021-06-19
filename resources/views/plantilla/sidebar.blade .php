@@ -4,8 +4,9 @@
             <li class="nav-title">
                 Mantenimiento
             </li>
-    
-
+           
+           
+                    
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i> Vuelos</a>
                 <ul class="nav-dropdown-items">
@@ -79,10 +80,10 @@
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fab fa-avianex"></i> Aeropuertos </a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i></i> Aeropuertos </a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=13" class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-avianex"></i> Aeropuerto</a>
+                        <a class="nav-link" href="#"><i class="icon-plane"></i></i> Aeropuerto</a>
                     </li>   
                 </ul>
             </li>
@@ -91,10 +92,12 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Clientes </a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=20" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-user"></i> Listado de clientes</a>
+                        <a class="nav-link" href="#"><i class="icon-user"></i> Listado de clietes</a>
                     </li>   
                 </ul>
             </li>
+
+           
 
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Empleados </a>
@@ -109,3 +112,5 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
+
+

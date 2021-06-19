@@ -166,6 +166,24 @@ Route::middleware(['empleado'])->group(function () {
     Route::put('/cliente/actualizar', 'App\Http\Controllers\ClienteController@update');
 });
 
+Route::middleware(['cliente'])->group(function () {
+    Route::get('/reserva', 'App\Http\Controllers\ReservaController@index');
+    Route::post('/reserva/registrar', 'App\Http\Controllers\ReservaController@store');
+    Route::put('/reserva/pagar', 'App\Http\Controllers\ReservaController@pay');
+    Route::get('/reserva/listarPdf', 'App\Http\Controllers\ReservaController@listarPdf')->name('reservas_pdf');
+   
+
+    // Rutas de precio
+    Route::get('/vuelo', 'App\Http\Controllers\VueloController@index');
+    Route::post('/vuelo/registrar', 'App\Http\Controllers\VueloController@store');
+    Route::put('/vuelo/actualizar', 'App\Http\Controllers\VueloController@update');
+    Route::put('/vuelo/desactivar', 'App\Http\Controllers\VueloController@desactivar');
+    Route::put('/vuelo/activar', 'App\Http\Controllers\VueloController@activar');
+
+    Route::get('/vuelo/listarPdf', 'App\Http\Controllers\VueloController@listarPdf')->name('vuelos_pdf');
+});
+
+
 });
 
 Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm');

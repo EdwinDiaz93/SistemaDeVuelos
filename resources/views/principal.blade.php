@@ -81,6 +81,8 @@
                     @include('plantilla.sidebaradministrador')
                 @elseif(Auth::user()->idrol == 2)
                     @include('plantilla.sidebarempleado')
+                @elseif(Auth::user()->idrol == 3)
+                    @include('plantilla.sidebarcliente')    
                 @else
 
                 @endif  
@@ -88,7 +90,7 @@
             @endif 
             
           
-            <!-- Contenido Principal   @include('plantilla.sidebar')-->
+            <!-- Contenido Principal  -->
             @yield('contenido')
             <!-- /Fin del contenido principal -->
         </div>

@@ -144,6 +144,30 @@
         <empleado></empleado>
     </template>
 
+
+    @elseif(Auth::user()->idrol == 3)
+
+    <template v-if="menu==1">
+        <clasevuelo></clasevuelo>
+    </template>
+
+    <template v-if="menu==2">
+        <horario></horario>
+    </template>
+
+    <template v-if="menu==3">
+        <costos></costos>
+    </template>
+
+
+    <template v-if="menu==14">
+        <reserva></reserva>
+    </template>
+ 
+    <template v-if="menu==17">
+        <vuelo></vuelo>
+    </template>   
+       
     @else
 
     @endif
