@@ -7,6 +7,8 @@ use App\Models\Cliente;
 use App\Models\Reserva;
 use App\Models\Pago;
 use App\Models\Vuelo;
+use App\Models\Pais;
+
 
 class ReservaController extends Controller
 {
@@ -69,6 +71,20 @@ class ReservaController extends Controller
         $reserva->pago_id=$pago->idpago;
         $reserva->estado = '1'; 
         $reserva->save();
+    }
+
+
+
+    public function listarPdf(){
+        
+        
+        $reservas=Reserva::with("cliente","vuelo","pago")->orderBy('idreserva', 'asc')->paginate(3);
+        $vuelos=Vuelo::with("aerolinea","clasevuelo","aeropuertoida","aeropuertoreg","horarioida","horarioreg","precio")->get();
+       
+        $cont=Reserva::count();
+        $pdf= \PDF::loadView('pdf.reserva',['reservas'=>$reservas,'vuelos'=>$vuelos,'cont'=>$cont]);
+        return $pdf->download('reservas.pdf');
+        
     }
     
    

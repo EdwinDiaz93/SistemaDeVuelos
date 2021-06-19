@@ -2,17 +2,15 @@
         <!-- Contenido Principal -->
     <main class="main">
         <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
-        </ol>
+      
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Usuarios
-                    <button type="button" @click="abrirModal('usuario', 'registrar')" class="btn btn-secondary">
+                    <!--button type="button" @click="abrirModal('usuario', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
-                    </button>
+                    </!--button-->
                       <button type="button" @click="cargarPdf()" class="btn btn-info">
                         <i class="icon-doc"></i>&nbsp;Reporte
                     </button>

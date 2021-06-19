@@ -21,7 +21,9 @@
             <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#"></a>
+            <a>
+            </a>
+
             <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,20 +56,22 @@
                 <li class="nav-item px-3">
                     <a class="nav-link" href="#">{{now()}}</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item px-3">
+                    <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown"  aria-haspopup="true" >
                         <img src="img/avatars/avion2.png" class="img-avatar" alt="admin@bootstrapmaster.com">
-                        <span class="d-md-down-none">{{Auth::user()->nomusuario}} </span>
+                        <span >{{Auth::user()->nomusuario}}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">
                             <strong>Cuenta</strong>
                         </div>
-                        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
                     </div>
-                </li>
+                </li>  
+                 
             </ul>
+            <li class="nav-item px-3">
+            <span><a href="http://127.0.0.1:8000/" class="btn btn-danger" >Cerrar Sesión</a></span>
+            </li>
         </header>
 
         <div class="app-body">
@@ -93,7 +97,6 @@
 
     <footer class="app-footer">
         <span><a href="{{ route('main') }}">Sistema De Vuelos</a> &copy; 2021</span>
-        <span class="ml-auto"> <a href="http://127.0.0.1:8000/">Cerrar Sesión</a></span>
     </footer>
 
     <script src="js/app.js"></script>

@@ -2,9 +2,7 @@
         <!-- Contenido Principal -->
     <main class="main">
         <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
-        </ol>
+      
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
@@ -93,7 +91,7 @@
                                 </div>
                                 <label class="col-md-2 form-control-label" for="text-input">Telefono Fijo</label>
                                 <div class="col-md-4">
-                                    <input type="number" v-model="telefono" class="form-control" pattern="[0-9]{8}" placeholder="Telefono persona/empresa" >
+                                    <input type="number"  v-model="telefono" class="form-control" pattern="[0-9]{8}" placeholder="Telefono persona/empresa" >
                                 </div>
                             </div>                            
                             <div class="form-group row">

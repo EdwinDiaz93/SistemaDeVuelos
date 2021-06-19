@@ -125,28 +125,37 @@
             </p>
             <div>
                 <h3>
-                    Listado de Usuarios <span class="derecha"> {{now()}} </span>
+                    Reservas Realizadas <span class="derecha"> {{now()}} </span>
                 </h3>
             </div>
             <div>
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>Nombre De usuario</th>
-                            <th>Email</th>
-                            <th>Rol</th>
+                        
+                            <th>Nombre del Cliente</th>
+                            <th>Aerolinea</th>
+                            <th>Aeropuerto Origen</th>
+                            <th>Aeropuerto Destino</th>
+                            <th>Horario de Vuelo</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($usuarios as $u)
+                        @foreach($reservas as $r)
+                        @foreach($vuelos as $v)
+                        @if($r->vuelo_id == $v->idvuelo)
                         <tr>
 
-                            <td> {{$u->nomusuario}}</td>
-                            <td> {{$u->email}}</td>
-                            <td> {{$u->nombre_rol}}</td>
-                            <td> {{$u->estado?'Activo':'Desactivado'}} </td>
+                            <td> {{$v->aerolinea->nombreaerolinea}}</td>
+                            <td> {{$r->cliente->nomcontacto}}</td>
+                            <td>{{$v->aeropuertoida->nomaeropuerto}}</td>
+                            <td>{{$v->aeropuertoreg->nomaeropuerto}}</td>
+                            <td>LLegada:{{$v->horarioreg->fecha}} - Salida: {{$v->horarioida->fecha}}</td>
+                            <td> {{$r->estado?'Pagado':'Pendiente'}} </td>
                         </tr>
+                        @endif
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>

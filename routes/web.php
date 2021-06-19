@@ -32,7 +32,9 @@ Route::middleware(['Administrador'])->group(function () {
     Route::get('/reserva', 'App\Http\Controllers\ReservaController@index');
     Route::post('/reserva/registrar', 'App\Http\Controllers\ReservaController@store');
     Route::put('/reserva/pagar', 'App\Http\Controllers\ReservaController@pay');
-    
+    Route::get('/reserva/listarPdf', 'App\Http\Controllers\ReservaController@listarPdf')->name('reservas_pdf');
+   
+
     // Rutas de precio
     Route::get('/vuelo', 'App\Http\Controllers\VueloController@index');
     Route::post('/vuelo/registrar', 'App\Http\Controllers\VueloController@store');
@@ -149,7 +151,6 @@ Route::middleware(['Administrador'])->group(function () {
      Route::put('/user/actualizar', 'App\Http\Controllers\UserController@update');
      Route::put('/user/desactivar', 'App\Http\Controllers\UserController@desactivar');
      Route::put('/user/activar', 'App\Http\Controllers\UserController@activar');
-
      Route::get('/user/listarPdf', 'App\Http\Controllers\UserController@listarPdf')->name('users_pdf');
 });
 
