@@ -17,11 +17,11 @@ class AeroLineaController extends Controller
   
         if($buscar==''){                
             $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
-            $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(3);
+            $aerolineas=AeroLinea::orderBy('codaerolinea', 'desc')->paginate(10);
         }
         else{          
             $ciudades=Ciudad::with("pais")->orderBy('idciudad', 'desc')->paginate(10);
-            $aerolineas = AeroLinea::where($criterio, 'like', '%'. $buscar . '%')->orderBy('codaerolinea', 'desc')->paginate(3);          
+            $aerolineas = AeroLinea::where($criterio, 'like', '%'. $buscar . '%')->orderBy('codaerolinea', 'desc')->paginate(10);
         }
         
         return [
