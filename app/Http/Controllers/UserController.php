@@ -99,5 +99,16 @@ class UserController extends Controller
         $user->save();
     }
 
+    public function listarPdf(){
+        
+        $usuarios = User::join('rol','rol.idrol','=','users.idrol')
+            ->select('rol.idrol','rol.nomrol as nombre_rol','users.idusuario','users.idpersona','users.nomusuario', 'users.password', 'users.email', 'users.estado')
+            ->orderBy('users.idusuario', 'desc')->paginate(3);
+
+        $cont=User::count();
+        $pdf= \PDF::loadView('pdf.usuariospdf',['usuarios'=>$usuarios,'cont'=>$cont]);
+        return $pdf->download('usuarios.pdf');
+    }
+
 
 }

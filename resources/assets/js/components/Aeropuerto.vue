@@ -2,9 +2,7 @@
         <!-- Contenido Principal -->
     <main class="main">
         <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Sistema Vuelos</a></li>
-        </ol>
+       
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
@@ -12,6 +10,9 @@
                     <i class="fa fa-align-justify"></i> Aeropuerto
                     <button type="button" @click="abrirModal('aeropuerto', 'registrar')" class="btn btn-secondary">
                         <i class="icon-plus"></i>&nbsp;Nuevo
+                    </button>
+                     <button type="button" @click="cargarPdf()" class="btn btn-info">
+                        <i class="icon-doc"></i>&nbsp;Reporte
                     </button>
                 </div>
                 <div class="card-body">
@@ -301,6 +302,12 @@
                 .then(function () {
                 });
             },
+
+
+            cargarPdf(){
+                window.open('http://127.0.0.1:8000/aeropuerto/listarPdf','_blank');
+            },
+
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 //actualizar pagina actual 

@@ -121,4 +121,17 @@ class VueloController extends Controller
         $vuelo->estado = '1';
         $vuelo->save();
     }
+
+    public function listarPdf(){
+        
+        
+        $vuelos=Vuelo::with("aerolinea","precio","costo")->orderBy('idvuelo', 'desc')->paginate(3);
+       
+        $cont=Vuelo::count();
+        $pdf= \PDF::loadView('pdf.vuelospdf',['vuelos'=>$vuelos,'cont'=>$cont]);
+        return $pdf->download('vuelos.pdf');
+        
+    }
+
+
 }

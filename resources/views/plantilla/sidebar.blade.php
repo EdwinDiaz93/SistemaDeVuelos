@@ -79,28 +79,28 @@
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Aeropuertos </a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="fab fa-avianex"></i> Aeropuertos </a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=13" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-plane"></i> Aeropuerto</a>
+                        <a class="nav-link" href="#"><i class="fab fa-avianex"></i> Aeropuerto</a>
                     </li>   
                 </ul>
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Clientes </a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Clientes </a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=20" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-plane"></i> Listado de clietes</a>
+                        <a class="nav-link" href="#"><i class="icon-user"></i> Listado de clientes</a>
                     </li>   
                 </ul>
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-plane"></i> Empleados </a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user"></i> Empleados </a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=21" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-plane"></i> Listado de Empleados</a>
+                        <a class="nav-link" href="#"><i class="icon-user"></i> Listado de Empleados</a>
                     </li>   
                 </ul>
             </li>

@@ -96,4 +96,15 @@ class AeropuertoController extends Controller
         $aeropuerto->estado = '1';
         $aeropuerto->save();
     }
+
+    public function listarPdf(){
+        $aeropuertos = Aeropuerto::join('pais','aeropuerto.idpais','=','pais.idpais')
+        ->join('ciudad','aeropuerto.idciudad','=','ciudad.idciudad')
+        ->select('aeropuerto.id','aeropuerto.codaeropuerto','aeropuerto.idpais','aeropuerto.idciudad','pais.nompais','ciudad.nomciudad','aeropuerto.nomaeropuerto','aeropuerto.telefono','aeropuerto.nomresponsable','aeropuerto.numbahias','aeropuerto.estado')
+        ->orderBy('aeropuerto.nomaeropuerto', 'desc')->paginate(3);
+
+        $cont=Aeropuerto::count();
+        $pdf= \PDF::loadView('pdf.aeropuertospdf',['aeropuertos'=>$aeropuertos,'cont'=>$cont]);
+        return $pdf->download('aeropuertos.pdf');
+    }
 }

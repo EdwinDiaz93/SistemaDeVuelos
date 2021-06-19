@@ -63,10 +63,8 @@
 
     <template v-if="menu==20">
         <cliente></cliente>
-
         </template>
 
-        
     <template v-if="menu==17">
         <vuelo></vuelo>
     </template>  
