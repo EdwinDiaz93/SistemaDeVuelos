@@ -53911,12 +53911,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(
-                        _vm._s(reserva.cliente.nomcontacto) +
-                          " (Id=" +
-                          _vm._s(reserva.cliente_id) +
-                          ")"
-                      )
+                      _vm._v(_vm._s(reserva.cliente.nomcontacto) + " ")
                     ]),
                     _vm._v(" "),
                     _c("td", {

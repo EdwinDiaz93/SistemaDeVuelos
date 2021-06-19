@@ -49,7 +49,7 @@
                                            <button class="btn btn-success icon-check"></button>                                   
                                     </template>
                                 </td>
-                                <td>{{reserva.cliente.nomcontacto}} (Id={{reserva.cliente_id}})</td>
+                                <td>{{reserva.cliente.nomcontacto}} </td>
                                 <td v-text="reserva.vuelo.aerolinea_cod"></td>                                 
                                 <td>
                                     <div v-if="reserva.estado=='1'">
